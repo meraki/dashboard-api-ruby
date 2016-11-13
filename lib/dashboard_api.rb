@@ -1,6 +1,6 @@
 require 'httparty'
 require 'json'
-require './lib/organizations.rb'
+require_relative 'organizations.rb'
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
 class DashboardAPI
