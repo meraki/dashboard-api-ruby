@@ -1,11 +1,13 @@
 require 'httparty'
 require 'json'
 require_relative 'organizations.rb'
+require_relative 'networks.rb'
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
 class DashboardAPI
   include HTTParty
   include Organizations
+  include Networks
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key
@@ -20,19 +22,33 @@ class DashboardAPI
   #   needs to be a bit more resillient, instead of relying on HTTParty for exception
   #   handling
   def make_api_call(endpoint_url, http_method, options_hash={})
-    headers = {"X-Cisco-Meraki-API-Key" => @key}
+    headers = {"X-Cisco-Meraki-API-Key" => @key, 'Content-Type' => 'application/json'}
     headers.merge!(options_hash[:headers]) if options_hash[:headers]
 
     options = {:headers => headers, :body => options_hash[:body].to_json}
     case http_method
     when 'GET'
       res = HTTParty.get("#{self.class.base_uri}/#{endpoint_url}", options)
+      raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
       return JSON.parse(res.body)
     when 'POST'
       res = HTTParty.post("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
+      raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
       return res
+      return res
+    when 'PUT'
+      res = HTTParty.put("#{self.class.base_uri}/#{endpoint_url}", options)
+      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
+      raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
+      return res
+    when 'DELETE'
+      res = HTTParty.delete("#{self.class.base_uri}/#{endpoint_url}", options)
+      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
+      raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
+      return res
+    else
+      raise 'Invalid HTTP Method. Only GET, POST, PUT and DELETE are supported.'
     end
-
   end
 end

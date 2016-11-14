@@ -14,7 +14,7 @@ class DashAPITest < Minitest::Test
   def setup
     @dashboard_api_key = ENV['dashboard_api_key']
     @org_id = ENV['dashboard_org_id']
-
+    @network_id = ENV['test_network_id']
     @dapi = DashboardAPI.new(@dashboard_api_key)
   end
 
@@ -59,4 +59,44 @@ class DashAPITest < Minitest::Test
       end
     end
   end
+
+  def test_it_asserts_with_bad_http_method
+    assert_raises 'Invalid HTTP Method. Only GET, POST, PUT and DELETE are supported.' do
+      @dapi.make_api_call('bogus', 'CATCHME')
+    end
+  end
+
+  def test_it_can_put
+    VCR.use_cassette('it_can_put') do
+      endpoint_url = "/networks/#{@network_id}"
+      http_method = 'PUT'
+
+      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:id => "#{@network_id}", :name => 'test_network_renamed'}}
+      res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
+
+      assert_equal 'OK', res.response.message
+    end
+  end
+
+  def test_it_asserts_when_bad_network_id_on_put
+    assert_raises '404 returned. Are you sure you are using the proper IDs?' do
+      VCR.use_cassette('bad_network_id_put') do
+        endpoint_url = "/networks/11111"
+        http_method = 'PUT'
+
+        options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:name => 'test_network_renamed2'}}
+        res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
+      end
+    end
+  end
+
+  def test_it_can_delete
+    VCR.use_cassette('delete_single_network') do
+      endpoint_url = "/networks/#{@network_id}"
+      http_method = 'DELETE'
+
+      res = @dapi.make_api_call(endpoint_url, http_method)
+    end
+  end
+
 end
