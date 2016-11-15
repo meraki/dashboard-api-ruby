@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './lib/dashboard_api.rb'
+require './lib/dashboard-api.rb'
 require 'minitest/reporters'
 require 'vcr'
 require 'json'
