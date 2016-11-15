@@ -14,7 +14,8 @@ class NetworksTest < Minitest::Test
     @dashboard_api_key = ENV['dashboard_api_key']
     @org_id = ENV['dashboard_org_id']
     @network_id = ENV['test_network_id']
-    @network_name
+    @vpn_network = ENV['vpn_network']
+    @switch_network = ENV['switch_network']
     @dapi = DashboardAPI.new(@dashboard_api_key)
   end
 
@@ -54,7 +55,6 @@ class NetworksTest < Minitest::Test
     VCR.use_cassette('create_single_network') do
       options = {:name => 'test_network', :type => 'wireless'}
       res = @dapi.create_network(@org_id, options)
-
       assert_equal 'test_network', res['name']
     end
   end
@@ -70,6 +70,41 @@ class NetworksTest < Minitest::Test
       res = @dapi.delete_network(@network_id)
 
       assert_equal true, res
+    end
+  end
+
+  def test_get_s2s_vpn_settings
+    VCR.use_cassette('get_auto_vpn_settings') do
+      res = @dapi.get_auto_vpn_settings(@vpn_network)
+
+      assert_kind_of Hash, res 
+    end
+  end
+
+  def test_update_s2s_vpn_settings
+    VCR.use_cassette('update_auto_vpn_settings') do
+      options = {:mode => 'none'}
+      res = @dapi.update_auto_vpn_settings(@vpn_network, options)
+
+      assert 'none', res['mode']
+    end
+  end
+
+  def test_update_s2s_returns_a_hash
+    # make sure we aren't returning an HTTParty response type
+    VCR.use_cassette('update_auto_vpn_settings_is_hash') do
+      options = {:mode => 'none'}
+      res = @dapi.update_auto_vpn_settings(@vpn_network, options)
+
+      assert_kind_of Hash, res
+    end
+  end
+
+  def test_get_ms_access_policies_for_network
+    VCR.use_cassette('get_ms_acces_policies_for_network') do
+      res = @dapi.get_ms_access_policies(@switch_network)
+
+      assert_equal true, true
     end
   end
 end

@@ -45,6 +45,36 @@ module Networks
   # @return [Bool] status true if the network was deleted, false if not 
   def delete_network(network_id)
     res = self.make_api_call("/networks/#{network_id}", 'DELETE')
+    puts res
     return res.code == 204 ? true : false
+  end
+  
+  # Get AutoVPN settings for a specific network
+  # @param [String] network_id dashboard network ID to get AutoVPN settings for
+  # @return [Hash] a hash containing the AutoVPN details for the network
+  def get_auto_vpn_settings(network_id)
+    res = self.make_api_call("/networks/#{network_id}/siteToSiteVpn", 'GET')
+  end
+  
+  # Update AutoVPN for a specific network
+  # @param [String] network_id dashboard network ID to update AutoVPN settings for
+  # @param [Hash] options options hash containing the following options:
+  #   mode: hub, spoke or none
+  #   hubs: an array of Hashes containing the hubId and a true or false for useDefaultRoute
+  #   subnets: an array of Hashes containing localSubnet and useVPN
+  # @return [Hash]
+  def update_auto_vpn_settings(network_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
+    options = {:body => options}
+    res = self.make_api_call("/networks/#{network_id}/siteToSiteVpn", 'PUT', options)
+  end
+  
+  # Get all MS access policies configured for a specific Dashboard network
+  # @param [String] network_id dashboard network ID to get MS policies for
+  # @return [Array] an array of hashes for containing the policy information
+  def get_ms_access_policies(network_id)
+    res = self.make_api_call("/networks/#{network_id}/accessPolicies", 'GET')
+    return res
   end
 end

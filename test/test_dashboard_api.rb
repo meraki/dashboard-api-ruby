@@ -44,7 +44,7 @@ class DashAPITest < Minitest::Test
 
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
-      assert_equal 'Created', res.response.message
+      assert_equal @org_id, res['organizationId']
     end
   end
 
@@ -74,7 +74,7 @@ class DashAPITest < Minitest::Test
       options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:id => "#{@network_id}", :name => 'test_network_renamed'}}
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
-      assert_equal 'OK', res.response.message
+      assert_equal @org_id, res['organizationId']
     end
   end
 

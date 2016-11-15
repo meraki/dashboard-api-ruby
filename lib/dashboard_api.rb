@@ -35,13 +35,12 @@ class DashboardAPI
       res = HTTParty.post("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
       raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
-      return res
-      return res
+      return JSON.parse(res.body)
     when 'PUT'
       res = HTTParty.put("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
       raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
-      return res
+      return JSON.parse(res.body)
     when 'DELETE'
       res = HTTParty.delete("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
