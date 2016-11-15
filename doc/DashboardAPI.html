@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd>HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span></dd>
+      <dd><span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span></dd>
   </dl>
   
   
@@ -101,7 +101,7 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/dashboard_api.rb</dd>
+    <dd>lib/dashboard-api.rb</dd>
   </dl>
   
 </div>
@@ -135,6 +135,12 @@
 
 </div>
 
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="DashboardAPIVersion.html#VERSION-constant" title="DashboardAPIVersion::VERSION (constant)">DashboardAPIVersion::VERSION</a></span></p>
 
 
   <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
@@ -255,6 +261,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Organizations.html#get_inventory-instance_method" title="Organizations#get_inventory (method)">#get_inventory</a></span>, <span class='object_link'><a href="Organizations.html#get_license_state-instance_method" title="Organizations#get_license_state (method)">#get_license_state</a></span>, <span class='object_link'><a href="Organizations.html#get_organization-instance_method" title="Organizations#get_organization (method)">#get_organization</a></span>, <span class='object_link'><a href="Organizations.html#get_snmp_status-instance_method" title="Organizations#get_snmp_status (method)">#get_snmp_status</a></span>, <span class='object_link'><a href="Organizations.html#get_third_party_peers-instance_method" title="Organizations#get_third_party_peers (method)">#get_third_party_peers</a></span></p>
 
@@ -287,12 +299,12 @@
       <pre class="lines">
 
 
-15
-16
-17</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard_api.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -335,12 +347,12 @@
       <pre class="lines">
 
 
-13
-14
-15</pre>
+15
+16
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard_api.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -393,8 +405,6 @@ handling</p>
       <pre class="lines">
 
 
-24
-25
 26
 27
 28
@@ -421,10 +431,12 @@ handling</p>
 49
 50
 51
-52</pre>
+52
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard_api.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_url'>endpoint_url</span><span class='comma'>,</span> <span class='id identifier rubyid_http_method'>http_method</span><span class='comma'>,</span> <span class='id identifier rubyid_options_hash'>options_hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cisco-Meraki-API-Key</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -465,7 +477,7 @@ handling</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Nov 14 21:08:05 2016 by
+  Generated on Mon Nov 14 21:59:56 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require './lib/dashboard_api.rb'
+require './lib/dashboard-api.rb'
 require 'minitest/reporters'
 require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
