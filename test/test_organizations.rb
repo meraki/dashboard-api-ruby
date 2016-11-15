@@ -13,7 +13,7 @@ class OrganizationsTest < Minitest::Test
   def setup
     @dashboard_api_key = ENV['dashboard_api_key']
     @org_id = ENV['dashboard_org_id']
-
+    @network_id = ENV['test_network_id']
     @dapi = DashboardAPI.new(@dashboard_api_key)
   end
 
@@ -48,7 +48,8 @@ class OrganizationsTest < Minitest::Test
   def test_get_inventory_for_an_org
     VCR.use_cassette("get_inventory") do
       res = @dapi.get_inventory(@org_id)
-      assert_equal 'e0:55:3d:ee:04:f5', res[0]['mac']
+
+      assert_kind_of Array, res
     end
   end
 

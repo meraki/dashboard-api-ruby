@@ -68,7 +68,9 @@ Dashboard API</a></p>
 
 <h1 id="label-Testing">Testing</h1>
 
-<p>To install the necessary dependencies run: <code> bundle install </code></p>
+<p>To install the necessary dependencies run: <code> bundle install </code> If
+you do not use bundler, you can check out the gemfile, and install the
+dependencies individually as necessary.</p>
 
 <p>The Meraki dashboard API requires both an API key, as well as certain
 identifiers such as Organization IDs. If you would like to run the tests,
@@ -81,10 +83,30 @@ you currently require 2 Environment variable to be set:</p>
 
 <p>Once those are set and dependencies are installed, you can run the tests
 with <code> rake test </code></p>
+
+<p>Testing is currently run with <a href="https://github.com/vcr/vcr">VCR</a>
+to capture actual HTTP responses to run the tests off of. This requires
+that the environment variables you set up above are forr a valid Meraki
+Dashboard Organization. After running the tests for the first time,
+subsequent test output will look something similar to: “`bash ➜
+dashboard-api git:(master) ✗ rake test Started with run options –seed 42405</p>
+
+<p>DashAPITest  test_snmp_returns_as_array PASS (0.01s) 
+test_license_state_returns_as_hash PASS (0.01s)  test_api_key_is_a_string
+PASS (0.00s)  test_get_an_organization PASS (0.01s) 
+test_it_returns_as_json PASS (0.00s)  test_get_inventory_for_an_org PASS
+(0.01s)  test_get_license_state_for_an_org PASS (0.00s) 
+test_third_party_peer_returns_as_array PASS (0.01s)  test_it_is_a_dash_api
+PASS (0.00s)  test_current_snmp_status PASS (0.00s) 
+test_inventory_returns_as_array PASS (0.00s)  test_third_party_vpn_peers
+PASS (0.00s)</p>
+
+<p>Finished in 0.05813s 12 tests, 12 assertions, 0 failures, 0 errors, 0 skips
+“`</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov 11 22:18:14 2016 by
+  Generated on Mon Nov 14 21:08:05 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
