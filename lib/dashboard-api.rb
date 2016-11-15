@@ -1,6 +1,6 @@
 require 'httparty'
 require 'json'
-require_relative "dashboard_api/version"
+require_relative "dashboard-api/version"
 require 'organizations'
 require 'networks'
 # Ruby Implementation of the Meraki Dashboard api
