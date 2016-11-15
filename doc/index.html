@@ -60,53 +60,143 @@
       <iframe id="search_frame" src="class_list.html"></iframe>
 
       <div id="content"><div id='filecontents'>
-<h1 id="label-Dashboard+API">Dashboard API</h1>
+<h1 id="label-Dashboard+API+v0.1.0">Dashboard API v0.1.0</h1>
 
 <p>A ruby implementation of the <a
 href="https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API">Meraki
 Dashboard API</a></p>
 
-<h1 id="label-Testing">Testing</h1>
+<p>Documentation <a href="https://">here</a></p>
+
+<h1 id="label-Preface">Preface</h1>
+
+<p>The following readme is broken down into two sections:  * Installing /
+Usage of the gem  * Contributing to development of the gem</p>
+
+<h1 id="label-Installation+and+Normal+Usage">Installation and Normal Usage</h1>
+
+<h2 id="label-Usage">Usage</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_dashboard'>dashboard</span><span class='op'>-</span><span class='id identifier rubyid_api'>api</span>
+</code></pre>
+
+<p>Once the gem is installed, you can use it by requiring
+<code>dashboard-api</code> <code> require &#39;dashboard-api&#39;  =&gt;
+true  </code></p>
+
+<h2 id="label-Examples">Examples</h2>
+
+<p>It is highly recommended that you utilize environment variables when
+dealing with things like API keys, tokens, etc. instead of utilizing them
+directly in a script. All examples will be shown with this convention.</p>
+
+<h3 id="label-Instantiating+a+new+instance-3A">Instantiating a new instance:</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_dapi'>dapi</span> <span class='op'>=</span> <span class='const'>DashboardAPI</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dashboard_api_key</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+</code></pre>
+
+<h3 id="label-Listing+details+about+a+specific+network-3A">Listing details about a specific network:</h3>
+
+<pre class="code ruby"><code class="ruby">dapi.get_single_network(ENV[&#39;vpn_network&#39;])
+ =&gt; {&quot;id&quot;=&gt;&quot;N_&lt;OMITTED&gt;&quot;, &quot;organizationId&quot;=&gt;&quot;&lt;OMITTED&gt;&quot;, &quot;type&quot;=&gt;&quot;appliance&quot;, &quot;name&quot;=&gt;&quot;vpn_test_network&quot;, &quot;timeZone&quot;=&gt;&quot;America/Los_Angeles&quot;, &quot;tags&quot;=&gt;&quot;&quot;}
+</code></pre>
+
+<p>There are many times where you need to actually pass data up to the
+Dashboard API, be it for creating new networks, updating device
+information, etc. In situations like these, an options hash is expected to
+be passed alongside to the method call. The Dashboard-API gem documentation
+mentions what is expected in the option hash for methods that require it,
+but the offical <a
+href="https://dashboard.meraki.com/manage/support/api_docs">Meraki
+Dashboard API documentation</a> is recommended for exact details.</p>
+
+<h3 id="label-Creating+a+new+network-3A">Creating a new network:</h3>
+
+<pre class="code ruby"><code class="ruby">options = {:name =&gt; &#39;new_test_network&#39;, :type =&gt; &#39;wireless&#39;}
+ =&gt; {:name=&gt;&quot;new_test_network&quot;, :type=&gt;&quot;wireless&quot;} 
+dapi.create_network(ENV[&#39;dashboard_org_id&#39;], options)
+ =&gt; {&quot;id&quot;=&gt;&quot;N_&lt;OMITTED&gt;&quot;, &quot;organizationId&quot;=&gt;&quot;&lt;OMITTED&gt;&quot;, &quot;type&quot;=&gt;&quot;wireless&quot;, &quot;name&quot;=&gt;&quot;new_test_network&quot;, &quot;timeZone&quot;=&gt;&quot;America/Los_Angeles&quot;, &quot;tags&quot;=&gt;&quot;&quot;}
+</code></pre>
+
+<p>Not every method call will return a Hash object. Some will return an Array,
+often containing a Hash in each element. Information about what is expected
+to be returned can be found in the Dashboard-API Documentation, as well as
+the official Meraki Dashboard API help documentation.</p>
+
+<pre class="code ruby"><code class="ruby">dapi.get_third_party_peers(ENV[&#39;dashboard_org_id&#39;])
+ =&gt; [{&quot;name&quot;=&gt;&quot;test_api_peer&quot;, &quot;publicIp&quot;=&gt;&quot;10.0.0.1&quot;, &quot;privateSubnets&quot;=&gt;[&quot;10.1.0.0/24&quot;], &quot;secret&quot;=&gt;&quot;password&quot;, &quot;tags&quot;=&gt;[&quot;all&quot;]}, {&quot;name&quot;=&gt;&quot;second_api_peerr&quot;, &quot;publicIp&quot;=&gt;&quot;10.0.0.2&quot;, &quot;privateSubnets&quot;=&gt;[&quot;10.2.0.0/24&quot;], &quot;secret&quot;=&gt;&quot;password&quot;, &quot;tags&quot;=&gt;[&quot;api_test&quot;]}]
+</code></pre>
+
+<h1 id="label-Development">Development</h1>
+
+<h2 id="label-Testing">Testing</h2>
 
 <p>To install the necessary dependencies run: <code> bundle install </code> If
 you do not use bundler, you can check out the gemfile, and install the
 dependencies individually as necessary.</p>
 
-<p>The Meraki dashboard API requires both an API key, as well as certain
-identifiers such as Organization IDs. If you would like to run the tests,
-you currently require 2 Environment variable to be set:</p>
+<p>The Meraki Dashboard API requires both an API key, as well as certain
+identifiers such as Organization, or Network IDs. If you would like to run
+the full current test suite, the following 5 ENV variables need to be set:</p>
 <ul><li>
-<p><code>dashboard_api_key</code></p>
+<p><code>dashboard_api_key</code> Your Meraki Dashboard API key</p>
 </li><li>
-<p><code>dashboard_org_id</code></p>
+<p><code>dashboard_org_id</code> The Meraki Dashboard Organization ID you will
+be testing on</p>
+</li><li>
+<p><code>test_network_id</code> A test network ID that will be used to test
+renaming networks</p>
+</li><li>
+<p><code>vpn_network</code> A test MX network that will test modifying AutoVPN
+settings</p>
+</li><li>
+<p><code>switch_network</code> A test MS netwok that will test things like
+access policies, etc.</p>
 </li></ul>
+
+<p>It is recommended that you set up a test organization with test devices in
+it when working with developing new functionality to this gem, as to not
+potentially disturb any of your production networks.</p>
 
 <p>Once those are set and dependencies are installed, you can run the tests
 with <code> rake test </code></p>
 
-<p>Testing is currently run with <a href="https://github.com/vcr/vcr">VCR</a>
-to capture actual HTTP responses to run the tests off of. This requires
-that the environment variables you set up above are forr a valid Meraki
-Dashboard Organization. After running the tests for the first time,
-subsequent test output will look something similar to: “`bash ➜
-dashboard-api git:(master) ✗ rake test Started with run options –seed 42405</p>
+<p>As the majority of the testing for this gem requires HTTP calls, testing is
+currently run with <a href="https://github.com/vcr/vcr">VCR</a> to capture
+actual HTTP responses to run the tests off of. This requires that the
+environment variables you set up above are for a valid Meraki Dashboard
+Organization. After running the tests for the first time, subsequent tests
+will be ran off of the saved output. We would also expect subsequent test
+runs to be close to instantenous, as seen below:</p>
 
-<p>DashAPITest  test_snmp_returns_as_array PASS (0.01s) 
-test_license_state_returns_as_hash PASS (0.01s)  test_api_key_is_a_string
-PASS (0.00s)  test_get_an_organization PASS (0.01s) 
-test_it_returns_as_json PASS (0.00s)  test_get_inventory_for_an_org PASS
-(0.01s)  test_get_license_state_for_an_org PASS (0.00s) 
-test_third_party_peer_returns_as_array PASS (0.01s)  test_it_is_a_dash_api
-PASS (0.00s)  test_current_snmp_status PASS (0.00s) 
-test_inventory_returns_as_array PASS (0.00s)  test_third_party_vpn_peers
-PASS (0.00s)</p>
+<pre class="code ruby"><code class="ruby">➜  dashboard-api git:(master) ✗ rake test
+Started with run options --seed 42405
 
-<p>Finished in 0.05813s 12 tests, 12 assertions, 0 failures, 0 errors, 0 skips
-“`</p>
+DashAPITest
+  test_snmp_returns_as_array                                      PASS (0.01s)
+  test_license_state_returns_as_hash                              PASS (0.01s)
+  test_api_key_is_a_string                                        PASS (0.00s)
+  test_get_an_organization                                        PASS (0.01s)
+  test_it_returns_as_json                                         PASS (0.00s)
+  test_get_inventory_for_an_org                                   PASS (0.01s)
+  test_get_license_state_for_an_org                               PASS (0.00s)
+  test_third_party_peer_returns_as_array                          PASS (0.01s)
+  test_it_is_a_dash_api                                           PASS (0.00s)
+  test_current_snmp_status                                        PASS (0.00s)
+  test_inventory_returns_as_array                                 PASS (0.00s)
+  test_third_party_vpn_peers                                      PASS (0.00s)
+
+Finished in 0.05813s
+12 tests, 12 assertions, 0 failures, 0 errors, 0 skips</code></pre>
+
+<p>All of the saved HTTP responses from VCR will be saved by default in
+<code>fixtures/vcr_cassettes/</code>. These <strong>should not be added /
+comitted to git</strong> as they will contain all of the keys / tokens we
+set as ENV variables above.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Nov 14 21:59:55 2016 by
+  Generated on Mon Nov 14 22:50:13 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
