@@ -90,7 +90,34 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>SSIDs section of the Meraki Dashboard API</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Joe Letizia</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -266,13 +293,13 @@
       <pre class="lines">
 
 
-13
-14
 15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_single_ssid'>get_single_ssid</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='comma'>,</span> <span class='id identifier rubyid_ssid_number'>ssid_number</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please provide a valid SSID number</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_ssid_number'>ssid_number</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_ssid_number'>ssid_number</span> <span class='op'>&lt;=</span> <span class='int'>14</span><span class='rparen'>)</span>
@@ -347,12 +374,12 @@
       <pre class="lines">
 
 
-5
-6
-7</pre>
+7
+8
+9</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 7</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_ssids_in_network'>list_ssids_in_network</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/networks/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_network_id'>network_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/ssids</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GET</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -459,16 +486,16 @@ authMode, encryptionMode and psk</p>
       <pre class="lines">
 
 
-23
-24
 25
 26
 27
 28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/ssids.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_single_ssid'>update_single_ssid</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='comma'>,</span> <span class='id identifier rubyid_ssid_number'>ssid_number</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
@@ -487,7 +514,7 @@ authMode, encryptionMode and psk</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov 15 21:16:06 2016 by
+  Generated on Tue Nov 15 22:02:45 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

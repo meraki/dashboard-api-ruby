@@ -1,3 +1,5 @@
+# SSIDs section of the Meraki Dashboard API
+# @author Joe Letizia
 module SSIDs
   # Get a list of the SSIDs and their attributes for a network
   # @param [String] network_id network id where the SSIDs you exists are

@@ -1,3 +1,5 @@
+# Devices section of the Meraki Dashboard API
+# @author Joe Letizia
 module Devices
   # List all devices in a given network
   # @param [String] network_id network that you want to get devices for
@@ -47,7 +49,7 @@ module Devices
 
   # Remove a single device from a network
   # @param [String] network_id dashboard network id to remove device from
-  # @param [String] serial meraki serial number for device to remove
+  # @param [String] device_serial meraki serial number for device to remove
   # @return [Integer] http_code HTTP code for API call
   def remove_device_from_network(network_id, device_serial)
     self.make_api_call("/networks/#{network_id}/devices/#{device_serial}/remove", 'POST')
