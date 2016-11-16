@@ -3,6 +3,7 @@ require 'json'
 require_relative "dashboard-api/version"
 require 'organizations'
 require 'networks'
+require 'devices'
 require 'clients'
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
@@ -12,6 +13,7 @@ class DashboardAPI
   include DashboardAPIVersion
   include Networks
   include Clients
+  include Devices
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key
@@ -39,7 +41,13 @@ class DashboardAPI
       res = HTTParty.post("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
       raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
-      return JSON.parse(res.body)
+      begin
+        return JSON.parse(res.body)
+      rescue JSON::ParserError => e
+        return res.code 
+      rescue TypeError => e
+        return res.code
+      end
     when 'PUT'
       res = HTTParty.put("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
