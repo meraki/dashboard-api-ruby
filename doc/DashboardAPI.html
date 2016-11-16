@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span></dd>
+      <dd><span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span>, <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span></dd>
   </dl>
   
   
@@ -250,6 +250,17 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Switchports.html#get_single_switch_port-instance_method" title="Switchports#get_single_switch_port (method)">#get_single_switch_port</a></span>, <span class='object_link'><a href="Switchports.html#get_switch_ports-instance_method" title="Switchports#get_switch_ports (method)">#get_switch_ports</a></span>, <span class='object_link'><a href="Switchports.html#update_switchport-instance_method" title="Switchports#update_switchport (method)">#update_switchport</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="SSIDs.html#get_single_ssid-instance_method" title="SSIDs#get_single_ssid (method)">#get_single_ssid</a></span>, <span class='object_link'><a href="SSIDs.html#list_ssids_in_network-instance_method" title="SSIDs#list_ssids_in_network (method)">#list_ssids_in_network</a></span>, <span class='object_link'><a href="SSIDs.html#update_single_ssid-instance_method" title="SSIDs#update_single_ssid (method)">#update_single_ssid</a></span></p>
 
@@ -332,12 +343,12 @@
       <pre class="lines">
 
 
-23
-24
-25</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -380,12 +391,12 @@
       <pre class="lines">
 
 
-21
-22
-23</pre>
+24
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -438,9 +449,6 @@ handling</p>
       <pre class="lines">
 
 
-32
-33
-34
 35
 36
 37
@@ -472,10 +480,13 @@ handling</p>
 63
 64
 65
-66</pre>
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_url'>endpoint_url</span><span class='comma'>,</span> <span class='id identifier rubyid_http_method'>http_method</span><span class='comma'>,</span> <span class='id identifier rubyid_options_hash'>options_hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cisco-Meraki-API-Key</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -522,7 +533,7 @@ handling</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov 15 21:16:07 2016 by
+  Generated on Tue Nov 15 22:02:45 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

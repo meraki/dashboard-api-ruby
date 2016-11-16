@@ -90,7 +90,34 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Clients section of the Meraki Dashboard API</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Joe Letizia</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -218,13 +245,13 @@
       <pre class="lines">
 
 
-6
-7
 8
-9</pre>
+9
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/clients.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/clients.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_client_info_for_device'>get_client_info_for_device</span><span class='lparen'>(</span><span class='id identifier rubyid_serial'>serial</span><span class='comma'>,</span> <span class='id identifier rubyid_timespan'>timespan</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Timespan can not be larger than 2592000 seconds</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_timespan'>timespan</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>&gt;</span> <span class='int'>2592000</span>
@@ -240,7 +267,7 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov 15 21:16:07 2016 by
+  Generated on Tue Nov 15 22:02:45 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
