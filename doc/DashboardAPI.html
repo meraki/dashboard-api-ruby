@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span></dd>
+      <dd><span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span></dd>
   </dl>
   
   
@@ -250,6 +250,17 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Clients.html#get_client_info_for_device-instance_method" title="Clients#get_client_info_for_device (method)">#get_client_info_for_device</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Networks.html#create_network-instance_method" title="Networks#create_network (method)">#create_network</a></span>, <span class='object_link'><a href="Networks.html#delete_network-instance_method" title="Networks#delete_network (method)">#delete_network</a></span>, <span class='object_link'><a href="Networks.html#get_auto_vpn_settings-instance_method" title="Networks#get_auto_vpn_settings (method)">#get_auto_vpn_settings</a></span>, <span class='object_link'><a href="Networks.html#get_ms_access_policies-instance_method" title="Networks#get_ms_access_policies (method)">#get_ms_access_policies</a></span>, <span class='object_link'><a href="Networks.html#get_networks-instance_method" title="Networks#get_networks (method)">#get_networks</a></span>, <span class='object_link'><a href="Networks.html#get_single_network-instance_method" title="Networks#get_single_network (method)">#get_single_network</a></span>, <span class='object_link'><a href="Networks.html#update_auto_vpn_settings-instance_method" title="Networks#update_auto_vpn_settings (method)">#update_auto_vpn_settings</a></span>, <span class='object_link'><a href="Networks.html#update_network-instance_method" title="Networks#update_network (method)">#update_network</a></span></p>
 
@@ -299,12 +310,12 @@
       <pre class="lines">
 
 
-17
-18
-19</pre>
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 17</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -347,12 +358,12 @@
       <pre class="lines">
 
 
-15
-16
-17</pre>
+17
+18
+19</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -405,8 +416,6 @@ handling</p>
       <pre class="lines">
 
 
-26
-27
 28
 29
 30
@@ -433,10 +442,12 @@ handling</p>
 51
 52
 53
-54</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_url'>endpoint_url</span><span class='comma'>,</span> <span class='id identifier rubyid_http_method'>http_method</span><span class='comma'>,</span> <span class='id identifier rubyid_options_hash'>options_hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cisco-Meraki-API-Key</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -477,7 +488,7 @@ handling</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Nov 14 22:50:13 2016 by
+  Generated on Tue Nov 15 19:55:41 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

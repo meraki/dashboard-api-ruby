@@ -59,13 +59,14 @@ bundle install
 If you do not use bundler, you can check out the gemfile, and install the dependencies individually as necessary.
 
 The Meraki Dashboard API requires both an API key, as well as certain identifiers such as Organization, or Network IDs. If you would like to run the full current test suite, the following
-5 ENV variables need to be set:
+ENV variables need to be set:
 
 * `dashboard_api_key` Your Meraki Dashboard API key
 * `dashboard_org_id` The Meraki Dashboard Organization ID you will be testing on
 * `test_network_id` A test network ID that will be used to test renaming networks
 * `vpn_network` A test MX network that will test modifying AutoVPN settings
 * `switch_network` A test MS netwok that will test things like access policies, etc.
+* `mx_serial` A test MX that has client traffic passing through it
 
 It is recommended that you set up a test organization with test devices in it when working with developing new functionality to this gem, as to not potentially disturb any of your production networks.
 

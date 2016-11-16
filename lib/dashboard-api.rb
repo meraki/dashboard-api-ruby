@@ -3,6 +3,7 @@ require 'json'
 require_relative "dashboard-api/version"
 require 'organizations'
 require 'networks'
+require 'clients'
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
 class DashboardAPI
@@ -10,6 +11,7 @@ class DashboardAPI
   include Organizations
   include DashboardAPIVersion
   include Networks
+  include Clients
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key
