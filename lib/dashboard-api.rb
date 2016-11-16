@@ -5,6 +5,7 @@ require 'organizations'
 require 'networks'
 require 'devices'
 require 'clients'
+require 'ssids'
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
 class DashboardAPI
@@ -14,6 +15,7 @@ class DashboardAPI
   include Networks
   include Clients
   include Devices
+  include SSIDs
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key
