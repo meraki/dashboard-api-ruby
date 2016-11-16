@@ -67,6 +67,7 @@ ENV variables need to be set:
 * `vpn_network` A test MX network that will test modifying AutoVPN settings
 * `switch_network` A test MS netwok that will test things like access policies, etc.
 * `mx_serial` A test MX that has client traffic passing through it
+* `spare_mr` A test MR used to claim in and out of networks
 
 It is recommended that you set up a test organization with test devices in it when working with developing new functionality to this gem, as to not potentially disturb any of your production networks.
 
