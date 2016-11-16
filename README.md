@@ -1,7 +1,7 @@
 # Dashboard API v0.1.0
 A ruby implementation of the [Meraki Dashboard API](https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API)
 
-Documentation [here](https://)
+Documentation [here](http://www.rubydoc.info/gems/dashboard-api/0.3.0)
 
 # Preface
 The following readme is broken down into two sections:
