@@ -69,7 +69,7 @@ ENV variables need to be set:
 * `mx_serial` A test MX that has client traffic passing through it
 * `spare_mr` A test MR used to claim in and out of networks
 * `test_admin_id` The ID of a test admin used to test updating and deleting admins
-
+* `config_template_id` A test configuration template network ID used to test removing a template
 It is recommended that you set up a test organization with test devices in it when working with developing new functionality to this gem, as to not potentially disturb any of your production networks.
 
 Once those are set and dependencies are installed, you can run the tests with
