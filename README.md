@@ -68,6 +68,7 @@ ENV variables need to be set:
 * `switch_network` A test MS netwok that will test things like access policies, etc.
 * `mx_serial` A test MX that has client traffic passing through it
 * `spare_mr` A test MR used to claim in and out of networks
+* `test_admin_id` The ID of a test admin used to test updating and deleting admins
 
 It is recommended that you set up a test organization with test devices in it when working with developing new functionality to this gem, as to not potentially disturb any of your production networks.
 
