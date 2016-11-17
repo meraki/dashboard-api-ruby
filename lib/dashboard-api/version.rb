@@ -2,5 +2,5 @@
 # @author Joe Letizia
 module DashboardAPIVersion
   # Current version number of the gem
-  VERSION = "0.4.0"
+  VERSION = "0.9.0"
 end
