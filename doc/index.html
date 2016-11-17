@@ -160,11 +160,13 @@ access policies, etc.</p>
 </li><li>
 <p><code>test_admin_id</code> The ID of a test admin used to test updating and
 deleting admins</p>
+</li><li>
+<p><code>config_template_id</code> A test configuration template network ID
+used to test removing a template It is recommended that you set up a test
+organization with test devices in it when working with developing new
+functionality to this gem, as to not potentially disturb any of your
+production networks.</p>
 </li></ul>
-
-<p>It is recommended that you set up a test organization with test devices in
-it when working with developing new functionality to this gem, as to not
-potentially disturb any of your production networks.</p>
 
 <p>Once those are set and dependencies are installed, you can run the tests
 with <code> rake test </code></p>
@@ -204,7 +206,7 @@ set as ENV variables above.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Nov 16 19:55:08 2016 by
+  Generated on Wed Nov 16 20:19:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

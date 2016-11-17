@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="Admins.html" title="Admins (module)">Admins</a></span>, <span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span>, <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span>, <span class='object_link'><a href="Templates.html" title="Templates (module)">Templates</a></span>, <span class='object_link'><a href="VLANs.html" title="VLANs (module)">VLANs</a></span></dd>
+      <dd><span class='object_link'><a href="Admins.html" title="Admins (module)">Admins</a></span>, <span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="Phones.html" title="Phones (module)">Phones</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span>, <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span>, <span class='object_link'><a href="Templates.html" title="Templates (module)">Templates</a></span>, <span class='object_link'><a href="VLANs.html" title="VLANs (module)">VLANs</a></span></dd>
   </dl>
   
   
@@ -261,6 +261,17 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="Phones.html" title="Phones (module)">Phones</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Phones.html#add_phone_contact-instance_method" title="Phones#add_phone_contact (method)">#add_phone_contact</a></span>, <span class='object_link'><a href="Phones.html#delete_phone_contact-instance_method" title="Phones#delete_phone_contact (method)">#delete_phone_contact</a></span>, <span class='object_link'><a href="Phones.html#list_phone_contacts-instance_method" title="Phones#list_phone_contacts (method)">#list_phone_contacts</a></span>, <span class='object_link'><a href="Phones.html#update_phone_contact-instance_method" title="Phones#update_phone_contact (method)">#update_phone_contact</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="VLANs.html" title="VLANs (module)">VLANs</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="VLANs.html#add_vlan-instance_method" title="VLANs#add_vlan (method)">#add_vlan</a></span>, <span class='object_link'><a href="VLANs.html#delete_vlan-instance_method" title="VLANs#delete_vlan (method)">#delete_vlan</a></span>, <span class='object_link'><a href="VLANs.html#list_vlans-instance_method" title="VLANs#list_vlans (method)">#list_vlans</a></span>, <span class='object_link'><a href="VLANs.html#return_vlan-instance_method" title="VLANs#return_vlan (method)">#return_vlan</a></span>, <span class='object_link'><a href="VLANs.html#update_vlan-instance_method" title="VLANs#update_vlan (method)">#update_vlan</a></span></p>
 
@@ -376,12 +387,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -424,12 +435,12 @@
       <pre class="lines">
 
 
-30
-31
-32</pre>
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -482,8 +493,6 @@ handling</p>
       <pre class="lines">
 
 
-41
-42
 43
 44
 45
@@ -516,10 +525,12 @@ handling</p>
 72
 73
 74
-75</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_url'>endpoint_url</span><span class='comma'>,</span> <span class='id identifier rubyid_http_method'>http_method</span><span class='comma'>,</span> <span class='id identifier rubyid_options_hash'>options_hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cisco-Meraki-API-Key</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -566,7 +577,7 @@ handling</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 16 19:55:09 2016 by
+  Generated on Wed Nov 16 20:19:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
