@@ -6,6 +6,7 @@ require 'networks'
 require 'devices'
 require 'clients'
 require 'ssids'
+require 'vlans'
 require 'switchports'
 
 # Ruby Implementation of the Meraki Dashboard api
@@ -19,6 +20,7 @@ class DashboardAPI
   include Devices
   include SSIDs
   include Switchports
+  include VLANs
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key
