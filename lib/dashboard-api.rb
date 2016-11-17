@@ -7,6 +7,7 @@ require 'admins'
 require 'devices'
 require 'templates'
 require 'clients'
+require 'phones'
 require 'ssids'
 require 'vlans'
 require 'switchports'
@@ -24,6 +25,7 @@ class DashboardAPI
   include Admins
   include Switchports
   include VLANs
+  include Phones
   include Templates
   base_uri "https://dashboard.meraki.com/api/v0"
 
