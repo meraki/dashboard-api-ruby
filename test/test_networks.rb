@@ -16,6 +16,9 @@ class NetworksTest < Minitest::Test
     @network_id = ENV['test_network_id']
     @vpn_network = ENV['vpn_network']
     @switch_network = ENV['switch_network']
+    @combined_network = ENV['combined_network']
+    @config_template_id = ENV['config_template_id']
+    @config_bind_network = ENV['config_bind_network']
     @dapi = DashboardAPI.new(@dashboard_api_key)
   end
 
@@ -105,6 +108,32 @@ class NetworksTest < Minitest::Test
       res = @dapi.get_ms_access_policies(@switch_network)
 
       assert_equal true, true
+    end
+  end
+
+  def test_it_can_bind_a_network_to_a_template
+    VCR.use_cassette('bind_network_to_template') do
+      options = {:configTemplateId => @config_template_id}
+      res = @dapi.bind_network_to_template(@config_bind_network, options)
+      
+      assert_equal 200, res
+    end
+  end
+
+  def test_it_can_unbind_a_network_to_a_template
+    VCR.use_cassette('unbind_network_to_template') do
+      res = @dapi.unbind_network_to_template(@config_bind_network)
+      
+      assert_equal 200, res
+    end
+  end
+
+  def test_it_can_return_traffic_analytics
+    VCR.use_cassette('traffic_analysis_data') do
+      options = {:timespan => 7200}
+      res = @dapi.traffic_analysis(@combined_network, options)
+
+      assert_kind_of Array, res
     end
   end
 end

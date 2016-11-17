@@ -33,7 +33,7 @@ class TemplatesTest < Minitest::Test
     VCR.use_cassette('remove_a_template') do
       res = @dapi.remove_template(@org_id, @config_template_id)
       
-      assert_equal 204, res.code    
+      assert_equal 204, res.code
     end
   end
 end

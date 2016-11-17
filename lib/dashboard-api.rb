@@ -51,6 +51,7 @@ class DashboardAPI
     when 'GET'
       res = HTTParty.get("#{self.class.base_uri}/#{endpoint_url}", options)
       raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
+      raise "Bad request due to the following error(s): #{JSON.parse(res.body)['errors']}" if res.body.include?('errors')
       return JSON.parse(res.body)
     when 'POST'
       res = HTTParty.post("#{self.class.base_uri}/#{endpoint_url}", options)
