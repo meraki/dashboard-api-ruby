@@ -85,15 +85,25 @@ module Networks
   # @return [Integer] HTTP Code
   def bind_network_to_template(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-
     options = {:body => options}
-    res = self.make_api_call("/networks/#{network_id}/bind", 'POST', options)
+
+    self.make_api_call("/networks/#{network_id}/bind", 'POST', options)
   end
 
   # Unbind a single network from a configuration template
   # @param [String] network_id the network that you want to unbind from it's template
   # @return [Integer] HTTP Code
   def unbind_network_to_template(network_id)
-    res = self.make_api_call("/networks/#{network_id}/unbind", 'POST')
+    self.make_api_call("/networks/#{network_id}/unbind", 'POST')
+  end
+
+  # Return traffic analysis data for a network
+  # @param [String] network_id network that you want data for
+  # @param [Hash] options options hash containing a timespan and deviceType. Refer to the official
+  #   Meraki Dashboard API documentation for more information on these.
+  def traffic_analysis(network_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+    options = {:body => options}
+    self.make_api_call("/networks/#{network_id}/traffic", 'GET', options)
   end
 end

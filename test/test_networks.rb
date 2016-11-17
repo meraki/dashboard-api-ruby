@@ -16,6 +16,7 @@ class NetworksTest < Minitest::Test
     @network_id = ENV['test_network_id']
     @vpn_network = ENV['vpn_network']
     @switch_network = ENV['switch_network']
+    @combined_network = ENV['combined_network']
     @config_template_id = ENV['config_template_id']
     @config_bind_network = ENV['config_bind_network']
     @dapi = DashboardAPI.new(@dashboard_api_key)
@@ -124,6 +125,15 @@ class NetworksTest < Minitest::Test
       res = @dapi.unbind_network_to_template(@config_bind_network)
       
       assert_equal 200, res
+    end
+  end
+
+  def test_it_can_return_traffic_analytics
+    VCR.use_cassette('traffic_analysis_data') do
+      options = {:timespan => 7200}
+      res = @dapi.traffic_analysis(@combined_network, options)
+
+      assert_kind_of Array, res
     end
   end
 end
