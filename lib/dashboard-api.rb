@@ -11,6 +11,7 @@ require 'phones'
 require 'ssids'
 require 'vlans'
 require 'switchports'
+require 'saml'
 
 # Ruby Implementation of the Meraki Dashboard api
 # @author Joe Letizia
@@ -27,6 +28,7 @@ class DashboardAPI
   include VLANs
   include Phones
   include Templates
+  include SAML
   base_uri "https://dashboard.meraki.com/api/v0"
 
   attr_reader :key

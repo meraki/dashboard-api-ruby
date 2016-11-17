@@ -1,3 +1,5 @@
+# Phones section of the Meraki Dashboard API
+# @author Joe Letizia
 module Phones
 
   # Get list of phone contacts

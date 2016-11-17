@@ -91,7 +91,7 @@
   
   <dl>
       <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="Admins.html" title="Admins (module)">Admins</a></span>, <span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="Phones.html" title="Phones (module)">Phones</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span>, <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span>, <span class='object_link'><a href="Templates.html" title="Templates (module)">Templates</a></span>, <span class='object_link'><a href="VLANs.html" title="VLANs (module)">VLANs</a></span></dd>
+      <dd><span class='object_link'><a href="Admins.html" title="Admins (module)">Admins</a></span>, <span class='object_link'><a href="Clients.html" title="Clients (module)">Clients</a></span>, <span class='object_link'><a href="DashboardAPIVersion.html" title="DashboardAPIVersion (module)">DashboardAPIVersion</a></span>, <span class='object_link'><a href="Devices.html" title="Devices (module)">Devices</a></span>, HTTParty, <span class='object_link'><a href="Networks.html" title="Networks (module)">Networks</a></span>, <span class='object_link'><a href="Organizations.html" title="Organizations (module)">Organizations</a></span>, <span class='object_link'><a href="Phones.html" title="Phones (module)">Phones</a></span>, <span class='object_link'><a href="SAML.html" title="SAML (module)">SAML</a></span>, <span class='object_link'><a href="SSIDs.html" title="SSIDs (module)">SSIDs</a></span>, <span class='object_link'><a href="Switchports.html" title="Switchports (module)">Switchports</a></span>, <span class='object_link'><a href="Templates.html" title="Templates (module)">Templates</a></span>, <span class='object_link'><a href="VLANs.html" title="VLANs (module)">VLANs</a></span></dd>
   </dl>
   
   
@@ -250,6 +250,17 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="SAML.html" title="SAML (module)">SAML</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SAML.html#create_saml_role-instance_method" title="SAML#create_saml_role (method)">#create_saml_role</a></span>, <span class='object_link'><a href="SAML.html#list_saml_roles-instance_method" title="SAML#list_saml_roles (method)">#list_saml_roles</a></span>, <span class='object_link'><a href="SAML.html#remove_saml_role-instance_method" title="SAML#remove_saml_role (method)">#remove_saml_role</a></span>, <span class='object_link'><a href="SAML.html#return_saml_role-instance_method" title="SAML#return_saml_role (method)">#return_saml_role</a></span>, <span class='object_link'><a href="SAML.html#update_saml_role-instance_method" title="SAML#update_saml_role (method)">#update_saml_role</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Templates.html" title="Templates (module)">Templates</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="Templates.html#list_templates-instance_method" title="Templates#list_templates (method)">#list_templates</a></span>, <span class='object_link'><a href="Templates.html#remove_template-instance_method" title="Templates#remove_template (method)">#remove_template</a></span></p>
 
@@ -387,12 +398,12 @@
       <pre class="lines">
 
 
-34
-35
-36</pre>
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -435,12 +446,12 @@
       <pre class="lines">
 
 
-32
-33
-34</pre>
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 34</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -493,8 +504,6 @@ handling</p>
       <pre class="lines">
 
 
-43
-44
 45
 46
 47
@@ -527,10 +536,12 @@ handling</p>
 74
 75
 76
-77</pre>
+77
+78
+79</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 43</span>
+      <pre class="code"><span class="info file"># File 'lib/dashboard-api.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='id identifier rubyid_endpoint_url'>endpoint_url</span><span class='comma'>,</span> <span class='id identifier rubyid_http_method'>http_method</span><span class='comma'>,</span> <span class='id identifier rubyid_options_hash'>options_hash</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_headers'>headers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>X-Cisco-Meraki-API-Key</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&#39;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>application/json</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -577,7 +588,7 @@ handling</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 16 20:19:36 2016 by
+  Generated on Wed Nov 16 20:49:16 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>

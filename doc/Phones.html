@@ -90,7 +90,34 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Phones section of the Meraki Dashboard API</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Author:</p>
+<ul class="author">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'>
+<p>Joe Letizia</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
 
 
 
@@ -291,14 +318,14 @@ supports the name attribute.</p>
       <pre class="lines">
 
 
-14
-15
 16
 17
-18</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_phone_contact'>add_phone_contact</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
@@ -390,12 +417,12 @@ supports the name attribute.</p>
       <pre class="lines">
 
 
-35
-36
-37</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_delete_phone_contact'>delete_phone_contact</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='comma'>,</span> <span class='id identifier rubyid_contact_id'>contact_id</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/networks/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_network_id'>network_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/phoneContacts/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_contact_id'>contact_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>DELETE</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -469,12 +496,12 @@ supports the name attribute.</p>
       <pre class="lines">
 
 
-6
-7
-8</pre>
+8
+9
+10</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 8</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_phone_contacts'>list_phone_contacts</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/networks/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_network_id'>network_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/phoneContacts</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GET</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -581,14 +608,14 @@ supports the name attribute.</p>
       <pre class="lines">
 
 
-25
-26
 27
 28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/phones.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_phone_contact'>update_phone_contact</span><span class='lparen'>(</span><span class='id identifier rubyid_network_id'>network_id</span><span class='comma'>,</span> <span class='id identifier rubyid_contact_id'>contact_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
@@ -605,7 +632,7 @@ supports the name attribute.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Nov 16 20:19:36 2016 by
+  Generated on Wed Nov 16 20:49:16 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
