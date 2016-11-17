@@ -3,6 +3,7 @@ require 'json'
 require_relative "dashboard-api/version"
 require 'organizations'
 require 'networks'
+require 'admins'
 require 'devices'
 require 'clients'
 require 'ssids'
@@ -19,6 +20,7 @@ class DashboardAPI
   include Clients
   include Devices
   include SSIDs
+  include Admins
   include Switchports
   include VLANs
   base_uri "https://dashboard.meraki.com/api/v0"
