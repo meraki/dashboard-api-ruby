@@ -511,15 +511,19 @@ API documentation for more information about these</p>
       <pre class="lines">
 
 
-99
-100
-101
-102</pre>
+109
+110
+111
+112
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_claim'>claim</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_org_id'>org_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/claim</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>POST</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -608,15 +612,19 @@ API documentation for more information about these</p>
       <pre class="lines">
 
 
-88
-89
-90
-91</pre>
+96
+97
+98
+99
+100
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clone_organization'>clone_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_source_org_id'>source_org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_source_org_id'>source_org_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/clone</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>POST</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -689,15 +697,19 @@ API documentation for more information about these</p>
       <pre class="lines">
 
 
-79
-80
-81
-82</pre>
+85
+86
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_organization'>create_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>POST</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1087,12 +1099,12 @@ party VPN peer</p>
       <pre class="lines">
 
 
-47
-48
-49</pre>
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 47</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_third_party_peers'>get_third_party_peers</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_org_id'>org_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/thirdPartyVPNPeers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GET</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1146,12 +1158,12 @@ party VPN peer</p>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list_all_organizations'>list_all_organizations</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>GET</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1241,15 +1253,19 @@ party VPN peer</p>
       <pre class="lines">
 
 
-71
-72
-73
-74</pre>
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_organization'>update_organization</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_org_id'>org_id</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUT</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1344,12 +1360,16 @@ v3AuthPass, v3PrivMode, v3PrivPass, peerIps</p>
 38
 39
 40
-41</pre>
+41
+42
+43</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 38</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_snmp_settings'>update_snmp_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_org_id'>org_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/snmp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUT</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1422,15 +1442,19 @@ v3AuthPass, v3PrivMode, v3PrivPass, peerIps</p>
       <pre class="lines">
 
 
-56
-57
 58
-59</pre>
+59
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/organizations.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_third_party_peers'>update_third_party_peers</span><span class='lparen'>(</span><span class='id identifier rubyid_org_id'>org_id</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Options were not passed as a Hash</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:body</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='rbrace'>}</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_make_api_call'>make_api_call</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/organizations/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_org_id'>org_id</span><span class='embexpr_end'>}</span><span class='tstring_content'>/thirdPartyVPNPeers</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PUT</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1444,7 +1468,7 @@ v3AuthPass, v3PrivMode, v3PrivPass, peerIps</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Nov 17 21:18:00 2016 by
+  Generated on Thu Nov 17 22:15:39 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
