@@ -1,5 +1,6 @@
 # Dashboard API v1.0.0
 Documentation: [here](http://www.rubydoc.info/gems/dashboard-api/1.0.0)
+
 Issues: [here](https://github.com/jletizia/dashboardapi/issues)
 
 # Description
