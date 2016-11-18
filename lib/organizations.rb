@@ -36,6 +36,8 @@ module Organizations
   #   v3AuthMode, v3AuthPass, v3PrivMode, v3PrivPass, peerIps
   # @return [Hash] a hash containing all SNMP configuration information for an organization
   def update_snmp_settings(org_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/snmp", 'PUT', options)
   end
@@ -54,6 +56,8 @@ module Organizations
   #   publicIp, privateSubnets and secret
   # @return [Array] returns the array of hashes for all currently configured 3rd party peers
   def update_third_party_peers(org_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", 'PUT', options)
   end
@@ -69,6 +73,8 @@ module Organizations
   # @param [Hash] options an options hash containing the org ID and new name of the org
   # @return [Hash] the updated attributes of the organization
   def update_organization(org_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations/#{org_id}", 'PUT', options)
   end
@@ -77,6 +83,8 @@ module Organizations
   # @param [Hash] options an options hash containing the name of the new organization
   # @return [Hash] the attributes of the newly created organization
   def create_organization(options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations", 'POST', options)
   end
@@ -86,6 +94,8 @@ module Organizations
   # @param [Hash] options options hash containing the attributes for the new organization
   # @return [Hash] the attributes of the newly cloned organization
   def clone_organization(source_org_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations/#{source_org_id}/clone", 'POST', options)
   end
@@ -97,6 +107,8 @@ module Organizations
   #   about these
   # @return [Integer] HTTP Code
   def claim(org_id, options)
+    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+
     options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/claim", 'POST', options)
   end

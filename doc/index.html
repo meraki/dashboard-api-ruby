@@ -60,124 +60,162 @@
       <iframe id="search_frame" src="class_list.html"></iframe>
 
       <div id="content"><div id='filecontents'>
-<h1 id="label-Dashboard+API+v0.9.0">Dashboard API v0.9.0</h1>
+<h1 id="label-Dashboard+API+v1.0.0">Dashboard API v1.0.0</h1>
 
-<p>A ruby implementation of the <a
+<p>Documentation: <a
+href="http://www.rubydoc.info/gems/dashboard-api/1.0.0">here</a> Issues: <a
+href="https://github.com/jletizia/dashboardapi/issues">here</a></p>
+
+<h1 id="label-Description">Description</h1>
+
+<p>A ruby implementation of the entire <a
 href="https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API">Meraki
 Dashboard API</a></p>
 
-<p>Documentation <a
-href="http://www.rubydoc.info/gems/dashboard-api/0.3.0">here</a></p>
+<h1 id="label-Usage">Usage</h1>
 
-<h1 id="label-Preface">Preface</h1>
-
-<p>The following readme is broken down into two sections:  * Installing /
-Usage of the gem  * Contributing to development of the gem</p>
-
-<h1 id="label-Installation+and+Normal+Usage">Installation and Normal Usage</h1>
-
-<h2 id="label-Usage">Usage</h2>
+<h2 id="label-Installation">Installation</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_dashboard'>dashboard</span><span class='op'>-</span><span class='id identifier rubyid_api'>api</span>
 </code></pre>
 
 <p>Once the gem is installed, you can use it by requiring
-<code>dashboard-api</code> <code> require &#39;dashboard-api&#39;  =&gt;
-true  </code></p>
+<code>dashboard-api</code> <code>ruby require &#39;dashboard-api&#39;
+</code></p>
 
 <h2 id="label-Examples">Examples</h2>
 
-<p>It is highly recommended that you utilize environment variables when
-dealing with things like API keys, tokens, etc. instead of utilizing them
-directly in a script. All examples will be shown with this convention.</p>
+<h3 id="label-Basic+implementation">Basic implementation</h3>
 
-<h3 id="label-Instantiating+a+new+instance-3A">Instantiating a new instance:</h3>
+<h4 id="label-Get+a+list+of+networks+for+a+specific+Dashboard+Organization">Get a list of networks for a specific Dashboard Organization</h4>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_dapi'>dapi</span> <span class='op'>=</span> <span class='const'>DashboardAPI</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dashboard_api_key</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<pre class="code ruby"><code class="ruby"><span class='comment'># get_networks.rb
+</span><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dashboard-api</span><span class='tstring_end'>&#39;</span></span>
+
+<span class='comment'># read in API key and Org ID from Environment variables
+</span><span class='ivar'>@dashboard_api_key</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dashboard_api_key</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='ivar'>@dashboard_org_id</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>dashboard_org_id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+<span class='id identifier rubyid_dapi'>dapi</span> <span class='op'>=</span> <span class='const'>DashboardAPI</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@dashboard_api_key</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_dapi'>dapi</span><span class='period'>.</span><span class='id identifier rubyid_get_networks'>get_networks</span><span class='lparen'>(</span><span class='ivar'>@dashboard_org_id</span><span class='rparen'>)</span>
 </code></pre>
 
-<h3 id="label-Listing+details+about+a+specific+network-3A">Listing details about a specific network:</h3>
+<h4 id="label-Update+a+specific+network">Update a specific network</h4>
 
-<pre class="code ruby"><code class="ruby">dapi.get_single_network(ENV[&#39;vpn_network&#39;])
- =&gt; {&quot;id&quot;=&gt;&quot;N_&lt;OMITTED&gt;&quot;, &quot;organizationId&quot;=&gt;&quot;&lt;OMITTED&gt;&quot;, &quot;type&quot;=&gt;&quot;appliance&quot;, &quot;name&quot;=&gt;&quot;vpn_test_network&quot;, &quot;timeZone&quot;=&gt;&quot;America/Los_Angeles&quot;, &quot;tags&quot;=&gt;&quot;&quot;}
-</code></pre>
+<p>This will update a specific network to have the new name of <code>New VPN
+Spoke</code>. Note the options hash, <code>network_options</code>. Whenever
+making a call to something that updates Dashboard, an options hash will be
+used, with all necessary attributes as keys. Specifics about these keys can
+be found in the official <a
+href="https://dashboard.meraki.com/manage/support/api_docs">Meraki API
+Documentation</a>. “`ruby</p>
 
-<p>There are many times where you need to actually pass data up to the
-Dashboard API, be it for creating new networks, updating device
-information, etc. In situations like these, an options hash is expected to
-be passed alongside to the method call. The Dashboard-API gem documentation
-mentions what is expected in the option hash for methods that require it,
-but the offical <a
-href="https://dashboard.meraki.com/manage/support/api_docs">Meraki
-Dashboard API documentation</a> is recommended for exact details.</p>
+<h1 id="label-update_network.rb">update_network.rb</h1>
 
-<h3 id="label-Creating+a+new+network-3A">Creating a new network:</h3>
+<p>require &#39;dashboard-api&#39;</p>
 
-<pre class="code ruby"><code class="ruby">options = {:name =&gt; &#39;new_test_network&#39;, :type =&gt; &#39;wireless&#39;}
- =&gt; {:name=&gt;&quot;new_test_network&quot;, :type=&gt;&quot;wireless&quot;} 
-dapi.create_network(ENV[&#39;dashboard_org_id&#39;], options)
- =&gt; {&quot;id&quot;=&gt;&quot;N_&lt;OMITTED&gt;&quot;, &quot;organizationId&quot;=&gt;&quot;&lt;OMITTED&gt;&quot;, &quot;type&quot;=&gt;&quot;wireless&quot;, &quot;name&quot;=&gt;&quot;new_test_network&quot;, &quot;timeZone&quot;=&gt;&quot;America/Los_Angeles&quot;, &quot;tags&quot;=&gt;&quot;&quot;}
-</code></pre>
+<h1 id="label-read+in+API+key+and+Org+ID+from+Environment+variables">read in API key and Org ID from Environment variables</h1>
 
-<p>Not every method call will return a Hash object. Some will return an Array,
-often containing a Hash in each element. Information about what is expected
-to be returned can be found in the Dashboard-API Documentation, as well as
-the official Meraki Dashboard API help documentation.</p>
+<p>@dashboard_api_key = <a href="'dashboard_api_key'">ENV</a>
+@dashboard_org_id = <a href="'dashboard_org_id'">ENV</a> @network_id = <a
+href="'combined_network'">ENV</a></p>
 
-<pre class="code ruby"><code class="ruby">dapi.get_third_party_peers(ENV[&#39;dashboard_org_id&#39;])
- =&gt; [{&quot;name&quot;=&gt;&quot;test_api_peer&quot;, &quot;publicIp&quot;=&gt;&quot;10.0.0.1&quot;, &quot;privateSubnets&quot;=&gt;[&quot;10.1.0.0/24&quot;], &quot;secret&quot;=&gt;&quot;password&quot;, &quot;tags&quot;=&gt;[&quot;all&quot;]}, {&quot;name&quot;=&gt;&quot;second_api_peerr&quot;, &quot;publicIp&quot;=&gt;&quot;10.0.0.2&quot;, &quot;privateSubnets&quot;=&gt;[&quot;10.2.0.0/24&quot;], &quot;secret&quot;=&gt;&quot;password&quot;, &quot;tags&quot;=&gt;[&quot;api_test&quot;]}]
-</code></pre>
+<p>dapi = DashboardAPI.new(@dashboard_api_key)</p>
 
-<h1 id="label-Development">Development</h1>
+<p>network_options = =&gt; @network_id, :name =&gt; &#39;New VPN
+Spoke&#39; dapi.update_network(@network_id, network_options) “`</p>
+
+<h1 id="label-Contributing">Contributing</h1>
+
+<p>If you feel like contributing, information about the testing environment
+can be found below. If you just want to use the gem to help interact with
+the Meraki Dashboard, you only need to read the above sections.</p>
+
+<h2 id="label-Dependencies">Dependencies</h2>
+
+<p>To install the necessary dependencies run: <code>bash bundle install
+</code> or</p>
+
+<pre class="code ruby"><code class="ruby">gem install --dev dashboard-api</code></pre>
+
+<p>or look in the <code>Gemfile</code> and install each dependency
+individually.</p>
 
 <h2 id="label-Testing">Testing</h2>
 
-<p>To install the necessary dependencies run: <code> bundle install </code> If
-you do not use bundler, you can check out the gemfile, and install the
-dependencies individually as necessary.</p>
+<p>Because the Dashboard API needs actual Dashboard resources to hit against,
+there is a decent amount of pre-configuring that needs to go into place.
+This includes not only setting your API key, a default organization ID,
+etc. but also setting up test devices that will be modified, removed,
+claimed, etc. on Dashboard. It is recommended to use a completely separate
+test organization, with separate test devices if possible, as to not
+potentially disturb a production organization.</p>
 
-<p>The Meraki Dashboard API requires both an API key, as well as certain
-identifiers such as Organization, or Network IDs. If you would like to run
-the full current test suite, the following ENV variables need to be set:</p>
-<ul><li>
-<p><code>dashboard_api_key</code> Your Meraki Dashboard API key</p>
-</li><li>
-<p><code>dashboard_org_id</code> The Meraki Dashboard Organization ID you will
-be testing on</p>
-</li><li>
-<p><code>test_network_id</code> A test network ID that will be used to test
-renaming networks</p>
-</li><li>
-<p><code>vpn_network</code> A test MX network that will test modifying AutoVPN
-settings</p>
-</li><li>
-<p><code>switch_network</code> A test MS netwok that will test things like
-access policies, etc.</p>
-</li><li>
-<p><code>mx_serial</code> A test MX that has client traffic passing through it</p>
-</li><li>
-<p><code>spare_mr</code> A test MR used to claim in and out of networks</p>
-</li><li>
-<p><code>test_admin_id</code> The ID of a test admin used to test updating and
-deleting admins</p>
-</li><li>
-<p><code>config_template_id</code> A test configuration template network ID
-used to test removing a template It is recommended that you set up a test
-organization with test devices in it when working with developing new
-functionality to this gem, as to not potentially disturb any of your
-production networks.</p>
-</li></ul>
+<h3 id="label-Environment+Variables">Environment Variables</h3>
 
-<p>Once those are set and dependencies are installed, you can run the tests
-with <code> rake test </code></p>
+<p>Each test file will read in the necessary ENV variables for it&#39;s
+specifc set of tests: <code>ruby class OrganizationsTest &lt;
+Minitest::Test   def setup     @dashboard_api_key =
+ENV['dashboard_api_key']     @org_id = ENV['dashboard_org_id']    
+@network_id = ENV['test_network_id']     @dapi =
+DashboardAPI.new(@dashboard_api_key)   end </code> The full list of
+necessary ENV variables is: * <code>dashboard_api_key</code> Your Meraki
+Dashboard API key * <code>dashboard_org_id</code> The Meraki Dashboard
+Organization ID you will be testing on * <code>test_network_id</code> A
+test network ID that will be used to test renaming networks *
+<code>vpn_network</code> A test MX network that will test modifying AutoVPN
+settings * <code>switch_network</code> A test MS netwok that will test
+things like access policies, etc. * <code>mx_serial</code> A test MX that
+has client traffic passing through it * <code>spare_mr</code> A test MR
+used to claim in and out of networks * <code>test_admin_id</code> The ID of
+a test admin used to test updating and deleting admins *
+<code>config_template_id</code> A test configuration template network ID
+used to test removing a template * <code>unclaimed_device</code> A device
+that can be used to test claiming * <code>phone_network</code> Test phone
+network * <code>phone_contact_id</code> Test contact for your phone network
+* <code>saml_id</code> ID of a test SAML user *
+<code>config_template_id</code> ID of the template you will bind the test
+network to * <code>config_bind_network</code> network you want to bind to a
+template</p>
 
-<p>As the majority of the testing for this gem requires HTTP calls, testing is
-currently run with <a href="https://github.com/vcr/vcr">VCR</a> to capture
-actual HTTP responses to run the tests off of. This requires that the
-environment variables you set up above are for a valid Meraki Dashboard
-Organization. After running the tests for the first time, subsequent tests
-will be ran off of the saved output. We would also expect subsequent test
-runs to be close to instantenous, as seen below:</p>
+<h3 id="label-Running+a+test">Running a test</h3>
+
+<p>As this is an wrapper gem for an RESTful API, the vast majority of methods
+make some sort of HTTP call. To reduce the amount of time testing takes,
+and ensure that we have good data to work against at all times, we utilize
+<a href="https://github.com/vcr/vcr">VCR</a>. This will capture the HTTP
+interaction the first time a test is ran, save them as fixtures, and then
+replay that fixture on each subsequent call to that method during tests.</p>
+
+<h4 id="label-First+test+run+issues">First test run issues</h4>
+
+<p>Due to the HTTP interactions containing private data we are trying to
+obscure with environment variables in the first place (API key,
+organization IDs, etc.), the fixtures used to initially test this gem can
+not be provided here. This means that you will need to generate your own
+fixtures. Luckily, this is as easy as just running the tests in the first
+place. Unluckily, due to Minitest randomizing the order of it&#39;s tests,
+you may run into situations where the test to delete a network runs for the
+first time, before that network ever exists (remember, with VCR, only the
+first test run&#39;s HTTP interaction is saved, and used for each later
+test). When this happens, a 404 will be received, VCR will save it, and the
+test will fail.</p>
+
+<h4 id="label-What+this+means">What this means</h4>
+
+<p>Getting all of the tests to a point where they all pass will not be a
+trivial task, due to the workflow of: running the tests, finding the tests
+that failed due to a prerequisite not having happened at some point before
+that test run, fixing the prerequisite, deleting the fixture (they live in
+<code>fixtures/vcr_cassettes/</code>), and rerunning the tests.</p>
+
+<h4 id="label-How+to+actually+run+the+tests">How to actually run the tests</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span>
+</code></pre>
+
+<p>After the first completely successful, all green run, tests will be almost
+instantenous:</p>
 
 <pre class="code ruby"><code class="ruby">➜  dashboard-api git:(master) ✗ rake test
 Started with run options --seed 42405
@@ -198,15 +236,10 @@ DashAPITest
 
 Finished in 0.05813s
 12 tests, 12 assertions, 0 failures, 0 errors, 0 skips</code></pre>
-
-<p>All of the saved HTTP responses from VCR will be saved by default in
-<code>fixtures/vcr_cassettes/</code>. These <strong>should not be added /
-comitted to git</strong> as they will contain all of the keys / tokens we
-set as ENV variables above.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Nov 17 21:18:00 2016 by
+  Generated on Thu Nov 17 22:15:38 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.5 (ruby-2.3.0).
 </div>
