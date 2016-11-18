@@ -66,7 +66,9 @@ class DashboardAPI
       end
     when 'PUT'
       res = HTTParty.put("#{self.class.base_uri}/#{endpoint_url}", options)
-      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
+      # needs to check for is an array, because when you update a 3rd party VPN peer, it returns as an array
+      # if you screw something up, it returns as a Hash, and will hit the normal if res['errors'
+      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors'] unless JSON.parse(res.body).is_a? Array
       raise "404 returned. Are you sure you are using the proper IDs?" if res.code == 404
       return JSON.parse(res.body)
     when 'DELETE'
