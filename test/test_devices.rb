@@ -1,31 +1,10 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+require './test/test_helper'
 
 class DevicesTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @vpn_network = ENV['vpn_network']
-    @switch_network = ENV['switch_network']
-    @mx_serial = ENV['mx_serial']
-    @combined_network = ENV['combined_network']
-    @spare_mr = ENV['spare_mr']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_list_devices_in_network
     VCR.use_cassette('list_devices_in_network') do
       res = @dapi.list_devices_in_network(@switch_network)
-      
+
       assert_kind_of Array, res
       assert_equal true, res[0].keys.include?('name')
     end
@@ -36,7 +15,7 @@ class DevicesTest < Minitest::Test
       res = @dapi.get_single_device(@combined_network, @mx_serial)
 
       assert_kind_of Hash, res
-      assert_equal true, res.keys.include?('name') 
+      assert_equal true, res.keys.include?('name')
     end
   end
 

@@ -1,26 +1,6 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+require './test/test_helper'
 
 class SSIDsTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @vpn_network = ENV['vpn_network']
-    @switch_network = ENV['switch_network']
-    @combined_network = ENV['combined_network']
-    @mx_serial = ENV['mx_serial']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_it_lists_the_ssids
     VCR.use_cassette('list_ssids_in_network') do
       res = @dapi.list_ssids_in_network(@combined_network)
@@ -38,7 +18,7 @@ class SSIDsTest < Minitest::Test
       assert_equal true, res.keys.include?('number')
     end
   end
-  
+
   def test_it_requires_integer_for_single_ssid
     VCR.use_cassette('requires_integer_ssid_number') do
       assert_raises 'Please provide a valid SSID number' do

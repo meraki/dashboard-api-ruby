@@ -1,23 +1,6 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+require './test/test_helper'
 
 class OrganizationsTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @unclaimed_device = ENV['unclaimed_device']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_get_an_organization
     VCR.use_cassette("get_an_org") do
       res = @dapi.get_organization(@org_id)
@@ -105,7 +88,7 @@ class OrganizationsTest < Minitest::Test
       res = @dapi.update_third_party_peers(@org_id, options)
     end
   end
-  
+
   def test_it_lists_all_orgs_a_user_is_on
     VCR.use_cassette('list_all_orgs_for_user') do
       res = @dapi.list_all_organizations
