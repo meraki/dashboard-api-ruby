@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class AdminsTest < Minitest::Test
@@ -43,7 +49,7 @@ class AdminsTest < Minitest::Test
     VCR.use_cassette('update_admin') do
       options = {:name => 'updated admin'}
       res = @dapi.update_admin(@org_id, @test_admin_id, options)
-      
+
       assert_kind_of Hash, res
       assert_equal options[:name], res['name']
     end

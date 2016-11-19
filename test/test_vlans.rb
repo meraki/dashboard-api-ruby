@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use!
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class VLANsTest < Minitest::Test
@@ -28,7 +34,7 @@ class VLANsTest < Minitest::Test
       assert_kind_of Array, res
     end
   end
-  
+
   def test_it_returns_a_vlan
     VCR.use_cassette('return_a_vlan') do
       res = @dapi.return_vlan(@combined_network, 10)
@@ -59,9 +65,9 @@ class VLANsTest < Minitest::Test
     VCR.use_cassette('update_a_vlan') do
       options = {:name => 'api_vlan_updated'}
       res = @dapi.update_vlan(@combined_network, 456, options)
-      
+
       assert_kind_of Hash, res
-      assert_equal options[:name], res['name'] 
+      assert_equal options[:name], res['name']
     end
   end
 
@@ -74,7 +80,7 @@ class VLANsTest < Minitest::Test
   def test_it_deletes_a_vlan
     VCR.use_cassette('delete_a_vlan') do
       res = @dapi.delete_vlan(@combined_network, 456)
-      
+
       assert_equal 204, res.code
     end
   end

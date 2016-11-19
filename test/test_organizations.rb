@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class OrganizationsTest < Minitest::Test
@@ -100,12 +106,11 @@ class OrganizationsTest < Minitest::Test
 
   def test_update_third_party_peers
     VCR.use_cassette("update_third_party_vpn_peers") do
-      options = [{:name => 'api', :publicIp => '8.8.4.4', :privateSubnets => '["192.168.151.0/30"]', :secret => 'API123456'}]
       options = [{"name":"Your peer","publicIp":"192.168.0.1","privateSubnets":["172.168.0.0/16","172.169.0.0/16"],"secret":"asdf1234"}]
       res = @dapi.update_third_party_peers(@org_id, options)
     end
   end
-  
+
   def test_it_lists_all_orgs_a_user_is_on
     VCR.use_cassette('list_all_orgs_for_user') do
       res = @dapi.list_all_organizations

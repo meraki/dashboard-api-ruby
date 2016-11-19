@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class PhonesTest < Minitest::Test
@@ -25,16 +31,16 @@ class PhonesTest < Minitest::Test
   def test_it_can_list_contacts
     VCR.use_cassette('list_phone_contacts') do
       res = @dapi.list_phone_contacts(@phone_network)
-      
+
       assert_kind_of Array, res
     end
   end
-  
+
   def test_it_can_add_a_contact
     VCR.use_cassette('add_a_phone_contact') do
       options = {:name => 'api test'}
       res = @dapi.add_phone_contact(@phone_network, options)
-      
+
       assert_kind_of Hash, res
       assert_equal options[:name], res['name']
     end
@@ -44,7 +50,7 @@ class PhonesTest < Minitest::Test
     VCR.use_cassette('update_a_phone_contact') do
       options = {:name => 'updated test'}
       res = @dapi.update_phone_contact(@phone_network, @contact_id, options)
-      
+
       assert_kind_of Hash, res
       assert_equal options[:name], res['name']
     end
@@ -53,8 +59,8 @@ class PhonesTest < Minitest::Test
   def test_it_can_delete_a_contact
     VCR.use_cassette('delete_a_phone_contact') do
       res = @dapi.delete_phone_contact(@phone_network, @contact_id)
-      
-      assert_equal 204, res.code    
+
+      assert_equal 204, res.code
     end
   end
 

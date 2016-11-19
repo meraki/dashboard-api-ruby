@@ -6,8 +6,14 @@ require 'json'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class DashAPITest < Minitest::Test
@@ -33,7 +39,7 @@ class DashAPITest < Minitest::Test
       res = @dapi.make_api_call(endpoint_url, http_method)
 
       assert_equal @org_id.to_i, res['id']
-    end 
+    end
   end
 
   def test_it_can_post

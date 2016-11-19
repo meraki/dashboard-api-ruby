@@ -5,10 +5,15 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
 
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
+end
 class SSIDsTest < Minitest::Test
   def setup
     @dashboard_api_key = ENV['dashboard_api_key']
@@ -38,7 +43,7 @@ class SSIDsTest < Minitest::Test
       assert_equal true, res.keys.include?('number')
     end
   end
-  
+
   def test_it_requires_integer_for_single_ssid
     VCR.use_cassette('requires_integer_ssid_number') do
       assert_raises 'Please provide a valid SSID number' do

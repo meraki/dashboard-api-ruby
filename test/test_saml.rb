@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class SAMLTest < Minitest::Test
@@ -37,7 +43,7 @@ class SAMLTest < Minitest::Test
       assert_equal @saml_id, res['id']
     end
   end
-  
+
   def test_it_can_create_saml_roles
     VCR.use_cassette('create_saml_role') do
       options = {:role => 'api_test_role', :orgAccess => 'full'}

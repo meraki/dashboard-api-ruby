@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class TemplatesTest < Minitest::Test
@@ -24,7 +30,7 @@ class TemplatesTest < Minitest::Test
   def test_it_can_list_an_orgs_templates
     VCR.use_cassette('list_all_templates') do
       res = @dapi.list_templates(@org_id)
-      
+
       assert_kind_of Array, res
     end
   end
@@ -32,7 +38,7 @@ class TemplatesTest < Minitest::Test
   def test_it_can_remove_a_template
     VCR.use_cassette('remove_a_template') do
       res = @dapi.remove_template(@org_id, @config_template_id)
-      
+
       assert_equal 204, res.code
     end
   end

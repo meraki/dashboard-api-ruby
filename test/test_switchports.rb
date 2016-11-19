@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class SwitchportsTest < Minitest::Test
@@ -20,7 +26,7 @@ class SwitchportsTest < Minitest::Test
     @ms_serial = ENV['ms_serial']
     @dapi = DashboardAPI.new(@dashboard_api_key)
   end
-  
+
   def test_list_switch_ports
     VCR.use_cassette('list_switchports_for_switch') do
       res = @dapi.get_switch_ports(@ms_serial)

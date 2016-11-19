@@ -5,8 +5,14 @@ require 'vcr'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class ClientsTest < Minitest::Test
@@ -24,7 +30,7 @@ class ClientsTest < Minitest::Test
     VCR.use_cassette('client_info_for_device') do
       res = @dapi.get_client_info_for_device(@mx_serial, 86400)
 
-      assert_kind_of Array, res 
+      assert_kind_of Array, res
       assert_equal 'usage', res[0].keys.first
     end
   end

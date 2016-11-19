@@ -2,11 +2,18 @@ require 'minitest/autorun'
 require './lib/dashboard-api.rb'
 require 'minitest/reporters'
 require 'vcr'
+require 'yaml'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock # or :fakeweb
+
+  secrets = YAML::load_file('secrets.yml')
+
+  secrets.each do |k,v|
+    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
+  end
 end
 
 class NetworksTest < Minitest::Test
@@ -80,7 +87,7 @@ class NetworksTest < Minitest::Test
     VCR.use_cassette('get_auto_vpn_settings') do
       res = @dapi.get_auto_vpn_settings(@vpn_network)
 
-      assert_kind_of Hash, res 
+      assert_kind_of Hash, res
     end
   end
 
@@ -115,7 +122,7 @@ class NetworksTest < Minitest::Test
     VCR.use_cassette('bind_network_to_template') do
       options = {:configTemplateId => @config_template_id}
       res = @dapi.bind_network_to_template(@config_bind_network, options)
-      
+
       assert_equal 200, res
     end
   end
@@ -123,7 +130,7 @@ class NetworksTest < Minitest::Test
   def test_it_can_unbind_a_network_to_a_template
     VCR.use_cassette('unbind_network_to_template') do
       res = @dapi.unbind_network_to_template(@config_bind_network)
-      
+
       assert_equal 200, res
     end
   end
