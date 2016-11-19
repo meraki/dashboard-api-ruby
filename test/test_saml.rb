@@ -1,26 +1,6 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+require './test/test_helper'
 
 class SAMLTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @vpn_network = ENV['vpn_network']
-    @switch_network = ENV['switch_network']
-    @mx_serial = ENV['mx_serial']
-    @saml_id = ENV['saml_id']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_it_can_list_saml_roles
     VCR.use_cassette('list_saml_roles') do
       res = @dapi.list_saml_roles(@org_id)
@@ -37,7 +17,7 @@ class SAMLTest < Minitest::Test
       assert_equal @saml_id, res['id']
     end
   end
-  
+
   def test_it_can_create_saml_roles
     VCR.use_cassette('create_saml_role') do
       options = {:role => 'api_test_role', :orgAccess => 'full'}

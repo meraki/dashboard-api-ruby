@@ -56,7 +56,7 @@ module Organizations
   #   publicIp, privateSubnets and secret
   # @return [Array] returns the array of hashes for all currently configured 3rd party peers
   def update_third_party_peers(org_id, options)
-    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
+    raise 'Options were not passed as an Array' if !options.is_a?(Array)
 
     options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", 'PUT', options)

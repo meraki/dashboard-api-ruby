@@ -1,27 +1,6 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-    config.cassette_library_dir = "fixtures/vcr_cassettes"
-    config.hook_into :webmock # or :fakeweb
-end
+require './test/test_helper'
 
 class NetworksTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @vpn_network = ENV['vpn_network']
-    @switch_network = ENV['switch_network']
-    @combined_network = ENV['combined_network']
-    @config_template_id = ENV['config_template_id']
-    @config_bind_network = ENV['config_bind_network']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_it_can_get_networks
     VCR.use_cassette("get_networks") do
       res = @dapi.get_networks(@org_id)
@@ -80,7 +59,7 @@ class NetworksTest < Minitest::Test
     VCR.use_cassette('get_auto_vpn_settings') do
       res = @dapi.get_auto_vpn_settings(@vpn_network)
 
-      assert_kind_of Hash, res 
+      assert_kind_of Hash, res
     end
   end
 
@@ -115,7 +94,7 @@ class NetworksTest < Minitest::Test
     VCR.use_cassette('bind_network_to_template') do
       options = {:configTemplateId => @config_template_id}
       res = @dapi.bind_network_to_template(@config_bind_network, options)
-      
+
       assert_equal 200, res
     end
   end
@@ -123,7 +102,7 @@ class NetworksTest < Minitest::Test
   def test_it_can_unbind_a_network_to_a_template
     VCR.use_cassette('unbind_network_to_template') do
       res = @dapi.unbind_network_to_template(@config_bind_network)
-      
+
       assert_equal 200, res
     end
   end
