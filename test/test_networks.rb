@@ -1,34 +1,6 @@
-require 'minitest/autorun'
-require './lib/dashboard-api.rb'
-require 'minitest/reporters'
-require 'vcr'
-require 'yaml'
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
-VCR.configure do |config|
-  config.cassette_library_dir = "fixtures/vcr_cassettes"
-  config.hook_into :webmock # or :fakeweb
-
-  secrets = YAML::load_file('secrets.yml')
-
-  secrets.each do |k,v|
-    config.filter_sensitive_data( k.upcase + "_PLACEHOLDER") { v }
-  end
-end
+require './test/test_helper'
 
 class NetworksTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @vpn_network = ENV['vpn_network']
-    @switch_network = ENV['switch_network']
-    @combined_network = ENV['combined_network']
-    @config_template_id = ENV['config_template_id']
-    @config_bind_network = ENV['config_bind_network']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-
   def test_it_can_get_networks
     VCR.use_cassette("get_networks") do
       res = @dapi.get_networks(@org_id)
