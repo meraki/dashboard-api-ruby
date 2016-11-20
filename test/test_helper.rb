@@ -12,11 +12,10 @@ VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 
-  if ENV['import_secrets']
-    secrets = YAML::load_file('secrets.yml')
-    secrets.each do |k,v|
-      config.filter_sensitive_data(k) {v}
-    end
+  secrets = ['secret_dashboard_api_key', 'secret_dashboard_org_id', 'secret_ms_serial', 'secret_unclaimed_device', 'secret_combined_network', 'secret_first_name', 'secret_last_name',
+            'secret_email', 'secret_admin_id', 'secret_shard_id']
+  secrets.each do |secret|
+    config.filter_sensitive_data(secret) {ENV[secret]}
   end
 end
 
