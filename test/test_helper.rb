@@ -13,7 +13,7 @@ VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 
-  unless ENV['without_secrets']
+  unless ENV['without-secrets']
     secrets = ['secret_dashboard_api_key', 'secret_dashboard_org_id', 'secret_ms_serial', 'secret_unclaimed_device', 'secret_combined_network', 'secret_first_name', 'secret_last_name',
                'secret_email', 'secret_admin_id', 'secret_shard_id']
     secrets.each do |secret|

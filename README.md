@@ -57,8 +57,6 @@ dapi.update_network(@network_id, network_options)
 
 
 # Contributing
-**UPDATE**: The testing infrastructure is currently being rewritten to minimize dependencies (ENV vars, etc.), and allow a much easier time when running tests for the first time. Should be done shortly. (11/19/2016)
-
 If you feel like contributing, information about the testing environment can be found below. If you just want to use the gem to help interact with the Meraki Dashboard,
 you only need to read the above sections.
 
@@ -75,51 +73,43 @@ gem install --dev dashboard-api
 or look in the `Gemfile` and install each dependency individually.
 
 ## Testing
-Because the Dashboard API needs actual Dashboard resources to hit against, there is a decent amount of pre-configuring that needs to go into place. This includes not only setting your API key, a default organization ID, etc. but also setting up test devices that will be modified, removed, claimed, etc. on Dashboard. It is recommended to use a completely separate test organization, with separate test devices if possible, as to not potentially disturb a production organization.
-
-### Environment Variables
-Each test file will read in the necessary ENV variables for it's specifc set of tests:
-```ruby
-class OrganizationsTest < Minitest::Test
-  def setup
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @org_id = ENV['dashboard_org_id']
-    @network_id = ENV['test_network_id']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
-  end
-```
-The full list of necessary ENV variables is:
+### Prerequisites
+There are a few prerequisites if you want to be able to run tests (at least for the first time, until fixtures get generated). These are split up into Dashboard and Environment Variables:
+#### Dashboard configuration
+* A combined network that should have
+  * an MX, with VLANs enabled
+  * an MS
+  * an MR, with the first SSID
+* a single network called 'DELETE ME' exists
+* A single template called 'API Delete Me' already exists
+* A single template exists called 'API Permanent'
+#### Environment Variables
 * `dashboard_api_key` Your Meraki Dashboard API key
-* `dashboard_org_id` The Meraki Dashboard Organization ID you will be testing on
-* `test_network_id` A test network ID that will be used to test renaming networks
-* `vpn_network` A test MX network that will test modifying AutoVPN settings
-* `switch_network` A test MS netwok that will test things like access policies, etc.
-* `mx_serial` A test MX that has client traffic passing through it
-* `spare_mr` A test MR used to claim in and out of networks
-* `test_admin_id` The ID of a test admin used to test updating and deleting admins
-* `config_template_id` A test configuration template network ID used to test removing a template
-* `unclaimed_device` A device that can be used to test claiming
-* `phone_network` Test phone network
-* `phone_contact_id` Test contact for your phone network
-* `saml_id` ID of a test SAML user
-* `config_template_id` ID of the template you will bind the test network to
-* `config_bind_network` network you want to bind to a template
+* `org_id` The Meraki Dashboard Organization where you will be testing on
+* `combined_network` The combined network set up in the above requirements
+* `ms_serial` The serial number of the MS in the combined network. Used to test switchport methods
+* `unclaimed_device` A device that is unclaimed. Used to test claining into an org / network.
 
 ### Running a test
-As this is an wrapper gem for an RESTful API, the vast majority of methods make some sort of HTTP call. To reduce the amount of time testing takes, and ensure that we have good data to work against at all times, we utilize [VCR](https://github.com/vcr/vcr). This will capture the HTTP interaction the first time a test is ran, save them as fixtures, and then replay that fixture on each subsequent call to that method during tests.
+As this is a wrapper gem for an RESTful API, the vast majority of methods make some sort of HTTP call. To reduce the amount of time testing takes, and ensure that we have good data to work against at all times, we utilize [VCR](https://github.com/vcr/vcr). This will capture the HTTP interaction the first time a test is ran, save them as fixtures, and then replay that fixture on each subsequent call to that method during tests.
 
-#### First test run issues
-Due to the HTTP interactions containing private data we are trying to obscure with environment variables in the first place (API key, organization IDs, etc.), the fixtures used to initially test this gem can not be provided here. This means that you will need to generate your own fixtures. Luckily, this is as easy as just running the tests in the first place. Unluckily, due to Minitest randomizing the order of it's tests, you may run into situations where the test to delete a network runs for the first time, before that network ever exists (remember, with VCR, only the first test run's HTTP interaction is saved, and used for each later test). When this happens, a 404 will be received, VCR will save it, and the test will fail.
-
-#### What this means
-Getting all of the tests to a point where they all pass will not be a trivial task, due to the workflow of: running the tests, finding the tests that failed due to a prerequisite not having happened at some point before that test run, fixing the prerequisite, deleting the fixture (they live in `fixtures/vcr_cassettes/`), and rerunning the tests.
+**NOTE**: This means that if you happen to have things misconfigured, run a test, and receive a 404, that 404 response is now saved for that test. You will need to manually remove it from `fixtures/vcr_cassettes` and rerun the test.
 
 #### How to actually run the tests
 ```
-rake test
+rake test without-secrets
+```
+#### Without secrets?
+Running the rake test with the `without-secrets` options tells VCR not to obfuscate any sensitive information when creating fixtures (sensitive information being described as the ENVs listed below). This is OK for 99.99% of the normal use cases (such as feature development on a local machine). The reason the functionality to allow for the obfuscation is for the potential down the line to be able to release a current "working set" of fixtures, so that you don't need to have an entire Dashboard Organization set up to modify existing methods and test them.
+
+If you want to run your local tests with secret obfuscation for any reason, you need the following ENV variables set:
+```
+['secret_dashboard_api_key', 'secret_dashboard_org_id', 'secret_ms_serial', 'secret_unclaimed_device', 'secret_combined_network', 'secret_first_name', 'secret_last_name',
+           'secret_email', 'secret_admin_id', 'secret_shard_id']
 ```
 
-After the first completely successful, all green run, tests will be almost instantenous:
+### Test results
+After the first completely successful, all green run, subsequent tests will be almost instantaneous:
 
 ```bash
 ➜  dashboard-api git:(master) ✗ rake test
