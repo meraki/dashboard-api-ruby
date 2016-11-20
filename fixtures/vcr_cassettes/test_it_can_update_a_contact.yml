@@ -1,0 +1,501 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/networks
+    body:
+      encoding: UTF-8
+      string: '{"name":"DELETE ME","type":"phone"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:55 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - dc53c9b62ed70a7dcd025cac454fd092
+      X-Runtime:
+      - '0.018694'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:55 GMT
+- request:
+    method: post
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks
+    body:
+      encoding: UTF-8
+      string: '{"name":"DELETE ME","type":"phone"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:55 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 055b54bc4d08c59daee9ef536484d15c
+      X-Runtime:
+      - '0.082390'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":"N_613052499275828826","organizationId":"dashboard_org_id","type":"phone","name":"DELETE
+        ME","timeZone":"America/Los_Angeles","tags":""}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:55 GMT
+- request:
+    method: post
+    uri: https://dashboard.meraki.com/api/v0//networks/N_613052499275828826/phoneContacts
+    body:
+      encoding: UTF-8
+      string: '{"name":"API add_contact"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:59 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - a09c7fa20f5deb20c389cc07401fd015
+      X-Runtime:
+      - '0.023995'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:59 GMT
+- request:
+    method: post
+    uri: https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts
+    body:
+      encoding: UTF-8
+      string: '{"name":"API add_contact"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 516582ff1436bf231142344565fa5327
+      X-Runtime:
+      - '0.090051'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":613052499275808898,"name":"API add_contact","type":"Dashboard"}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:59 GMT
+- request:
+    method: put
+    uri: https://dashboard.meraki.com/api/v0//networks/N_613052499275828826/phoneContacts/613052499275808898
+    body:
+      encoding: UTF-8
+      string: '{"name":"API updated_contact"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:59 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts/613052499275808898
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 7c4b45dd6a1ccb0f3e0cb39ce00ff541
+      X-Runtime:
+      - '0.025587'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts/613052499275808898">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:59 GMT
+- request:
+    method: put
+    uri: https://shard_id.meraki.com/api/v0/networks/N_613052499275828826/phoneContacts/613052499275808898
+    body:
+      encoding: UTF-8
+      string: '{"name":"API updated_contact"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 97a30de560c0419ecc860a3b917aa25b
+      X-Runtime:
+      - '0.035393'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":613052499275808898,"name":"API updated_contact","type":"Dashboard"}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:59 GMT
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/networks
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:01:00 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - d32ae722a1e27b72a37ef9aa80d5d7b1
+      X-Runtime:
+      - '0.021059'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:01:00 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/networks
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:01:00 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '305'
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Last-Modified:
+      - Sun, 20 Nov 2016 19:01:00 GMT
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 9e1223d2f1541abdf1a830da6291a377
+      X-Runtime:
+      - '0.022242'
+      X-Content-Digest:
+      - 0fe9a9d8bdf3721ad28be17e999bad5302bca7f3
+      Age:
+      - '0'
+      X-Rack-Cache:
+      - stale, invalid, store
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '[{"id":"combined_network","name":"API Combined Network","timeZone":"America/Los_Angeles","tags":"","organizationId":"dashboard_org_id","type":"combined"},{"id":"N_613052499275828826","name":"DELETE
+        ME","timeZone":"America/Los_Angeles","tags":"","organizationId":"dashboard_org_id","type":"phone"}]'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:01:00 GMT
+- request:
+    method: delete
+    uri: https://dashboard.meraki.com/api/v0//networks/N_613052499275828826
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:01:00 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/networks/N_613052499275828826
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - c1d82114510655163b6b0cb0213d0b44
+      X-Runtime:
+      - '0.025456'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/networks/N_613052499275828826">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:01:00 GMT
+- request:
+    method: delete
+    uri: https://shard_id.meraki.com/api/v0/networks/N_613052499275828826
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:01:00 GMT
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 6510edb2c1087a63bcf4f1fd8af10996
+      X-Runtime:
+      - '0.147735'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:01:00 GMT
+recorded_with: VCR 3.0.3

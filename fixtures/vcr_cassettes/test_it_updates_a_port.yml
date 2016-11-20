@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://dashboard.meraki.com/api/v0//devices/ms_serial/switchPorts/2
+    body:
+      encoding: UTF-8
+      string: '{"name":"API_PORT_UPDATED","type":"access","vlan":"101"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:11 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - cc58a9f667af940bfbd553af77437b43
+      X-Runtime:
+      - '0.080788'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:11 GMT
+- request:
+    method: put
+    uri: https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2
+    body:
+      encoding: UTF-8
+      string: '{"name":"API_PORT_UPDATED","type":"access","vlan":"101"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 75d33e5cdbebd2cd5d40ab5f56c11190
+      X-Runtime:
+      - '0.157276'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"number":2,"name":"API_PORT_UPDATED","tags":null,"enabled":true,"poeEnabled":false,"type":"access","vlan":101,"voiceVlan":null,"allowedVlans":"all","isolationEnabled":false,"rstpEnabled":true,"stpGuard":"disabled","accessPolicyNumber":null}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:11 GMT
+- request:
+    method: put
+    uri: https://dashboard.meraki.com/api/v0//devices/ms_serial/switchPorts/2
+    body:
+      encoding: UTF-8
+      string: '{"name":"Port 2","type":"access","vlan":"101"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:12 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 8f9b64960aef99fa0a4569d4571876fb
+      X-Runtime:
+      - '0.085480'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:12 GMT
+- request:
+    method: put
+    uri: https://shard_id.meraki.com/api/v0/devices/ms_serial/switchPorts/2
+    body:
+      encoding: UTF-8
+      string: '{"name":"Port 2","type":"access","vlan":"101"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 05bdc0281c551a58990b5f76a634b2f4
+      X-Runtime:
+      - '0.077315'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"number":2,"name":"Port 2","tags":null,"enabled":true,"poeEnabled":false,"type":"access","vlan":101,"voiceVlan":null,"allowedVlans":"all","isolationEnabled":false,"rstpEnabled":true,"stpGuard":"disabled","accessPolicyNumber":null}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:12 GMT
+recorded_with: VCR 3.0.3

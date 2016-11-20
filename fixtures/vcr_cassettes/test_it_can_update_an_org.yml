@@ -1,0 +1,203 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id
+    body:
+      encoding: UTF-8
+      string: '{"id":"dashboard_org_id","name":"API"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:58 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 4cc1bb8059a2dd2ccdc49544ef6dc3b4
+      X-Runtime:
+      - '0.033749'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:58 GMT
+- request:
+    method: put
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id
+    body:
+      encoding: UTF-8
+      string: '{"id":"dashboard_org_id","name":"API"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:58 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 6a9b5554a53364f40d55cb76ba3c9d98
+      X-Runtime:
+      - '0.034924'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":dashboard_org_id,"name":"API","samlConsumerUrl":null,"samlConsumerUrls":[]}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:58 GMT
+- request:
+    method: put
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id
+    body:
+      encoding: UTF-8
+      string: '{"id":"dashboard_org_id","name":"API_UPDATED"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:59 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 30df360559cb8a2f039980419690a201
+      X-Runtime:
+      - '0.032608'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:59 GMT
+- request:
+    method: put
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id
+    body:
+      encoding: UTF-8
+      string: '{"id":"dashboard_org_id","name":"API_UPDATED"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:59 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 7560de582ee85490ca31aa78ca200451
+      X-Runtime:
+      - '0.046023'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":dashboard_org_id,"name":"API_UPDATED","samlConsumerUrl":null,"samlConsumerUrls":[]}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:59 GMT
+recorded_with: VCR 3.0.3
