@@ -1,5 +1,6 @@
 require 'rake/testtask'
 
+# set default so travis can build properly
 task :default => :test
 
 Rake::TestTask.new do |t|
