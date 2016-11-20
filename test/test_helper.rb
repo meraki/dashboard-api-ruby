@@ -4,7 +4,9 @@ require 'minitest/reporters'
 require 'vcr'
 require 'json'
 require 'yaml'
+require 'coveralls'
 
+Coveralls.wear!
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 
