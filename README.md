@@ -1,4 +1,6 @@
 # Dashboard API v1.0.0
+[![Build Status](https://travis-ci.org/jletizia/dashboardapi.svg?branch=master)](https://travis-ci.org/jletizia/dashboardapi)
+
 Documentation: [here](http://www.rubydoc.info/gems/dashboard-api/1.0.0)
 
 Issues: [here](https://github.com/jletizia/dashboardapi/issues)
