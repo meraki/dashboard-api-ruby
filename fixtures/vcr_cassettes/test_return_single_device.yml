@@ -1,0 +1,211 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//networks/combined_network/devices
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:53 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/networks/combined_network/devices
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 6413b717c9f9569c6e4401da9bae0837
+      X-Runtime:
+      - '0.027922'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/networks/combined_network/devices">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:53 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/networks/combined_network/devices
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:53 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 933e321470d680497383f865a3b5c644
+      X-Runtime:
+      - '0.048823'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '[{"lat":37.4180951010362,"lng":-122.098531723022,"address":"","wan1Ip":null,"wan2Ip":null,"serial":"Q2QN-F5PZ-UEJC","mac":"e0:55:3d:02:02:ef","tags":"
+        recently-added ","name":"API_TEST_NAME","model":"MX65"},{"lat":37.4180951010362,"lng":-122.098531723022,"address":"","lanIp":null,"serial":"ms_serial","mac":"00:18:0a:63:28:fe","tags":"
+        recently-added ","name":"API_TEST_NAME","model":"MS42"},{"lat":37.4180951010362,"lng":-122.098531723022,"address":"","lanIp":null,"serial":"Q2DD-C57G-28MX","mac":"00:18:0a:32:5d:6e","tags":"
+        recently-added ","name":"API_TEST_NAME","model":"MR16"}]'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:53 GMT
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//networks/combined_network/devices/Q2QN-F5PZ-UEJC
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:53 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/networks/combined_network/devices/Q2QN-F5PZ-UEJC
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 35d8d14a04547f248c416f8aebab3ce2
+      X-Runtime:
+      - '0.078341'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/networks/combined_network/devices/Q2QN-F5PZ-UEJC">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:53 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/networks/combined_network/devices/Q2QN-F5PZ-UEJC
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:53 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - a90e3c9d3b8a566e0e359e7221a61617
+      X-Runtime:
+      - '0.065134'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"lat":37.4180951010362,"lng":-122.098531723022,"address":"","wan1Ip":null,"wan2Ip":null,"serial":"Q2QN-F5PZ-UEJC","mac":"e0:55:3d:02:02:ef","tags":"
+        recently-added ","name":"API_TEST_NAME","model":"MX65"}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:53 GMT
+recorded_with: VCR 3.0.3

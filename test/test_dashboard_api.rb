@@ -10,36 +10,30 @@ class DashAPITest < Minitest::Test
   end
 
   def test_it_can_get
-    VCR.use_cassette('it_can_get') do
-      endpoint_url = "/organizations/#{@org_id}"
-      http_method = 'GET'
-      res = @dapi.make_api_call(endpoint_url, http_method)
+    endpoint_url = "/organizations/#{@org_id}"
+    http_method = 'GET'
+    res = @dapi.make_api_call(endpoint_url, http_method)
 
-      assert_equal @org_id.to_i, res['id']
-    end
+    assert_equal @org_id.to_i, res['id']
   end
 
   def test_it_can_post
-    VCR.use_cassette('it_can_post') do
-      endpoint_url = "/organizations/#{@org_id}/networks"
-      http_method = 'POST'
-      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'test_network2', :type => 'wireless'}}
+    endpoint_url = "/organizations/#{@org_id}/networks"
+    http_method = 'POST'
+    options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'DELETE ME', :type => 'wireless'}}
 
-      res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
+    res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
-      assert_equal @org_id, res['organizationId']
-    end
+    assert_equal @org_id, res['organizationId']
   end
 
   def test_it_asserts_when_a_bad_post
-    VCR.use_cassette('network_already_exists_post') do
-      assert_raises 'RuntimeError: Bad Request due to the following error(s): ["Validation failed: Name has already been taken"]' do
-        endpoint_url = "/organizations/#{@org_id}/networks"
-        http_method = 'POST'
-        options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'test_network2', :type => 'wireless'}}
+    assert_raises 'RuntimeError: Bad Request due to the following error(s): ["Validation failed: Name has already been taken"]' do
+      endpoint_url = "/organizations/#{@org_id}/networks"
+      http_method = 'POST'
+      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'DELETE ME', :type => 'appliance'}}
 
-        res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
-      end
+      res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
   end
 
@@ -50,36 +44,30 @@ class DashAPITest < Minitest::Test
   end
 
   def test_it_can_put
-    VCR.use_cassette('it_can_put') do
-      endpoint_url = "/networks/#{@network_id}"
-      http_method = 'PUT'
+    endpoint_url = "/networks/#{@test_network_id}"
+    http_method = 'PUT'
 
-      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:id => "#{@network_id}", :name => 'test_network_renamed'}}
-      res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
+    options_hash = {:body => {:id => "#{@test_network_id}", :name => 'DELETE ME'}}
+    res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
-      assert_equal @org_id, res['organizationId']
-    end
+    assert_equal @org_id, res['organizationId']
   end
 
   def test_it_asserts_when_bad_network_id_on_put
     assert_raises '404 returned. Are you sure you are using the proper IDs?' do
-      VCR.use_cassette('bad_network_id_put') do
-        endpoint_url = "/networks/11111"
-        http_method = 'PUT'
+      endpoint_url = "/networks/11111"
+      http_method = 'PUT'
 
-        options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:name => 'test_network_renamed2'}}
-        res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
-      end
+      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:name => 'test_network_renamed2'}}
+      res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
   end
 
   def test_it_can_delete
-    VCR.use_cassette('delete_single_network') do
-      endpoint_url = "/networks/#{@network_id}"
-      http_method = 'DELETE'
+    endpoint_url = "/networks/#{@test_network_id}"
+    http_method = 'DELETE'
 
-      res = @dapi.make_api_call(endpoint_url, http_method)
-    end
+    res = @dapi.make_api_call(endpoint_url, http_method)
   end
 
 end

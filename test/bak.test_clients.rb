@@ -1,3 +1,5 @@
+require './test/test_helper'
+
 class ClientsTest < Minitest::Test
   def test_get_client_info_for_device
     VCR.use_cassette('client_info_for_device') do

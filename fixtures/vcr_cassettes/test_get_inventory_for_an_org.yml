@@ -1,0 +1,105 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/inventory
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:58 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/inventory
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - cd099fc1928e5ab0eb0d02bfaebbfa13
+      X-Runtime:
+      - '0.022802'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/inventory">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:58 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/inventory
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 18:59:58 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - d7afde42e56799174497cc277928c91f
+      X-Runtime:
+      - '0.028043'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '[{"mac":"e0:55:3d:02:02:ef","serial":"Q2QN-F5PZ-UEJC","networkId":"combined_network","model":"MX65","claimedAt":"1479531925.35733"},{"mac":"00:18:0a:63:28:fe","serial":"ms_serial","networkId":"combined_network","model":"MS42","claimedAt":"1479531956.78074"},{"mac":"00:18:0a:32:5d:6e","serial":"Q2DD-C57G-28MX","networkId":"combined_network","model":"MR16","claimedAt":"1479531956.76124"},{"mac":"00:18:0a:7d:64:55","serial":"unclaimed_device","networkId":null,"model":"MS220-8P","claimedAt":"1479623010.98357"}]'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 18:59:58 GMT
+recorded_with: VCR 3.0.3

@@ -1,0 +1,399 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/samlRoles
+    body:
+      encoding: UTF-8
+      string: '{"role":"api_test_role","orgAccess":"read-only"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:21 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 967757c4e85d28eb601de63d439dfe8c
+      X-Runtime:
+      - '0.022303'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:21 GMT
+- request:
+    method: post
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles
+    body:
+      encoding: UTF-8
+      string: '{"role":"api_test_role","orgAccess":"read-only"}'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 8d3742767fcbd11b407a20d66002f7bc
+      X-Runtime:
+      - '0.036839'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":"YXBpX3Rlc3Rfcm9sZQ==","role":"api_test_role","orgAccess":"read-only"}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:21 GMT
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:21 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - ce24e27012228ffd001c4d4753e57609
+      X-Runtime:
+      - '0.023807'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:21 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - b5b6be32f3adb495a540fcfd43b09f5a
+      X-Runtime:
+      - '0.026225'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '{"id":"YXBpX3Rlc3Rfcm9sZQ==","role":"api_test_role","orgAccess":"read-only"}'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:21 GMT
+- request:
+    method: get
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/samlRoles
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:21 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 47d15c4028b04e46590bcc8ce2c2327e
+      X-Runtime:
+      - '0.021142'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:21 GMT
+- request:
+    method: get
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Vary:
+      - Accept-Encoding
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - d710073bf3264f6d67e45e0ce70cfc55
+      X-Runtime:
+      - '0.026646'
+      X-Rack-Cache:
+      - miss
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: '[{"id":"YXBpX3Rlc3Rfcm9sZQ==","role":"api_test_role","orgAccess":"read-only"}]'
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:22 GMT
+- request:
+    method: delete
+    uri: https://dashboard.meraki.com/api/v0//organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 308
+      message: 
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:22 GMT
+      Content-Type:
+      - text/html; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      Location:
+      - https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 8eda11bf2c05f8ab54e42b04d93c9c72
+      X-Runtime:
+      - '0.087043'
+      X-Rack-Cache:
+      - invalidate, pass
+    body:
+      encoding: UTF-8
+      string: <html><body>You are being <a href="https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==">redirected</a>.</body></html>
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:22 GMT
+- request:
+    method: delete
+    uri: https://shard_id.meraki.com/api/v0/organizations/dashboard_org_id/samlRoles/YXBpX3Rlc3Rfcm9sZQ==
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      X-Cisco-Meraki-Api-Key:
+      - dashboard_api_key
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Sun, 20 Nov 2016 19:00:22 GMT
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - Fri, 01 Jan 1990 00:00:00 GMT
+      X-Frame-Options:
+      - sameorigin
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      X-Request-Id:
+      - 26d0951a7671b38f60f0454b0d183abb
+      X-Runtime:
+      - '0.035025'
+      X-Rack-Cache:
+      - invalidate, pass
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sun, 20 Nov 2016 19:00:22 GMT
+recorded_with: VCR 3.0.3

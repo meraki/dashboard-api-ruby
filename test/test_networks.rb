@@ -2,43 +2,44 @@ require './test/test_helper'
 
 class NetworksTest < Minitest::Test
   def test_it_can_get_networks
-    VCR.use_cassette("get_networks") do
-      res = @dapi.get_networks(@org_id)
+    res = @dapi.get_networks(@org_id)
 
-      assert_kind_of Array, res
-    end
+    assert_kind_of Array, res
   end
 
   def test_it_can_get_a_single_network
-    VCR.use_cassette("get_single_network") do
-      res = @dapi.get_single_network(@network_id)
+    res = @dapi.get_single_network(@test_network_id)
 
-      assert_kind_of Hash, res
-    end
+    assert_kind_of Hash, res
+    assert_equal 'DELETE ME', res['name']
   end
 
   def test_it_can_update_a_network
-    VCR.use_cassette('update_single_network') do
-      options = {:id => @network_id, :organizationId => @org_id, :tags => 'this_is_a_new_tag'}
-      res = @dapi.update_network(@network_id, options)
-      # not sure why the response contains leading and trailing spaces
-      # nothing to worry about as it does not show up like this in Dashboard
-      assert_equal ' this_is_a_new_tag ', res['tags']
-    end
+    options = {:id => @test_network_id, :organizationId => @org_id, :tags => 'this_is_a_new_tag'}
+
+    res = @dapi.update_network(@test_network_id, options)
+
+    # not sure why the response contains leading and trailing spaces
+    # nothing to worry about as it does not show up like this in Dashboard
+    assert_equal ' this_is_a_new_tag ', res['tags']
   end
 
   def test_options_are_a_hash_update_network
     assert_raises "Options were not passed as a Hash" do
-      @dapi.update_network(@network_id, 'option')
+      @dapi.update_network('123456', 'option')
     end
   end
 
   def test_it_can_create_a_network
-    VCR.use_cassette('create_single_network') do
-      options = {:name => 'test_network', :type => 'wireless'}
+    begin
+      options = {:name => 'DELETE ME', :type => 'wireless'}
       res = @dapi.create_network(@org_id, options)
-      assert_equal 'test_network', res['name']
+    rescue => e
+      delete_empty_test_network if e.message.include?('Name has already been taken')
+      retry
     end
+
+    assert_equal 'DELETE ME', res['name']
   end
 
   def test_options_are_a_hash_create_network
@@ -48,71 +49,62 @@ class NetworksTest < Minitest::Test
   end
 
   def test_delete_a_single_network
-    VCR.use_cassette('delete_single_network') do
-      res = @dapi.delete_network(@network_id)
+    res = @dapi.delete_network(@test_network_id)
 
-      assert_equal true, res
-    end
+    assert_equal true, res
   end
 
   def test_get_s2s_vpn_settings
-    VCR.use_cassette('get_auto_vpn_settings') do
-      res = @dapi.get_auto_vpn_settings(@vpn_network)
+    res = @dapi.get_auto_vpn_settings(@test_network_id)
 
-      assert_kind_of Hash, res
-    end
+    assert_kind_of Hash, res
   end
 
   def test_update_s2s_vpn_settings
-    VCR.use_cassette('update_auto_vpn_settings') do
-      options = {:mode => 'none'}
-      res = @dapi.update_auto_vpn_settings(@vpn_network, options)
+    options = {:mode => 'none'}
 
-      assert 'none', res['mode']
-    end
-  end
+    res = @dapi.update_auto_vpn_settings(@test_network_id, options)
 
-  def test_update_s2s_returns_a_hash
-    # make sure we aren't returning an HTTParty response type
-    VCR.use_cassette('update_auto_vpn_settings_is_hash') do
-      options = {:mode => 'none'}
-      res = @dapi.update_auto_vpn_settings(@vpn_network, options)
-
-      assert_kind_of Hash, res
-    end
+    assert 'none', res['mode']
+    assert_kind_of Hash, res
   end
 
   def test_get_ms_access_policies_for_network
-    VCR.use_cassette('get_ms_acces_policies_for_network') do
-      res = @dapi.get_ms_access_policies(@switch_network)
+    create_empty_test_network('switch')
+    res = @dapi.get_ms_access_policies(@test_network_id)
 
-      assert_equal true, true
-    end
+    # this assumes there are no policies configured
+    assert_equal [] , res
   end
 
   def test_it_can_bind_a_network_to_a_template
-    VCR.use_cassette('bind_network_to_template') do
-      options = {:configTemplateId => @config_template_id}
-      res = @dapi.bind_network_to_template(@config_bind_network, options)
+    create_empty_test_network('switch')
+    template = get_specific_template('Permanent')
 
-      assert_equal 200, res
-    end
+    options = {:configTemplateId => template['id']}
+    res = @dapi.bind_network_to_template(@test_network_id, options)
+
+    assert_equal 200, res
   end
 
   def test_it_can_unbind_a_network_to_a_template
-    VCR.use_cassette('unbind_network_to_template') do
-      res = @dapi.unbind_network_to_template(@config_bind_network)
+    create_empty_test_network('switch')
 
-      assert_equal 200, res
-    end
+    template = get_specific_template('Permanent')
+
+    options = {:configTemplateId => template['id']}
+    @dapi.bind_network_to_template(@test_network_id, options)
+
+    res = @dapi.unbind_network_to_template(@test_network_id)
+    assert_equal 200, res
   end
 
-  def test_it_can_return_traffic_analytics
-    VCR.use_cassette('traffic_analysis_data') do
-      options = {:timespan => 7200}
-      res = @dapi.traffic_analysis(@combined_network, options)
-
-      assert_kind_of Array, res
-    end
-  end
+  # def test_it_can_return_traffic_analytics
+  #   VCR.use_cassette('traffic_analysis_data') do
+  #     options = {:timespan => 7200}
+  #     res = @dapi.traffic_analysis(@combined_network, options)
+  #
+  #     assert_kind_of Array, res
+  #   end
+  # end
 end
