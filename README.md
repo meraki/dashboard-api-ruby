@@ -83,6 +83,7 @@ There are a few prerequisites if you want to be able to run tests (at least for 
 * a single network called 'DELETE ME' exists
 * A single template called 'API Delete Me' already exists
 * A single template exists called 'API Permanent'
+
 #### Environment Variables
 * `dashboard_api_key` Your Meraki Dashboard API key
 * `org_id` The Meraki Dashboard Organization where you will be testing on
