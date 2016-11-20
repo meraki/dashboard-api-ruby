@@ -1,3 +1,5 @@
+require 'coveralls'
+Coveralls.wear!
 require 'minitest/autorun'
 require './lib/dashboard-api.rb'
 require 'minitest/reporters'
@@ -6,7 +8,6 @@ require 'json'
 require 'yaml'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-
 
 VCR.configure do |config|
   config.cassette_library_dir = "fixtures/vcr_cassettes"
