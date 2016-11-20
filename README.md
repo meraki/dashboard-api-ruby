@@ -53,6 +53,8 @@ dapi.update_network(@network_id, network_options)
 
 
 # Contributing
+**UPDATE**: The testing infrastructure is currently being rewritten to minimize dependencies (ENV vars, etc.), and allow a much easier time when running tests for the first time. Should be done shortly. (11/19/2016)
+
 If you feel like contributing, information about the testing environment can be found below. If you just want to use the gem to help interact with the Meraki Dashboard,
 you only need to read the above sections.
 
