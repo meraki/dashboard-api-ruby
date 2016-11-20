@@ -1,3 +1,4 @@
+require 'coveralls'
 Coveralls.wear!
 require 'minitest/autorun'
 require './lib/dashboard-api.rb'
@@ -5,7 +6,6 @@ require 'minitest/reporters'
 require 'vcr'
 require 'json'
 require 'yaml'
-require 'coveralls'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
