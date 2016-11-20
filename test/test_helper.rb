@@ -9,12 +9,14 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 
 VCR.configure do |config|
-  secrets = YAML::load_file('secrets.yml')
   config.cassette_library_dir = "fixtures/vcr_cassettes"
   config.hook_into :webmock # or :fakeweb
 
-  secrets.each do |k,v|
-    config.filter_sensitive_data(k) {v}
+  if ENV['import_secrets']
+    secrets = YAML::load_file('secrets.yml')
+    secrets.each do |k,v|
+      config.filter_sensitive_data(k) {v}
+    end
   end
 end
 
