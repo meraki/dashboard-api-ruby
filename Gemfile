@@ -6,4 +6,4 @@ gem 'yard'
 gem 'rake'
 gem 'minitest'
 gem 'minitest-reporters'
-gem 'coveralls'
+gem 'coveralls', require: false
