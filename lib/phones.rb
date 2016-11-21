@@ -15,7 +15,7 @@ module Phones
   # @return [Hash] returns the hash containing the contact attributes
   def add_phone_contact(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/phoneContacts", 'POST', options)
   end
 
@@ -26,7 +26,7 @@ module Phones
   # @return [Hash] returns the hash containing the contacts updated attributes
   def update_phone_contact(network_id, contact_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/phoneContacts/#{contact_id}", 'PUT', options)
   end
 

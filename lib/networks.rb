@@ -23,7 +23,7 @@ module Networks
   # @return [Hash] a hash containing the updated network details
   def update_network(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}",'PUT', options)
   end
 
@@ -36,7 +36,7 @@ module Networks
   # @return [Hash] a hash containing the new networks details
   def create_network(org_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/organizations/#{org_id}/networks", 'POST', options)
   end
 
@@ -65,7 +65,7 @@ module Networks
   def update_auto_vpn_settings(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
+    
     res = self.make_api_call("/networks/#{network_id}/siteToSiteVpn", 'PUT', options)
   end
 
@@ -84,7 +84,7 @@ module Networks
   # @return [Integer] HTTP Code
   def bind_network_to_template(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
 
     self.make_api_call("/networks/#{network_id}/bind", 'POST', options)
   end
@@ -102,7 +102,7 @@ module Networks
   #   Meraki Dashboard API documentation for more information on these.
   def traffic_analysis(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/traffic", 'GET', options)
   end
 end

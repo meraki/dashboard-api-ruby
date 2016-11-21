@@ -33,7 +33,7 @@ module Devices
   # @return [Hash] a hash containing the devices new attribute set
   def update_device_attributes(network_id, device_serial, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/devices/#{device_serial}", 'PUT', options)
   end
 
@@ -43,7 +43,7 @@ module Devices
   # @return [Integer] code returns the HTTP code of the API call
   def claim_device_into_network(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/devices/claim", 'POST', options) 
   end
 

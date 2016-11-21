@@ -25,7 +25,7 @@ module SSIDs
   def update_single_ssid(network_id, ssid_number, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
     raise "Please provide a valid SSID number" unless (ssid_number.is_a?(Integer) && ssid_number <= 14)
-    options = {:body => options}
+    
 
     self.make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'PUT', options)
   end

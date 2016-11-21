@@ -14,7 +14,7 @@ module SAML
   #   Refer to the Meraki Dashboard API for more information on these tags
   # @return [Hash] returns the newly created SAML role
   def create_saml_role(org_id, options)
-    options = {:body => options}
+    
     self.make_api_call("/organizations/#{org_id}/samlRoles", 'POST', options)
   end
 
@@ -25,7 +25,7 @@ module SAML
   #   Refer to the Meraki Dashboard API for more information on these tags
   # @return [Hahs] returns the updated SAML role
   def update_saml_role(org_id, saml_id, options)
-    options = {:body => options}
+    
     self.make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", 'PUT', options)
   end
 
