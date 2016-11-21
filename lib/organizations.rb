@@ -38,7 +38,7 @@ module Organizations
   def update_snmp_settings(org_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
+
     self.make_api_call("/organizations/#{org_id}/snmp", 'PUT', options)
   end
 
@@ -58,7 +58,6 @@ module Organizations
   def update_third_party_peers(org_id, options)
     raise 'Options were not passed as an Array' if !options.is_a?(Array)
 
-    options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", 'PUT', options)
   end
 
@@ -75,7 +74,6 @@ module Organizations
   def update_organization(org_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
     self.make_api_call("/organizations/#{org_id}", 'PUT', options)
   end
 
@@ -85,7 +83,6 @@ module Organizations
   def create_organization(options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
     self.make_api_call("/organizations", 'POST', options)
   end
 
@@ -96,7 +93,6 @@ module Organizations
   def clone_organization(source_org_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
     self.make_api_call("/organizations/#{source_org_id}/clone", 'POST', options)
   end
 
@@ -109,7 +105,6 @@ module Organizations
   def claim(org_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
 
-    options = {:body => options}
     self.make_api_call("/organizations/#{org_id}/claim", 'POST', options)
   end
 end

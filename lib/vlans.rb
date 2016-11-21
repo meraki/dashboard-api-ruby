@@ -23,7 +23,7 @@ module VLANs
   # @return [Hash] the attributes of the newly created vlan
   def add_vlan(network_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/vlans", 'POST', options)
   end
 
@@ -35,7 +35,7 @@ module VLANs
   # @return [Hash] the updated attributes for the VLAN
   def update_vlan(network_id, vlan_id, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    options = {:body => options}
+    
     self.make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'PUT', options)
   end
 

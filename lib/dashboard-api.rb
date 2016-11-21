@@ -44,9 +44,8 @@ class DashboardAPI
   #   handling
   def make_api_call(endpoint_url, http_method, options_hash={})
     headers = {"X-Cisco-Meraki-API-Key" => @key, 'Content-Type' => 'application/json'}
-    headers.merge!(options_hash[:headers]) if options_hash[:headers]
 
-    options = {:headers => headers, :body => options_hash[:body].to_json}
+    options = {:headers => headers, :body => options_hash.to_json}
     case http_method
     when 'GET'
       res = HTTParty.get("#{self.class.base_uri}/#{endpoint_url}", options)
@@ -60,7 +59,7 @@ class DashboardAPI
       begin
         return JSON.parse(res.body)
       rescue JSON::ParserError => e
-        return res.code 
+        return res.code
       rescue TypeError => e
         return res.code
       end

@@ -26,7 +26,7 @@ module Switchports
   def update_switchport(device_serial, port_number, options)
     raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
     raise 'Invalid switchport provided' unless port_number.is_a?(Integer)
-    options = {:body => options}
+    
     
     self.make_api_call("/devices/#{device_serial}/switchPorts/#{port_number}", 'PUT', options)
   end

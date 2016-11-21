@@ -20,7 +20,7 @@ class DashAPITest < Minitest::Test
   def test_it_can_post
     endpoint_url = "/organizations/#{@org_id}/networks"
     http_method = 'POST'
-    options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'DELETE ME', :type => 'wireless'}}
+    options_hash = {:name => 'DELETE ME', :type => 'wireless'}
 
     res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
@@ -31,7 +31,7 @@ class DashAPITest < Minitest::Test
     assert_raises 'RuntimeError: Bad Request due to the following error(s): ["Validation failed: Name has already been taken"]' do
       endpoint_url = "/organizations/#{@org_id}/networks"
       http_method = 'POST'
-      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body =>{:name => 'DELETE ME', :type => 'appliance'}}
+      options_hash = {:name => 'DELETE ME', :type => 'appliance'}
 
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
@@ -47,7 +47,7 @@ class DashAPITest < Minitest::Test
     endpoint_url = "/networks/#{@test_network_id}"
     http_method = 'PUT'
 
-    options_hash = {:body => {:id => "#{@test_network_id}", :name => 'DELETE ME'}}
+    options_hash = {:id => "#{@test_network_id}", :name => 'DELETE ME'}
     res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
     assert_equal @org_id, res['organizationId']
@@ -58,7 +58,7 @@ class DashAPITest < Minitest::Test
       endpoint_url = "/networks/11111"
       http_method = 'PUT'
 
-      options_hash = {:headers => {"Content-Type" => 'application/json'}, :body => {:name => 'test_network_renamed2'}}
+      options_hash = {:name => 'test_network_renamed2'}
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
   end
