@@ -15,7 +15,6 @@ A ruby implementation of the entire [Meraki Dashboard API](https://documentation
 ```bash
 gem install dashboard-api
 ```
-
 Once the gem is installed, you can use it by requiring `dashboard-api`
 ```ruby
 require 'dashboard-api'
