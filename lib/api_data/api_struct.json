@@ -1,0 +1,1790 @@
+{
+   "Admins":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/organizations/[organization_id]/admins",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/1234/admins'\n",
+         "sample_resp":"[\n  {\n    \"id\":\"1\",\n    \"name\":\"Miles Meraki\",\n    \"email\":\"miles@meraki.com\",\n    \"orgAccess\":\"none\",\n    \"tags\":[\n      {\n        \"tag\":\"west\",\n        \"access\":\"read-only\"\n      }\n    ],\n    \"networks\":[\n      {\n        \"id\":\"N_249\",\n        \"access\":\"full\"\n      }\n    ]\n  }\n]\n",
+         "description":"List the dashboard administrators in this organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/organizations/[organization_id]/admins",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"name\":\"Miles Meraki\", \"email\":\"miles@meraki.com\", \"orgAccess\":\"none\", \"tags\":[{\"tag\":\"west\", \"access\":\"read-only\"}]}' 'https://dashboard.meraki.com/api/v0/organizations/1234/admins'\n",
+         "sample_resp":"{\n  \"id\":\"212406\",\n  \"name\":\"Miles Meraki\",\n  \"email\":\"miles@meraki.com\",\n  \"orgAccess\":\"none\",\n  \"tags\":[\n    {\n      \"tag\":\"west\",\n      \"access\":\"read-only\"\n    }\n  ],\n  \"networks\":[]\n}\n",
+         "description":"Create a new dashboard administrator",
+         "params":[
+            {
+               "name":"email",
+               "description":"The email of the dashboard administrator. This attribute can not be updated."
+            },
+            {
+               "name":"name",
+               "description":"The name of the dashboard administrator"
+            },
+            {
+               "name":"orgAccess",
+               "description":"The privilege of the dashboard administrator on the organization"
+            },
+            {
+               "name":"tags",
+               "description":"The list of tags that the dashboard administrator has privileges on",
+               "params":[
+                  {
+                     "name":"tag",
+                     "description":"The name of the tag"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the dashboard administrator on the tag"
+                  }
+               ]
+            },
+            {
+               "name":"networks",
+               "description":"The list of networks that the dashboard administrator has privileges on",
+               "params":[
+                  {
+                     "name":"id",
+                     "description":"The network ID"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the dashboard administrator on the network"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/organizations/[organization_id]/admins/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"name\":\"Miles Meraki\", \"email\":\"miles@meraki.com\", \"orgAccess\":\"read-only\", \"tags\":[{\"tag\":\"west\", \"access\":\"read-only\"}]}' 'https://dashboard.meraki.com/api/v0/organizations/1234/admins/1234'\n",
+         "sample_resp":"{\n  \"id\":\"212406\",\n  \"name\":\"Miles Meraki\",\n  \"email\":\"miles@meraki.com\",\n  \"orgAccess\":\"read-only\",\n  \"tags\":[\n    {\n      \"tag\":\"west\",\n      \"access\":\"read-only\"\n    }\n  ],\n  \"networks\":[]\n}\n",
+         "description":"Update an administrator",
+         "params":[
+            {
+               "name":"email",
+               "description":"The email of the dashboard administrator. This attribute can not be updated."
+            },
+            {
+               "name":"name",
+               "description":"The name of the dashboard administrator"
+            },
+            {
+               "name":"orgAccess",
+               "description":"The privilege of the dashboard administrator on the organization"
+            },
+            {
+               "name":"tags",
+               "description":"The list of tags that the dashboard administrator has privileges on",
+               "params":[
+                  {
+                     "name":"tag",
+                     "description":"The name of the tag"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the dashboard administrator on the tag"
+                  }
+               ]
+            },
+            {
+               "name":"networks",
+               "description":"The list of networks that the dashboard administrator has privileges on",
+               "params":[
+                  {
+                     "name":"id",
+                     "description":"The network ID"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the dashboard administrator on the network"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/organizations/[organization_id]/admins/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X DELETE -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/1234/admins/1234'\n",
+         "sample_resp":null,
+         "description":"Revoke all access for a dashboard administrator within this organization",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ],
+   "Clients":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/devices/[serial]/clients",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/devices/[serial]/clients?timespan=86400'\n",
+         "sample_resp":"[\n  {\n    description: \"Hayg's Nexus 5\",\n    mdnsName: \"Hayg's Nexus 5\",\n    dhcpHostname: \"HaygNexus5\",\n    usage: {sent: 1337, recv: 7331},\n    mac: \"00:18:D3:AD:B3:3F\",\n    ip: \"1.2.3.4\",\n    id: \"lk12uq\",\n    switchport: null\n  },\n  ...\n]\n",
+         "description":"List the clients of a device, up to a maximum of a month ago. The usage of each client is returned in kilobytes. If the device is a switch, the switchport is returned; otherwise the switchport field is null.",
+         "params":[
+            {
+               "name":"timespan",
+               "description":"The timespan for which clients will be fetched. Must be in seconds and less than or equal to a month (2592000 seconds)."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Config templates":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/organizations/[organizationId]/configTemplates",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/configTemplates'",
+         "sample_resp":"[\n  {\n    \"id\": \"N_1234\",\n    \"name\": \"Your config template\"\n  }\n]",
+         "description":"List the configuration templates for this organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/organizations/[organizationId]/configTemplates/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/configTemplates/[id]'",
+         "sample_resp":"(empty)",
+         "description":"Remove a configuration template",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Devices":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/devices",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices'\n",
+         "sample_resp":"[\n  {\n    \"name\":\"My AP\",\n    \"lat\":37.4180951010362,\n    \"lng\":-122.098531723022,\n    \"serial\":\"Q2XX-XXXX-XXXX\",\n    \"mac\":\"00:11:22:33:44:55:66\",\n    \"model\":\"MR34\",\n    \"address\":\"1600 Pennsylvania Ave\",\n    \"lanIp\":\"1.2.3.4\"\n    \"tags\":\" recently-added \",\n    \"networkId\":\"N_1234\"\n  }\n]\n",
+         "description":"List the devices in a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/devices/[serial]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices/[serial]'\n",
+         "sample_resp":"{\n  \"name\":\"My AP\",\n  \"lat\":37.4180951010362,\n  \"lng\":-122.098531723022,\n  \"serial\":\"Q2XX-XXXX-XXXX\",\n  \"mac\":\"00:11:22:33:44:55:66\",\n  \"model\":\"MR34\",\n  \"address\":\"1600 Pennsylvania Ave\",\n  \"lanIp\":\"1.2.3.4\"\n  \"tags\":\" recently-added \",\n  \"networkId\":\"N_1234\"\n}\n",
+         "description":"Return a single device",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"uplink",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/devices/[serial]/uplink",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices/[serial]/uplink'\n",
+         "sample_resp":"[\n  {\n  \"interface\":\"WAN 1\",\n  \"status\":\"Active\",\n  \"ip\":\"10.0.0.0\",\n  \"gateway\":\"10.0.0.1\",\n  \"publicIp\":\"123.123.123.1\",\n  \"dns\":\"8.8.8.8, 8.8.4.4\",\n  \"usingStaticIp\":true\n  },\n  {\n  \"interface\":\"WAN 2\",\n  \"status\":\"Ready\",\n  \"ip\":\"10.0.4.2\",\n  \"gateway\":\"10.0.4.1\",\n  \"publicIp\":\"123.123.123.2\",\n  \"dns\":\"8.8.8.8\",\n  \"usingStaticIp\":false\n  }\n]\n",
+         "description":"Return an array containing the uplink information for a device.",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/devices/[serial]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"name\":\"Your AP\", \"lat\":37.4180951010362, \"lng\":-122.098531723022, \"serial\":\"Q2XX-XXXX-XXXX\", \"mac\":\"00:11:22:33:44:55:66\", \"tags\":\" recently-added \"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices/[serial]'\n",
+         "sample_resp":"{\n  \"name\":\"Your AP\",\n  \"tags\":\" recently-added \",\n  \"lat\":37.4180951010362,\n  \"lng\":-122.098531723022,\n  \"serial\":\"Q2XX-XXXX-XXXX\",\n  \"mac\":\"00:11:22:33:44:55:66\",\n  \"model\":\"MR34\",\n  \"address\":\"1600 Pennsylvania Ave\",\n  \"moveMapMarker\": true,\n  \"lanIp\":\"1.2.3.4\"\n}\n",
+         "description":"Update the attributes of a device",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of a device"
+            },
+            {
+               "name":"tags",
+               "description":"The tags of a device"
+            },
+            {
+               "name":"lat",
+               "description":"The latitude of a device"
+            },
+            {
+               "name":"lng",
+               "description":"The longitude of a device"
+            },
+            {
+               "name":"address",
+               "description":"The address of a device"
+            },
+            {
+               "name":"moveMapMarker",
+               "description":"Whether or not to set the latitude and longitude of a device based on the new address. Only applies when lat and lng are not specified."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"claim",
+         "http_method":"POST",
+         "path":"/networks/[networkId]/devices/claim",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"serial\":\"Q2XX-XXXX-XXXX\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices/claim'\n",
+         "sample_resp":null,
+         "description":"Claim a device into a network",
+         "params":[
+            {
+               "name":"serial",
+               "description":"The serial of a device"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"remove",
+         "http_method":"POST",
+         "path":"/networks/[networkId]/devices/[serial]/remove",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/devices/[serial]/remove'\n",
+         "sample_resp":null,
+         "description":"Remove a single device",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ],
+   "Hotspot20":[
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/ssids/[number]/hotspot20",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids/[number]/hotspot20'",
+         "sample_resp":"{\n  \"enabled\": true,\n  \"operatorName\": \"Meraki Product Management\",\n  \"venueName\": \"SF Branch\",\n  \"venueType\": \"Unspecified Assembly\",\n  \"networkType\": \"Private network\",\n  \"domainList\": [\n    \"meraki.local\",\n    \"domain2.com\"\n  ],\n  \"roamConsortOis\": [\n    \"ABC123\",\n    \"456EFG\"\n  ],\n  \"mccMncs\": [\n    [\n      123,\n      456\n    ],\n    [\n      563,\n      232\n    ]\n  ],\n  \"naiRealms\": [\n    {\n      \"format\": 1,\n      \"name\": \"Realm 1\",\n      \"methods\": [\n        {\n          \"id\": \"1\",\n          \"params\": [\n            \"Non-EAP Inner Authentication: MSCHAP\",\n            \"EAP Inner Authentication: EAP-TTLS with MSCHAPv2\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+         "description":"Return the Hotspot 2.0 settings for an SSID",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks[networkId]/ssids/[number]/hotspot20",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT --data-binary '{\"enabled\":true,\"operatorName\":\"Meraki Product Management\",\"venueName\":\"SF Branch\",\"venueType\":\"Unspecified Assembly\",\"networkType\":\"Private network\",\"domainList\":[\"meraki.local\",\"domain2.com\"],\"roamConsortOis\":[\"ABC123\",\"456EFG\"],\"mccMncs\":[[123,456],[563,232]],\"naiRealms\":[{\"format\":1,\"name\":\"Realm 1\",\"methods\":[{\"id\":\"1\",\"params\":[\"Non-EAP Inner Authentication: MSCHAP\",\"EAP Inner Authentication: EAP-TTLS with MSCHAPv2\"]}]}]}' 'https://dashboard.meraki.com/api/v0/networks[networkId]/ssids/[number]/hotspot20'",
+         "sample_resp":"{\n  \"enabled\": true,\n  \"operatorName\": \"Meraki Product Management\",\n  \"venueName\": \"SF Branch\",\n  \"venueType\": \"Unspecified Assembly\",\n  \"networkType\": \"Private network\",\n  \"domainList\": [\n    \"meraki.local\",\n    \"domain2.com\"\n  ],\n  \"roamConsortOis\": [\n    \"ABC123\",\n    \"456EFG\"\n  ],\n  \"mccMncs\": [\n    [\n      123,\n      456\n    ],\n    [\n      563,\n      232\n    ]\n  ],\n  \"naiRealms\": [\n    {\n      \"format\": 1,\n      \"name\": \"Realm 1\",\n      \"methods\": [\n        {\n          \"id\": \"1\",\n          \"params\": [\n            \"Non-EAP Inner Authentication: MSCHAP\",\n            \"EAP Inner Authentication: EAP-TTLS with MSCHAPv2\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+         "description":"Update the Hotspot 2.0 settings of an SSID",
+         "params":[
+            {
+               "name":"enabled",
+               "description":"Whether or not Hotspot 2.0 for this SSID is enabled"
+            },
+            {
+               "name":"operatorName",
+               "description":"The operator name for this SSID"
+            },
+            {
+               "name":"venueName",
+               "description":"The venue name for this SSID"
+            },
+            {
+               "name":"venueType",
+               "description":"The venue type of this SSID ('Unspecified', 'Unspecified Assembly', 'Arena', 'Stadium', 'Passenger Terminal', 'Amphitheater', 'Amusement Park', 'Place of Worship', 'Convention Center', 'Library', 'Museum', 'Restaurant', 'Theater', 'Bar', 'Coffee Shop', 'Zoo or Aquarium', 'Emergency Coordination Center', 'Unspecified Business', 'Doctor or Dentist office', 'Bank', 'Fire Station', 'Police Station', 'Post Office', 'Professional Office', 'Research and Development Facility', 'Attorney Office', 'Unspecified Educational', 'School, Primary', 'School, Secondary', 'University or College', 'Unspecified Factory and Industrial', 'Factory', 'Unspecified Institutional', 'Hospital', 'Long-Term Care Facility', 'Alcohol and Drug Rehabilitation Center', 'Group Home', 'Prison or Jail', 'Unspecified Mercantile', 'Retail Store', 'Grocery Market', 'Automotive Service Station', 'Shopping Mall', 'Gas Station', 'Unspecified Residential', 'Private Residence', 'Hotel or Motel', 'Dormitory', 'Boarding House', 'Unspecified Storage', 'Unspecified Utility and Miscellaneous', 'Unspecified Vehicular', 'Automobile or Truck', 'Airplane', 'Bus', 'Ferry', 'Ship or Boat', 'Train', 'Motor Bike', 'Unspecified Outdoor', 'Muni-mesh Network', 'City Park', 'Rest Area', 'Traffic Control', 'Bus Stop', 'Kiosk')"
+            },
+            {
+               "name":"networkType",
+               "description":"The network type of this SSID ('Private network', 'Private network with guest access', 'Chargeable public network', 'Free public network', 'Personal device network', 'Emergency services only network', 'Test or experimental', 'Wildcard')"
+            },
+            {
+               "name":"domainList",
+               "description":"An array of domain names"
+            },
+            {
+               "name":"roamConsortOis",
+               "description":"An array of roaming consortium OIs"
+            },
+            {
+               "name":"mccMncs",
+               "description":"An array of MCC/MNC pairs formatted as tuples"
+            },
+            {
+               "name":"naiRealms",
+               "description":"An array of NAI realms",
+               "params":[
+                  {
+                     "name":"format",
+                     "description":"The format for the realm ('1' or '0')"
+                  },
+                  {
+                     "name":"realm",
+                     "description":"The name of the realm"
+                  },
+                  {
+                     "name":"methods",
+                     "description":"An array of EAP methods for the realm. Each method has an 'id' property (integer value) and a 'params' property which is the array of authentication types for the method. These types must formatted with the EAP method category followed by a ':' and then the type. (Non-EAP Inner Authentication: Reserved, PAP, CHAP, MSCHAP, MSCHAPV2; EAP Inner Authentication: EAP-TLS, EAP-SIM, EAP-AKA, EAP-TTLS with MSCHAPv2; Credentials: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate, username/password, none, Reserved, Vendor Specific; Tunneled EAP Method Credentials: SIM, USIM, NFC Secure Element, Hardware Token, Softoken, Certificate, username/password, Reserved, Anonymous, Vendor Specific)"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "L3 firewall rules":[
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/ssids/[number]/l3FirewallRules",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids/[number]/l3FirewallRules'",
+         "sample_resp":"[\n  {\n     comment: \"TCP access for test servers\"\n     policy: \"deny\",\n     protocol: \"tcp\",\n     destPort: \"Any\",\n     destCidr: \"192.168.1.0/24\",\n  },\n  {\n     comment: \"Wireless clients accessing LAN\",\n     policy: \"allow\",\n     protocol: \"Any\",\n     destPort: \"Any\",\n     destCidr: \"Local LAN\"\n  },\n  {\n     comment: \"Default rule\",\n     policy: \"allow\",\n     protocol: \"Any\",\n     destPort: \"Any\",\n     destCidr: \"Any\"\n  }\n]\n",
+         "description":"Return the L3 firewall rules for an SSID",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks[networkId]/ssids/[number]/l3FirewallRules/",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"rules\":[{\"comment\":\"a note about the rule\", \"policy\":\"deny\", \"protocol\":\"tcp\", \"destPort\":\"any\", \"destCidr\":\"192.168.1.0/24\"}], \"allowLanAccess\":true}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids/[number]/l3FirewallRules'\n",
+         "sample_resp":"[\n  {\n     comment: \"a note about the rule\"\n     policy: \"deny\",\n     protocol: \"tcp\",\n     destPort: \"Any\",\n     destCidr: \"192.168.1.0/24\",\n  },\n  {\n     comment: \"Wireless clients accessing LAN\",\n     policy: \"allow\",\n     protocol: \"Any\",\n     destPort: \"Any\",\n     destCidr: \"Local LAN\"\n  },\n  {\n     comment: \"Default rule\",\n     policy: \"allow\",\n     protocol: \"Any\",\n     destPort: \"Any\",\n     destCidr: \"Any\"\n  }\n]\n",
+         "description":"Update the L3 firewall rules of an SSID",
+         "params":[
+            {
+               "name":"rules",
+               "description":"An ordered array of the firewall rules for this SSID (not including the local LAN access rule or the default rule)",
+               "params":[
+                  {
+                     "name":"policy",
+                     "description":"Whether or not you want to allow or deny a protocol (value must be 'allow' or 'deny')"
+                  },
+                  {
+                     "name":"protocol",
+                     "description":"The type of protocol (must be 'tcp','udp', 'icmp' or 'any')"
+                  },
+                  {
+                     "name":"destPort",
+                     "description":"The destination port (can be 'any' or an integer within the range of 1-65535)"
+                  },
+                  {
+                     "name":"destCidr",
+                     "description":"The destination IP address or subnet in CIDR form, can also be 'any'"
+                  },
+                  {
+                     "name":"comment",
+                     "description":"A note about the rule"
+                  }
+               ]
+            },
+            {
+               "name":"allowLanAccess",
+               "description":"Boolean value to allow or deny wireless client access to local LAN, true allows access and false denies access"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Networks":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/organizations/[organizationId]/networks",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/networks'\n",
+         "sample_resp":"[\n  {\n    \"id\":\"N_1234\",\n    \"organizationId\":\"1234\",\n    \"type\": \"wireless\",\n    \"name\":\"My network\",\n    \"timeZone\": \"US/Pacific\",\n    \"tags\": null\n  }\n]\n",
+         "description":"List the networks in an organization",
+         "params":[
+            {
+               "name":"configTemplateId",
+               "description":"An optional parameter that is the ID of a config template. Will return all networks bound to that template."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[id]'\n",
+         "sample_resp":"{\n  \"id\":\"N_1234\",\n  \"organizationId\":\"1234\",\n  \"type\": \"wireless\",\n  \"name\":\"My network\",\n  \"timeZone\": \"US/Pacific\",\n  \"tags\": null\n}\n",
+         "description":"Return a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"id\":\"N_1234\",\"organizationId\":1234,\"name\":\"My network\", \"tags\":\"tag1 tag2\"}' 'https://dashboard.meraki.com/api/v0/networks/[id]'\n",
+         "sample_resp":"{\n  \"id\":\"N_1234\",\n  \"organizationId\":\"1234\",\n  \"type\": \"wireless\",\n  \"name\":\"My network\",\n  \"timeZone\": \"US/Pacific\",\n  \"tags\": \" tag1 tag2 \"\n}\n",
+         "description":"Update a network",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the new network"
+            },
+            {
+               "name":"timeZone",
+               "description":"The timezone of the network. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article.<\/a>",
+               "html_safe":true
+            },
+            {
+               "name":"tags",
+               "description":"A space-separated list of tags to be applied to the network"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/organizations/[organizationId]/networks",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"name\":\"My network\", \"type\":\"wireless\", \"tags\":\"tag1 tag2\"}' 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/networks'\n",
+         "sample_resp":"{\n  \"id\":\"N_1234\",\n  \"organizationId\":\"1234\",\n  \"type\": \"wireless\",\n  \"name\":\"My network\",\n  \"timeZone\": \"US/Pacific\",\n  \"tags\": \" tag1 tag2 \"\n}\n",
+         "description":"Create a network",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the new network"
+            },
+            {
+               "name":"type",
+               "description":"The type of the new network. Valid types are 'wireless' (for MR), 'switch' (for MS), 'appliance' (for MX or Z1), 'phone' (for MC), or a space-separated list of those for a combined network."
+            },
+            {
+               "name":"tags",
+               "description":"A space-separated list of tags to be applied to the network"
+            },
+            {
+               "name":"timeZone",
+               "description":"The timezone of the network. For a list of allowed timezones, please see the 'TZ' column in the table in <a target='_blank' href='https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'>this article.<\/a>",
+               "html_safe":true
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/networks/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X DELETE -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[id]'\n",
+         "sample_resp":null,
+         "description":"Delete a network",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"bind",
+         "http_method":"POST",
+         "path":"/networks/[id]/bind",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"configTemplateId\":\"N_1234\", \"autoBind\":false}' 'https://dashboard.meraki.com/api/v0/networks/N_2345/bind'\n",
+         "sample_resp":null,
+         "description":"Bind a network to a template.",
+         "params":[
+            {
+               "name":"configTemplateId",
+               "description":"The ID of the template to which the network should be bound."
+            },
+            {
+               "name":"autoBind",
+               "description":"Optional boolean indicating whether the network's switches should automatically bind to profiles of the same model. Defaults to false if left unspecified. This option only affects switch networks and switch templates. Auto-bind is not valid unless the switch template has at least one profile and has at most one profile per switch model."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"unbind",
+         "http_method":"POST",
+         "path":"/networks/[id]/unbind",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/N_2345/unbind'\n",
+         "sample_resp":null,
+         "description":"Unbind a network from a template.",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"siteToSiteVpn",
+         "http_method":"GET",
+         "path":"/networks/[id]/siteToSiteVpn",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[id]/siteToSiteVpn'\n",
+         "sample_resp":"{\n  \"mode\":\"spoke\",\n  \"hubs\":[\n    {\n      \"hubId\":\"N_1234\"\n      \"useDefaultRoute\":true\n    },\n    {\n      \"hubId\":\"N_2345\"\n      \"useDefaultRoute\":false\n    }\n  ],\n  \"subnets\":[\n    {\n      \"localSubnet\":\"192.168.1.0/24\",\n      \"useVpn\":true\n    },\n    {\n      \"localSubnet\":\"192.168.128.0/24\",\n      \"useVpn\":true\n    }\n  ]\n}\n",
+         "description":"Return the site-to-site VPN settings of a network. Only valid for MX networks.",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"siteToSiteVpn",
+         "http_method":"PUT",
+         "path":"/networks/[id]/siteToSiteVpn",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"mode\":\"spoke\",\"hubs\":[{\"hubId\":\"N_1234\",\"useDefaultRoute\":true },{\"hubId\":\"N_2345\",\"useDefaultRoute\":false}],\"subnets\":[{\"localSubnet\":\"192.168.1.0/24\",\"useVpn\":true},{\"localSubnet\":\"192.168.128.0/24\",\"useVpn\":true}]}' 'https://dashboard.meraki.com/api/v0/networks/[id]/siteToSiteVpn'\n",
+         "sample_resp":"{\n  \"mode\":\"spoke\",\n  \"hubs\":[\n    {\n      \"hubId\":\"N_1234\"\n      \"useDefaultRoute\":true\n    },\n    {\n      \"hubId\":\"N_2345\"\n      \"useDefaultRoute\":false\n    }\n  ],\n  \"subnets\":[\n    {\n      \"localSubnet\":\"192.168.1.0/24\",\n      \"useVpn\":true\n    },\n    {\n      \"localSubnet\":\"192.168.128.0/24\",\n      \"useVpn\":true\n    }\n  ]\n}\n",
+         "description":"Update the site-to-site VPN settings of a network. Only valid for MX networks.",
+         "params":[
+            {
+               "name":"mode",
+               "description":"The site-to-site VPN mode: hub, spoke, or none"
+            },
+            {
+               "name":"hubs",
+               "description":"The list of VPN hubs, in order of preference. In spoke mode, at least 1 hub is required.",
+               "params":[
+                  {
+                     "name":"hubId",
+                     "description":"The network ID of the hub."
+                  },
+                  {
+                     "name":"useDefaultRoute",
+                     "description":"Only valid in 'spoke' mode. Indicates whether default route traffic should be sent to this hub."
+                  }
+               ]
+            },
+            {
+               "name":"subnets",
+               "description":"The list of subnets and their VPN presence.",
+               "params":[
+                  {
+                     "name":"localSubnet",
+                     "description":"The CIDR notation subnet used within the VPN"
+                  },
+                  {
+                     "name":"useVpn",
+                     "description":"Indicates the presence of the subnet in the VPN"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"traffic",
+         "http_method":"GET",
+         "path":"/networks/[id]/traffic",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[id]/traffic?timespan=7200'\n",
+         "sample_resp":"[\n  {\"application\": \"Gmail\", \"destination\": null, \"protocol\": \"TCP\", \"port\": 443, \"sent\": 100, \"recv\": 200, \"numClients\": 7, \"activeTime\": 77000, \"flows\": 300},\n  {\"application\": \"ICMP\", \"destination\": \"wired.meraki.com\", \"protocol\": \"ICMP\", \"port\": null, \"sent\": 11, \"recv\": 20, \"numClients\": 1, \"activeTime\": 7, \"flows\": 3}\n]\n",
+         "description":"The traffic analysis data for this network.\n<a href=\"https://documentation.meraki.com/MR/Monitoring_and_Reporting/Hostname_Visibility\">Traffic Analysis with Hostname Visibility<\/a> must be enabled on the network.\n",
+         "params":[
+            {
+               "name":"timespan",
+               "description":"The timespan for the data.  Must be an integer representing a duration in seconds between two hours and one month. (Mandatory.)"
+            },
+            {
+               "name":"deviceType",
+               "description":"Filter the data by device type: combined (default), wireless, switch, appliance. When using combined, for each rule the data will come from the device type with the most usage."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"accessPolicies",
+         "http_method":"GET",
+         "path":"/networks/[id]/accessPolicies",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[id]/accessPolicies'\n",
+         "sample_resp":"[\n  {\n    \"number\": 1,\n    \"name\": \"Access policy 1\",\n    \"accessType\": \"8021.x\",\n    \"guestVlan\": 3700,\n    \"radiusServers\": [\n      {\n        \"ip\": \"1.2.3.4\",\n        \"port\": 1337\n      },\n      {\n        \"ip\": \"2.3.4.5\",\n        \"port\": 1337\n      }\n    ]\n  },\n  {\n    \"number\": 2,\n    \"name\": \"Access policy 2\",\n    \"accessType\": \"MAC authentication bypass\",\n    \"guestVlan\": 1661,\n    \"radiusServers\": [\n      {\n        \"ip\": \"4.5.6.7\",\n        \"port\": 2222\n      }\n    ]\n  }\n]\n",
+         "description":"List the access policies for this network. Only valid for MS networks.\n",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"airMarshal",
+         "http_method":"GET",
+         "path":"/networks/[id]/airMarshal",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/airMarshal?timespan=3600'\n",
+         "sample_resp":"[\n  {\n    \"ssid\": \"linksys\",\n    \"bssids\": [\n      {\n        \"bssid\": \"F0:AB:8C:59:31:8D\",\n        \"contained\": false,\n        \"detectedBy\": [\n          {\n            \"device\": \"Q2JD-PY5D-CLJA\",\n            \"rssi\": 17\n          },\n          {\n            \"device\": \"Q2JD-4IH8-CK7J\",\n            \"rssi\": 25\n          }\n        ]\n      }\n    ],\n    \"channels\": [\n      36,\n      40\n    ],\n    \"firstSeen\": 1450205330,\n    \"lastSeen\": 1487630509,\n    \"wiredMacs\": [\n      \"F0:AB:8C:59:31:4E\",\n      \"F0:AB:8C:59:31:8F\"\n    ],\n    \"wiredVlans\": [\n      0,\n      108\n    ],\n    \"wiredLastSeen\": 1487630509\n  },\n  {\n    \"ssid\": \"Tim's iPhone\",\n    \"bssids\": [\n      {\n        \"bssid\": \"DC:A9:04:08:27:CE\",\n        \"contained\": false,\n        \"detectedBy\": [\n          {\n            \"device\": \"Q2JD-PY5D-CLJA\",\n            \"rssi\": 25\n          },\n          {\n            \"device\": \"Q2JD-4IH8-CK7J\",\n            \"rssi\": 30\n          }\n        ]\n      }\n    ],\n    \"channels\": [\n      1\n    ],\n    \"firstSeen\": 1450205330,\n    \"lastSeen\": 1487630509,\n    \"wiredMacs\": [],\n    \"wiredVlans\": [],\n    \"wiredLastSeen\": null\n  }\n]\n",
+         "description":"List Air Marshal scan results from a network",
+         "params":[
+            {
+               "name":"timespan",
+               "description":"The timespan for which results will be fetched. Must be at most one month in seconds."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Organizations":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/organizations",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations'\n",
+         "sample_resp":"[\n  {\n    \"id\":1234,\n    \"name\":\"My org\"\n  }\n]\n",
+         "description":"List the organizations that the user has privileges on",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/organizations/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[id]'\n",
+         "sample_resp":"{\n  \"id\":1234,\n  \"name\":\"My org\"\n}\n",
+         "description":"Return an organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/organizations/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"id\":1234,\"name\":\"Your org\"}' 'https://dashboard.meraki.com/api/v0/organizations/[id]'\n",
+         "sample_resp":"{\n  \"id\":1234,\n  \"name\":\"Your org\"\n}\n",
+         "description":"Update an organization",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the organization"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/organizations",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"name\":\"Your org\"}' 'https://dashboard.meraki.com/api/v0/organizations'\n",
+         "sample_resp":"{\n  \"id\":1234,\n  \"name\":\"Your org\"\n}\n",
+         "description":"Create a new organization",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the organization"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"clone",
+         "http_method":"POST",
+         "path":"/organizations/[id]/clone",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"name\":\"Your cloned org\"}' 'https://dashboard.meraki.com/api/v0/organizations/[id]/clone'\n",
+         "sample_resp":"{\n  \"id\":1234,\n  \"name\":\"Your cloned org\"\n}\n",
+         "description":"Create a new organization by cloning the addressed organization",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the new organization"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"claim",
+         "http_method":"POST",
+         "path":"/organizations/[id]/claim",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X POST -H 'Content-Type: application/json' --data-binary '{\"order\":\"4CXXXXXXX\"}' 'https://dashboard.meraki.com/api/v0/organizations/[id]/claim'\n",
+         "sample_resp":null,
+         "description":"Claim a device, license key, or order into an organization. When claiming by order, all devices and licenses in the order will be claimed; licenses will be added to the organization and devices will be placed in the organization's inventory. These three types of claims are mutually exclusive and cannot be performed in one request.\n",
+         "params":[
+            {
+               "name":"order",
+               "description":"The order number that should be claimed"
+            },
+            {
+               "name":"serial",
+               "description":"The serial of the device that should be claimed"
+            },
+            {
+               "name":"licenseKey",
+               "description":"The license key that should be claimed"
+            },
+            {
+               "name":"licenseMode",
+               "description":"Either 'renew' or 'addDevices'. 'addDevices' will increase the license limit, while 'renew' will extend the amount of time until expiration. This parameter is required when claiming by licenseKey. Please see <a target='_blank' href='https://documentation.meraki.com/zGeneral_Administration/Licensing/Adding_an_Enterprise_license_to_an_existing_Dashboard_account'>this article<\/a> for more information.",
+               "html_safe":true
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"licenseState",
+         "http_method":"GET",
+         "path":"/organizations/[id]/licenseState",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[id]/licenseState'\n",
+         "sample_resp":"{\n  \"status\": \"OK\",\n  \"expirationDate\": \"Nov 16, 2016 UTC\",\n  \"licensedDeviceCounts\": {\n    \"MS\": 100\n  }\n}\n",
+         "description":"Return the license state for an organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"inventory",
+         "http_method":"GET",
+         "path":"/organizations/[id]/inventory",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[id]/inventory'\n",
+         "sample_resp":"[\n  {\n    \"mac\": \"00:11:22:33:44:55:66\",\n    \"serial\": \"Q2XX-XXXX-XXXX\",\n    \"networkId\": \"N_1234\",\n    \"model\": \"MR34\",\n    \"claimedAt\": \"1477958158.69776\",\n    \"publicIp\": \"1.2.3.4\",\n  }\n]\n",
+         "description":"Return the inventory for an organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"snmp",
+         "http_method":"GET",
+         "path":"/organizations/[id]/snmp",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[id]/snmp'\n",
+         "sample_resp":"{\n  \"v2cEnabled\":false,\n  \"v3Enabled\":false,\n  \"v3AuthMode\":null,\n  \"v3PrivMode\":null,\n  \"hostname\":\"n1.meraki.com\",\n  \"port\":16100\n}\n",
+         "description":"Return the SNMP settings for an organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"snmp",
+         "http_method":"PUT",
+         "path":"/organizations/[id]/snmp",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"v2cEnabled\":true,\"v3Enabled\":false}' 'https://dashboard.meraki.com/api/v0/organizations/[id]/snmp'\n",
+         "sample_resp":"{\n  \"v2cEnabled\":false,\n  \"v3Enabled\":false,\n  \"v3AuthMode\":null,\n  \"v3PrivMode\":null,\n  \"hostname\":\"n1.meraki.com\",\n  \"port\":16100,\n  \"peerIps\":null\n}\n",
+         "description":"Update the SNMP settings for an organization",
+         "params":[
+            {
+               "name":"v2cEnabled",
+               "description":"Boolean indicating whether SNMP version 2c is enabled for the organization"
+            },
+            {
+               "name":"v3Enabled",
+               "description":"Boolean indicating whether SNMP version 3 is enabled for the organization"
+            },
+            {
+               "name":"v3AuthMode",
+               "description":"The SNMP version 3 authentication mode either MD5 or SHA"
+            },
+            {
+               "name":"v3AuthPass",
+               "description":"The SNMP version 3 authentication password.  Must be at least 8 characters if specified."
+            },
+            {
+               "name":"v3PrivMode",
+               "description":"The SNMP version 3 privacy mode DES or AES128"
+            },
+            {
+               "name":"v3PrivPass",
+               "description":"The SNMP version 3 privacy password.  Must be at least 8 characters if specified."
+            },
+            {
+               "name":"peerIps",
+               "description":"The IPs that are allowed to access the SNMP server. This list should be IPv4 addresses separated by semi-colons (ie. \"1.2.3.4;2.3.4.5\")."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"thirdPartyVPNPeers",
+         "http_method":"GET",
+         "path":"/organizations/[id]/thirdPartyVPNPeers",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: [key]' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/organizations/[id]/thirdPartyVPNPeers'\n",
+         "sample_resp":"[\n  {\n    \"name\":\"My peer\",\n    \"publicIp\":\"192.168.0.1\",\n    \"privateSubnets\":[\n      \"172.168.0.0/16\",\n      \"172.169.0.0/16\"\n    ],\n    \"secret\":\"asdf1234\"\n  }\n]\n",
+         "description":"Return the third party VPN peers for an organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"thirdPartyVPNPeers",
+         "http_method":"PUT",
+         "path":"/organizations/[id]/thirdPartyVPNPeers",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: [key]' -X PUT -H 'Content-Type: application/json' --data-binary '[{\"name\":\"Your peer\",\"publicIp\":\"192.168.0.1\",\"privateSubnets\":[\"172.168.0.0/16\",\"172.169.0.0/16\"],\"secret\":\"asdf1234\"}]' 'https://dashboard.meraki.com/api/v0/organizations/[id]/thirdPartyVPNPeers'\n",
+         "sample_resp":"[\n  {\n    \"name\":\"Your peer\",\n    \"publicIp\":\"192.168.0.1\",\n    \"privateSubnets\":[\n      \"172.168.0.0/16\",\n      \"172.169.0.0/16\"\n    ],\n    \"secret\":\"asdf1234\"\n  }\n]\n",
+         "description":"Update the third party VPN peers for an organization",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the VPN peer"
+            },
+            {
+               "name":"publicIp",
+               "description":"The public IP of the VPN peer"
+            },
+            {
+               "name":"privateSubnets",
+               "description":"The list of the private subnets of the VPN peer"
+            },
+            {
+               "name":"secret",
+               "description":"The shared secret with the VPN peer"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Phone assignments":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/phoneAssignments",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneAssignments'",
+         "sample_resp":"[\n  {\n    \"serial\": \"Q2XX-XXXX-XXXX\",\n    \"contactId\": \"823\",\n    \"contactType\": \"Dashboard\",\n    \"publicNumber\": [\n      \"+15555555555\"\n    ],\n    \"ext\": \"1234\"\n  }\n]",
+         "description":"List all phones in a network and their contact assignment",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/phoneAssignments/[serial]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneAssignments/[serial]'",
+         "sample_resp":"{\n  \"serial\": \"Q2XX-XXXX-XXXX\",\n  \"contactId\": \"823\",\n  \"contactType\": \"Dashboard\",\n  \"publicNumber\": [\n    \"+15555555555\"\n  ],\n  \"ext\": \"1234\"\n}",
+         "description":"Return a phone's contact assignment",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/phoneAssignments/[serial]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT --data-binary '{\"contactId\":\"823\",\"contactType\":\"Google\",\"publicNumber\":[\"+15555555555\"],\"ext\":\"1234\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneAssignments/[serial]'",
+         "sample_resp":"{\n  \"serial\": \"Q2XX-XXXX-XXXX\",\n  \"contactId\": \"823\",\n  \"contactType\": \"Dashboard\",\n  \"publicNumber\": [\n    \"+15555555555\"\n  ],\n  \"ext\": \"1234\"\n}",
+         "description":"Assign a contact and number(s) to a phone",
+         "params":[
+            {
+               "name":"contactId",
+               "description":"The ID of the contact (obtained from 'Phone Contacts' API)"
+            },
+            {
+               "name":"contactType",
+               "description":"The type of contact to bind: 'Dashboard' or 'Google' (obtained from 'Phone Contacts' API)"
+            },
+            {
+               "name":"publicNumber",
+               "description":"The public number(s) in E.164 format (obtained from 'Phone Numbers' API) as an array of strings. Multiple numbers per phone are allowed.\n    Omitting this paramater will remove the public number assignment(s)."
+            },
+            {
+               "name":"ext",
+               "description":"The 4-6 digit extension. Extension cannot be in use. Omitting this parameter will remove the extension assignment."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/networks/[networkId]/phoneAssignments/[serial]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneAssignments/[serial]'",
+         "sample_resp":"(empty)",
+         "description":"Remove a phone assignment (unprovision a phone)",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ],
+   "Phone contacts":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/phoneContacts",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneContacts'",
+         "sample_resp":"[\n  {\n    \"id\": 823,\n    \"name\": \"Miles Meraki\",\n    \"type\": \"Dashboard\"\n  }\n]",
+         "description":"List the phone contacts in a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/networks/[networkId]/phoneContacts",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X POST --data-binary '{\"name\":\"Miles Meraki\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneContacts'",
+         "sample_resp":"{\n  \"id\": 823,\n  \"name\": \"Miles Meraki\",\n  \"type\": \"Dashboard\"\n}",
+         "description":"Add a contact",
+         "params":[
+            {
+               "name":"name",
+               "description":"The full name of the new contact"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/phoneContacts/[contactId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT --data-binary '{\"name\":\"Miles Meraki\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneContacts/[contactId]'",
+         "sample_resp":"{\n  \"id\": 823,\n  \"name\": \"Miles Meraki\",\n  \"type\": \"Dashboard\"\n}",
+         "description":"Update a phone contact. Google Directory contacts cannot be modified.",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the contact"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/networks/[networkId]/phoneContacts/[contactId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneContacts/[contactId]'",
+         "sample_resp":"(empty)",
+         "description":"Delete a phone contact. Google Directory contacts cannot be removed.",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ],
+   "Phone numbers":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/phoneNumbers",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneNumbers'",
+         "sample_resp":"[\n  {\n    \"publicNumber\": \"+15555555555\"\n  }\n]",
+         "description":"List all the phone numbers in a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"index_available",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/phoneNumbers/available",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/phoneNumbers/available'",
+         "sample_resp":"{\n  \"publicNumber\": \"+15555555555\"\n}",
+         "description":"List the available phone numbers in a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Saml roles":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/organizations/[organizationId]/samlRoles",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/samlRoles'",
+         "sample_resp":"[\n  {\n    \"id\": \"TEdJIEN1c3RvbWVy\",\n    \"role\": \"myrole\",\n    \"orgAccess\": \"none\",\n    \"networks\": [\n      {\n        \"id\": \"N_1234\",\n        \"access\": \"full\"\n      }\n    ],\n    \"tags\": [\n      {\n        \"tag\": \"west\",\n        \"access\": \"read-only\"\n      }\n    ]\n  }\n]",
+         "description":"List the SAML roles for this organization",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/organizations/[organizationId]/samlRoles/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/samlRoles/[id]'",
+         "sample_resp":"{\n  \"id\": \"TEdJIEN1c3RvbWVy\",\n  \"role\": \"myrole\",\n  \"orgAccess\": \"none\",\n  \"networks\": [\n    {\n      \"id\": \"N_1234\",\n      \"access\": \"full\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"tag\": \"west\",\n      \"access\": \"read-only\"\n    }\n  ]\n}",
+         "description":"Return a SAML role",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/organizations/[organizationId]/samlRoles/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/samlRoles/[id]'",
+         "sample_resp":"{\n  \"id\": \"TEdJIEN1c3RvbWVy\",\n  \"role\": \"myrole\",\n  \"orgAccess\": \"none\",\n  \"networks\": [\n    {\n      \"id\": \"N_1234\",\n      \"access\": \"full\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"tag\": \"west\",\n      \"access\": \"read-only\"\n    }\n  ]\n}",
+         "description":"Update a SAML role",
+         "params":[
+            {
+               "name":"role",
+               "description":"The role of the SAML administrator"
+            },
+            {
+               "name":"orgAccess",
+               "description":"The privilege of the SAML administrator on the organization"
+            },
+            {
+               "name":"tags",
+               "description":"The list of tags that the SAML administrator has privileges on",
+               "params":[
+                  {
+                     "name":"tag",
+                     "description":"The name of the tag"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the SAML administrator on the tag"
+                  }
+               ]
+            },
+            {
+               "name":"networks",
+               "description":"The list of networks that the SAML administrator has privileges on",
+               "params":[
+                  {
+                     "name":"id",
+                     "description":"The network ID"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the SAML administrator on the network"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/organizations/[organizationId]/samlRoles",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X POST 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/samlRoles'",
+         "sample_resp":"{\n  \"id\": \"TEdJIEN1c3RvbWVy\",\n  \"role\": \"myrole\",\n  \"orgAccess\": \"none\",\n  \"networks\": [\n    {\n      \"id\": \"N_1234\",\n      \"access\": \"full\"\n    }\n  ],\n  \"tags\": [\n    {\n      \"tag\": \"west\",\n      \"access\": \"read-only\"\n    }\n  ]\n}",
+         "description":"Create a SAML role",
+         "params":[
+            {
+               "name":"role",
+               "description":"The role of the SAML administrator"
+            },
+            {
+               "name":"orgAccess",
+               "description":"The privilege of the SAML administrator on the organization"
+            },
+            {
+               "name":"tags",
+               "description":"The list of tags that the SAML administrator has privileges on",
+               "params":[
+                  {
+                     "name":"tag",
+                     "description":"The name of the tag"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the SAML administrator on the tag"
+                  }
+               ]
+            },
+            {
+               "name":"networks",
+               "description":"The list of networks that the SAML administrator has privileges on",
+               "params":[
+                  {
+                     "name":"id",
+                     "description":"The network ID"
+                  },
+                  {
+                     "name":"access",
+                     "description":"The privilege of the SAML administrator on the network"
+                  }
+               ]
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/organizations/[organizationId]/samlRoles/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/organizations/[organizationId]/samlRoles/[id]'",
+         "sample_resp":"(empty)",
+         "description":"Remove a SAML role",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Sm":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[network_id]/sm/devices",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/devices?fields=ip&scope=withAll,recently-added'\n",
+         "sample_resp":"{\n  \"devices\": [\n    {\n      \"id\": \"123456\",\n      \"name\": \"Device name\",\n      \"tags\": [\n        \"recently-added\"\n      ],\n      \"ssid\": \"Wifi name\",\n      \"wifiMac\": \"00:aa:00:00:a0:a0\"\n      \"osName\": \"iOS 9.3.2\",\n      \"systemModel\": \"iPod\",\n      \"uuid\": \"123aaa123aaa\",\n      \"serialNumber\": \"AABBCCDD\",\n      \"ip\": \"11.1.1.111\"\n    }\n  ],\n  \"batchToken\": <batchToken>\n}\n",
+         "description":"List the devices enrolled in an SM network with various specified fields and filters",
+         "params":[
+            {
+               "name":"fields",
+               "description":"Additional fields that will be displayed for each device. Multiple fields can be passed in as comma separated values. The default fields are: id, name, tags, ssid, wifiMac, osName, systemModel, uuid, and serialNumber. The additional fields are: ip, systemType, availableDeviceCapacity, kioskAppName, biosVersion, lastConnected, missingAppsCount, userSuppliedAddress, location, lastUser, publicIp, phoneNumber, diskInfoJson, deviceCapacity, isManaged, hadMdm, isSupervised, meid, imei, iccid, simCarrierNetwork, cellularDataUsed, isHotspotEnabled, createdAt, batteryEstCharge, quarantined, avName, avRunning, asName, fwName, isRooted, loginRequired, screenLockEnabled, screenLockDelay, autoLoginDisabled, hasMdm, hasDesktopAgent, diskEncryptionEnabled, hardwareEncryptionCaps, and passCodeLock."
+            },
+            {
+               "name":"wifiMacs",
+               "description":"Filter devices by wifi mac(s). Multiple wifi macs can be passed in as comma separated values."
+            },
+            {
+               "name":"serials",
+               "description":"Filter devices by serial(s). Multiple serials can be passed in as comma separated values."
+            },
+            {
+               "name":"ids",
+               "description":"Filter devices by id(s). Multiple ids can be passed in as comma separated values."
+            },
+            {
+               "name":"scope",
+               "description":"Specify a scope (one of withAny, withAll, withoutAny, or withoutAll) and a set of tags as comma separated values."
+            },
+            {
+               "name":"batchToken",
+               "description":"On networks with more than 1000 devices, the device list will be limited to 1000 devices per query. If there are more devices to be seen, a batch token will be returned as a part of the device list. To see the remainder of the devices, pass in the batchToken as a parameter in the next request. Requests made with the batchToken do not require additional parameters as the batchToken includes the parameters passed in with the original request. Additional parameters passed in with the batchToken will be ignored."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_tags",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/devices/tags",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"scope\":\"withAny, <tag>, <tag>\", \"updateAction\":\"add\", \"tags\":\"new-tag, new-tag-2\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/devices/tags'\n",
+         "sample_resp":"{\n  \"success\": [\n    {\n      \"id\": 123456,\n      \"serial\": \"ABCD1234\",\n      \"wifiMac\": \"11:aa:11:11:a1:a1\",\n      \"tags\": [\n        \"old-tag\",\n        \"new-tag\",\n        \"new-tag-2\"\n      ]\n    }\n  ]\n}\n",
+         "description":"Add, delete, or update the tags of a set of devices",
+         "params":[
+            {
+               "name":"wifiMacs",
+               "description":"The wifiMacs of the devices to be modified."
+            },
+            {
+               "name":"ids",
+               "description":"The ids of the devices to be modified."
+            },
+            {
+               "name":"serials",
+               "description":"The serials of the devices to be modified."
+            },
+            {
+               "name":"scope",
+               "description":"The scope (one of withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be modified."
+            },
+            {
+               "name":"tags",
+               "description":"The tags to be added, deleted, or updated."
+            },
+            {
+               "name":"updateAction",
+               "description":"One of add, delete, or update. Only devices that have been modified will be returned."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_fields",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/device/fields",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"id\":\"123456\", \"deviceFields\":\"{\"name\":\"<name>\"}\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/device/fields'\n",
+         "sample_resp":"{\n  \"success\": [\n    {\n      \"id\": 123456,\n      \"serial\": \"ABCD1234\",\n      \"wifiMac\": \"11:aa:11:11:a1:a1\",\n      \"name\": \"<name>\"\n    }\n  ]\n}\n",
+         "description":"Modify the fields of a device",
+         "params":[
+            {
+               "name":"wifiMac",
+               "description":"The wifiMac of the device to be modified."
+            },
+            {
+               "name":"id",
+               "description":"The id of the device to be modified."
+            },
+            {
+               "name":"serial",
+               "description":"The serial of the device to be modified."
+            },
+            {
+               "name":"deviceFields",
+               "description":"The new fields of the device. Passed in as a JSON object. The list of available fields are: name, notes"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_lock",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/devices/lock",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"ids\":\"123456, 123457\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/devices/lock'\n",
+         "sample_resp":"{\n  \"success\": true\n}\n",
+         "description":"Lock a set of devices",
+         "params":[
+            {
+               "name":"wifiMacs",
+               "description":"The wifiMacs of the devices to be locked."
+            },
+            {
+               "name":"ids",
+               "description":"The ids of the devices to be locked."
+            },
+            {
+               "name":"serials",
+               "description":"The serials of the devices to be locked."
+            },
+            {
+               "name":"scope",
+               "description":"The scope (one of withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be wiped."
+            },
+            {
+               "name":"pin",
+               "description":"The pin number for locking macOS devices (a six digit number). Required only for macOS devices."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_wipe",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/device/wipe",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"id\":\"123456\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/device/wipe'\n",
+         "sample_resp":"{\n  \"success\": true\n}\n",
+         "description":"Wipe a device",
+         "params":[
+            {
+               "name":"wifiMac",
+               "description":"The wifiMac of the device to be wiped."
+            },
+            {
+               "name":"id",
+               "description":"The id of the device to be wiped."
+            },
+            {
+               "name":"serial",
+               "description":"The serial of the device to be wiped."
+            },
+            {
+               "name":"pin",
+               "description":"The pin number (a six digit value) for wiping a macOS device. Required only for macOS devices."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_checkin",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/devices/checkin",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"ids\":\"123456, 123457\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/devices/checkin'\n",
+         "sample_resp":"{\n  \"success\": true\n}\n",
+         "description":"Force check-in a set of devices",
+         "params":[
+            {
+               "name":"wifiMacs",
+               "description":"The wifiMacs of the devices to be checked-in."
+            },
+            {
+               "name":"ids",
+               "description":"The ids of the devices to be checked-in."
+            },
+            {
+               "name":"serials",
+               "description":"The serials of the devices to be checked-in."
+            },
+            {
+               "name":"scope",
+               "description":"The scope (one of withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be checked-in."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"device_move",
+         "http_method":"PUT",
+         "path":"/networks/[network_id]/sm/devices/move",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-KEY: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"ids\":\"123456, 123457\", \"newNetwork\":\"N_123456\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/sm/devices/move'\n",
+         "sample_resp":"{\n  \"success\": true\n}\n",
+         "description":"Move a set of devices to a new network",
+         "params":[
+            {
+               "name":"wifiMacs",
+               "description":"The wifiMacs of the devices to be moved."
+            },
+            {
+               "name":"ids",
+               "description":"The ids of the devices to be moved."
+            },
+            {
+               "name":"serials",
+               "description":"The serials of the devices to be moved."
+            },
+            {
+               "name":"scope",
+               "description":"The scope (one of withAny, withAll, withoutAny, or withoutAll) and a set of tags of the devices to be moved."
+            },
+            {
+               "name":"newNetwork",
+               "description":"The new network to which the devices will be moved."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Ssids":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/ssids",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids'\n",
+         "sample_resp":"[\n  {\n    \"number\":0,\n    \"name\":\"SSID-1\",\n    \"enabled\":true,\n    \"authMode\":\"open\"\n  }\n]\n",
+         "description":"List the SSIDs in a network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/ssids/[number]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X GET -H 'Content-Type: application/json' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids/[number]'\n",
+         "sample_resp":"{\n  \"number\":0,\n  \"name\":\"SSID-1\",\n  \"enabled\":true,\n  \"authMode\":\"psk\",\n  \"encryptionMode\":\"wpa\",\n  \"psk\":\"abcd1234\",\n  \"splashPage\":\"Click-through splash page\",\n  \"perClientBandwidthLimitUp\":0,\n  \"perClientBandwidthLimitDown\":0,\n  \"ssidAdminAccessible\":false,\n  \"ipAssignmentMode\":\"NAT mode\",\n  \"walledGardenEnabled\":true,\n  \"walledGardenRanges\":\"192.168.1.1/24 192.168.37.10/32\"\n}\n",
+         "description":"Return a single SSID",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/ssids/[number]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -X PUT -H 'Content-Type: application/json' --data-binary '{\"name\":\"new SSID name\", \"enabled\":true, \"authMode\":\"psk\", \"encryptionMode\":\"wpa\", \"psk\":\"abcd1234\", \"ipAssignmentMode\":\"Bridge mode\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/ssids/[number]'\n",
+         "sample_resp":"{\n  \"number\":0,\n  \"name\":\"new SSID name\",\n  \"enabled\":true,\n  \"authMode\":\"psk\",\n  \"encryptionMode\":\"wpa\",\n  \"psk\":\"abcd1234\",\n  \"splashPage\":\"Click-through splash page\",\n  \"perClientBandwidthLimitUp\":0,\n  \"perClientBandwidthLimitDown\":0,\n  \"ssidAdminAccessible\":false,\n  \"ipAssignmentMode\":\"Bridge mode\",\n  \"walledGardenEnabled\":true,\n  \"walledGardenRanges\":\"192.168.1.1/24 192.168.37.10/32\"\n}\n",
+         "description":"Update the attributes of an SSID",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of an SSID"
+            },
+            {
+               "name":"enabled",
+               "description":"Whether or not an SSID is enabled"
+            },
+            {
+               "name":"authMode",
+               "description":"The association control method for the SSID ('open', 'psk', 'open-with-radius', '8021x-meraki', '8021x-radius')"
+            },
+            {
+               "name":"encryptionMode",
+               "description":"The psk encryption mode for the SSID ('wpa', 'wep', 'wpa-eap')"
+            },
+            {
+               "name":"psk",
+               "description":"The passkey for the SSID. This param is only valid if the authMode is 'psk'"
+            },
+            {
+               "name":"splashPage",
+               "description":"The type of splash page for the SSID ('None', 'Click-through splash page', 'Billing', 'Password-protected with Meraki RADIUS', 'Password-protected with custom RADIUS', 'Password-protected with Active Directory', 'Password-protected with LDAP', 'SMS authentication', 'Systems Manager Sentry', 'Facebook Wi-Fi')"
+            },
+            {
+               "name":"radiusServers",
+               "description":"The RADIUS 802.1x servers to be used for authentication. This param is only valid if the authMode is 'open-with-radius' or '8021x-radius'",
+               "params":[
+                  {
+                     "name":"host",
+                     "description":"IP address of your RADIUS server"
+                  },
+                  {
+                     "name":"port",
+                     "description":"UDP port the RADIUS server listens on for Access-requests"
+                  },
+                  {
+                     "name":"secret",
+                     "description":"RADIUS client shared secret"
+                  }
+               ]
+            },
+            {
+               "name":"radiusCoaEnabled",
+               "description":"If true, Meraki devices will act as a RADIUS Dynamic Authorization Server and will respond to RADIUS Change-of-Authorization and Disconnect messages sent by the RADIUS server."
+            },
+            {
+               "name":"radiusAccountingEnabled",
+               "description":"Whether or not RADIUS accounting is enabled. This param is only valid if the authMode is 'open-with-radius' or '8021x-radius'"
+            },
+            {
+               "name":"radiusAccountingServers",
+               "description":"The RADIUS accounting 802.1x servers to be used for authentication. This param is only valid if the authMode is 'open-with-radius' or '8021x-radius' and radiusAccountingEnabled is 'true'",
+               "params":[
+                  {
+                     "name":"host",
+                     "description":"IP address to which the APs will send RADIUS accounting messages"
+                  },
+                  {
+                     "name":"port",
+                     "description":"Port on the RADIUS server that is listening for accounting messages"
+                  },
+                  {
+                     "name":"secret",
+                     "description":"Shared key used to authenticate messages between the APs and RADIUS server"
+                  }
+               ]
+            },
+            {
+               "name":"radiusAttributeForGroupPolicies",
+               "description":"Specify the RADIUS attribute used to look up group policies. Access points must receive this attribute in the RADIUS Access-Accept message. The value of the attribute must match the group policy name configured on this page (Filter-Id, Reply-Message, Airespace-ACL-Name, Aruba-User-Role)",
+               "group_policies_param":true
+            },
+            {
+               "name":"ipAssignmentMode",
+               "description":"The client IP assignment mode ('NAT mode', 'Bridge mode', 'Layer 3 roaming', 'Layer 3 roaming with a concentrator', 'VPN')"
+            },
+            {
+               "name":"useVlanTagging",
+               "description":"Direct trafic to use specific VLANs. This param is only valid with 'Bridge mode' and 'Layer 3 roaming'"
+            },
+            {
+               "name":"concentratorNetworkId",
+               "description":"The concentrator to use for 'Layer 3 roaming with a concentrator' or 'VPN'."
+            },
+            {
+               "name":"vlanId",
+               "description":"The VLAN ID used for VLAN tagging. This param is only valid with 'Layer 3 roaming with a concentrator' and 'VPN'"
+            },
+            {
+               "name":"defaultVlanId",
+               "description":"The default VLAN ID used for 'all other APs'. This param is only valid with 'Bridge mode' and 'Layer 3 roaming'"
+            },
+            {
+               "name":"apTagsAndVlanIds",
+               "description":"The list of tags and VLAN IDs used for VLAN tagging. This param is only valid with 'Bridge mode', 'Layer 3 roaming'",
+               "params":[
+                  {
+                     "name":"tags",
+                     "description":"Comma-separated list of AP tags"
+                  },
+                  {
+                     "name":"vlanId",
+                     "description":"Numerical identifier that is assigned to the VLAN"
+                  }
+               ]
+            },
+            {
+               "name":"walledGardenEnabled",
+               "description":"Allow access to a configurable list of IP ranges, which users may access prior to sign-on."
+            },
+            {
+               "name":"walledGardenRanges",
+               "description":"Specify your walled garden by entering space-separated addresses and ranges using CIDR notation (e.g. 192.168.1.1/24 192.168.37.10/32). Meraki's splash page is automatically included in your walled garden."
+            },
+            {
+               "name":"radiusOverride",
+               "description":"If true, the RADIUS response can override VLAN tag. This is not valid with NAT mode client IP assignment.",
+               "group_policies_param":true
+            },
+            {
+               "name":"minBitrate",
+               "description":"The minimum bitrate in Mbps. (1, 2, 5.5, 6, 9, 11, 12, 18, 24, 36, 48, 54)"
+            },
+            {
+               "name":"bandSelection",
+               "description":"The client-serving radio frequencies. (Dual band operation, 5 GHz band only, Dual band operation with Band Steering)"
+            },
+            {
+               "name":"perClientBandwidthLimitUp",
+               "description":"The upload bandwidth limit in Kbps. (0 represents no limit.)"
+            },
+            {
+               "name":"perClientBandwidthLimitDown",
+               "description":"The download bandwidth limit in Kbps. (0 represents no limit.)"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Static routes":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/staticRoutes",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/staticRoutes'",
+         "sample_resp":"[\n  {\n    \"id\": \"10\",\n    \"networkId\": \"N_1234\",\n    \"name\": \"VOIP\",\n    \"gatewayIp\": \"10.8.0.5\",\n    \"subnet\": \"192.168.10.0/24\"\n  }\n]",
+         "description":"List the static routes for this network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/staticRoutes/[srId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/staticRoutes/[srId]'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"gatewayIp\": \"10.8.0.5\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Return a static route",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/staticRoutes/[srId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT --data-binary '{\"name\":\"VOIP\",\"subnet\":\"192.168.10.0/24\",\"fixedIpAssignments\":{\"13:37:de:ad:be:ef\":{\"ip\":\"192.168.10.5\",\"name\":\"fixed\"}},\"reservedIpRanges\":[{\"start\":\"192.168.10.20\",\"end\":\"192.168.10.30\",\"comment\":\"reserved\"}]}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/staticRoutes/[srId]'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"gatewayIp\": \"10.8.0.5\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Update a static route",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the static route"
+            },
+            {
+               "name":"subnet",
+               "description":"The subnet of the static route"
+            },
+            {
+               "name":"gatewayIp",
+               "description":"The gateway IP (next hop) of the static route"
+            },
+            {
+               "name":"enabled",
+               "description":"The enabled state of the static route"
+            },
+            {
+               "name":"fixedIpAssignments",
+               "description":"The DHCP fixed IP assignments on the static route"
+            },
+            {
+               "name":"reservedIpRanges",
+               "description":"The DHCP reserved IP ranges on the static route"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/networks/[networkId]/staticRoutes",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X POST --data-binary '{\"name\":\"VOIP\",\"subnet\":\"192.168.10.0/24\",\"gatewayIp\":\"10.0.13.37\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/staticRoutes'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"gatewayIp\": \"10.8.0.5\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Add a static route",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the new static route"
+            },
+            {
+               "name":"subnet",
+               "description":"The subnet of the static route"
+            },
+            {
+               "name":"gatewayIp",
+               "description":"The gateway IP (next hop) of the static route"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/networks/[networkId]/staticRoutes/[srId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/networks/[networkId]/staticRoutes/[srId]'",
+         "sample_resp":"(empty)",
+         "description":"Delete a static route from a network",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ],
+   "Switch ports":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/devices/[serial]/switchPorts",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/devices/[serial]/switchPorts'",
+         "sample_resp":"[\n  {\n    \"number\": 1,\n    \"name\": \"my port\",\n    \"tags\": \"dorm-room limited\",\n    \"enabled\": true,\n    \"type\": \"access\",\n    \"vlan\": 10,\n    \"voiceVlan\": 20,\n    \"poeEnabled\": true,\n    \"isolationEnabled\": false,\n    \"rstpEnabled\": true,\n    \"stpGuard\": \"disabled\",\n    \"accessPolicyNumber\": \"asdf1234\"\n  }\n]",
+         "description":"List the switch ports for a switch",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/devices/[serial]/switchPorts/[number]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/devices/[serial]/switchPorts/[number]'",
+         "sample_resp":"{\n  \"number\": 1,\n  \"name\": \"my port\",\n  \"tags\": \"dorm-room limited\",\n  \"enabled\": true,\n  \"type\": \"access\",\n  \"vlan\": 10,\n  \"voiceVlan\": 20,\n  \"poeEnabled\": true,\n  \"isolationEnabled\": false,\n  \"rstpEnabled\": true,\n  \"stpGuard\": \"disabled\",\n  \"accessPolicyNumber\": \"asdf1234\"\n}",
+         "description":"Return a switch port",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/devices/[serial]/switchPorts/[number]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT 'https://dashboard.meraki.com/api/v0/devices/[serial]/switchPorts/[number]'",
+         "sample_resp":"{\n  \"number\": 1,\n  \"name\": \"my port\",\n  \"tags\": \"dorm-room limited\",\n  \"enabled\": true,\n  \"type\": \"access\",\n  \"vlan\": 10,\n  \"voiceVlan\": 20,\n  \"poeEnabled\": true,\n  \"isolationEnabled\": false,\n  \"rstpEnabled\": true,\n  \"stpGuard\": \"disabled\",\n  \"accessPolicyNumber\": \"asdf1234\"\n}",
+         "description":"Update a switch port",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the switch port"
+            },
+            {
+               "name":"tags",
+               "description":"The tags of the switch port"
+            },
+            {
+               "name":"enabled",
+               "description":"The status of the switch port"
+            },
+            {
+               "name":"type",
+               "description":"The type of the switch port (\"access\" or \"trunk\")"
+            },
+            {
+               "name":"vlan",
+               "description":"The VLAN of the switch port"
+            },
+            {
+               "name":"voiceVlan",
+               "description":"The voice VLAN of the switch port. Only applicable to access ports."
+            },
+            {
+               "name":"allowedVlans",
+               "description":"The VLANs allowed on the switch port. Only applicable to trunk ports."
+            },
+            {
+               "name":"poeEnabled",
+               "description":"The PoE status of the switch port"
+            },
+            {
+               "name":"isolationEnabled",
+               "description":"The isolation status of the switch port"
+            },
+            {
+               "name":"rstpEnabled",
+               "description":"The rapid spanning tree protocol status"
+            },
+            {
+               "name":"stpGuard",
+               "description":"The state of the STP guard (\"disabled\", \"root guard\", \"BPDU guard\")"
+            },
+            {
+               "name":"accessPolicyNumber",
+               "description":"The number of the access policy of the switch port. Only applicable to access ports."
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      }
+   ],
+   "Vlans":[
+      {
+         "action_name":"index",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/vlans",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/vlans'",
+         "sample_resp":"[\n  {\n    \"id\": \"10\",\n    \"networkId\": \"N_1234\",\n    \"name\": \"VOIP\",\n    \"applianceIp\": \"192.168.10.1\",\n    \"subnet\": \"192.168.10.0/24\"\n  }\n]",
+         "description":"List the VLANs for this network",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"show",
+         "http_method":"GET",
+         "path":"/networks/[networkId]/vlans/[vlanId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X GET 'https://dashboard.meraki.com/api/v0/networks/[networkId]/vlans/[vlanId]'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"applianceIp\": \"192.168.10.1\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Return a VLAN",
+         "params":null,
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"update",
+         "http_method":"PUT",
+         "path":"/networks/[networkId]/vlans/[vlanId]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X PUT --data-binary '{\"name\":\"VOIP\",\"applianceIp\":\"192.168.10.1\",\"subnet\":\"192.168.10.0/24\",\"fixedIpAssignments\":{\"13:37:de:ad:be:ef\":{\"ip\":\"192.168.10.5\",\"name\":\"fixed\"}},\"reservedIpRanges\":[{\"start\":\"192.168.10.20\",\"end\":\"192.168.10.30\",\"comment\":\"reserved\"}],\"dnsNameservers\":\"google_dns\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/vlans/[vlanId]'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"applianceIp\": \"192.168.10.1\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Update a VLAN",
+         "params":[
+            {
+               "name":"name",
+               "description":"The name of the VLAN"
+            },
+            {
+               "name":"subnet",
+               "description":"The subnet of the VLAN"
+            },
+            {
+               "name":"applianceIp",
+               "description":"The local IP of the appliance on the VLAN"
+            },
+            {
+               "name":"fixedIpAssignments",
+               "description":"The DHCP fixed IP assignments on the VLAN"
+            },
+            {
+               "name":"reservedIpRanges",
+               "description":"The DHCP reserved IP ranges on the VLAN"
+            },
+            {
+               "name":"vpnNatSubnet",
+               "description":"The translated VPN subnet if VPN and VPN subnet translation are enabled on the VLAN"
+            },
+            {
+               "name":"dnsNameservers",
+               "description":"The DNS nameservers used for DHCP responses, either \"upstream_dns\", \"google_dns\", \"opendns\", or a newline seperated string of IP addresses or domain names"
+            }
+         ],
+         "successful_http_status":200,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"create",
+         "http_method":"POST",
+         "path":"/networks/[networkId]/vlans",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X POST --data-binary '{\"name\":\"VOIP\",\"applianceIp\":\"192.168.10.1\",\"subnet\":\"192.168.10.0/24\"}' 'https://dashboard.meraki.com/api/v0/networks/[networkId]/vlans'",
+         "sample_resp":"{\n  \"id\": \"10\",\n  \"networkId\": \"N_1234\",\n  \"name\": \"VOIP\",\n  \"applianceIp\": \"192.168.10.1\",\n  \"subnet\": \"192.168.10.0/24\"\n}",
+         "description":"Add a VLAN",
+         "params":[
+            {
+               "name":"id",
+               "description":"The VLAN ID of the new VLAN (must be between 1 and 4094)"
+            },
+            {
+               "name":"name",
+               "description":"The name of the new VLAN"
+            },
+            {
+               "name":"subnet",
+               "description":"The subnet of the VLAN"
+            },
+            {
+               "name":"applianceIp",
+               "description":"The local IP of the appliance on the VLAN"
+            }
+         ],
+         "successful_http_status":201,
+         "restricted_endpoint":null
+      },
+      {
+         "action_name":"destroy",
+         "http_method":"DELETE",
+         "path":"/networks/[networkId]/vlans/[id]",
+         "sample_req":"curl -L -H 'X-Cisco-Meraki-API-Key: <key>' -H 'Content-Type: application/json' -X DELETE 'https://dashboard.meraki.com/api/v0/networks/[networkId]/vlans/[id]'",
+         "sample_resp":"(empty)",
+         "description":"Delete a VLAN from a network",
+         "params":null,
+         "successful_http_status":204,
+         "restricted_endpoint":null
+      }
+   ]
+}
