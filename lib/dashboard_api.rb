@@ -1,8 +1,8 @@
 require 'json'
 
-class API
+class DashboardAPI
   # read in the current structure of the Dashboard API
-  @api_data = JSON.parse(File.read('api_data/api_struct.json'))
+  @api_data = JSON.parse(File.read("#{__dir__}/api_data/api_struct.json"))
 
   def initialize
     # do nothing
@@ -27,11 +27,3 @@ class API
   end
 
 end
-
-
-
-puts API.instance_methods
-api = API.new
-#api.admins_update()
-#api.admins_index()
-#api.networks_index({})
