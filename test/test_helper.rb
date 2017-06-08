@@ -1,11 +1,12 @@
 require 'minitest'
 require 'minitest/autorun'
-require 'faraday'
+require 'rest-client'
 require_relative '../lib/dashboard_api.rb'
+require_relative '../lib/api_client.rb'
 class TestDashboardAPI < Minitest::Test
   def setup
     super
-    @dapi = DashboardAPI.new()
+    @dapi = DashboardAPI.new('12345')
   end
 end
 
