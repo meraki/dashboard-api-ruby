@@ -17,6 +17,10 @@ module Devices
     self.make_api_call("/networks/#{network_id}/devices/#{device_serial}", 'GET')
   end
 
+  def get_device(device_serial)
+    self.make_v1_api_call("/devices/#{device_serial}", "GET")
+  end
+
   # Uplink information for a specified device
   # @param [String] network_id network id where the device exists
   # @param [String] device_serial meraki serial number of the device you want to check
