@@ -38,6 +38,9 @@ class DashboardAPI
     @key = key
   end
 
+  # @private
+  # Inner function, not to be called directly
+  # Utility wrapper to make calls to v1 api endpoints easier in the code
   def make_v1_api_call(url, method, options={})
     make_api_call(url, method, options, 'https://dashboard.meraki.com/api/v1')
   end

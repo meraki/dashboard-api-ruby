@@ -8,6 +8,12 @@ module Devices
     self.make_api_call("/networks/#{network_id}/devices", 'GET')
   end
 
+  # List all devices in a given organization
+  # @param [String] org_id the organization that has the devices claimed.
+  # @return [Array] array of hashes containing device information for all devices in the org.
+  def list_devices_for_organization(org_id)
+    self.make_v1_api_call("/organizations/#{org_id}/devices", "GET")
+  end
   # Device information for a specified device
   # @param [String] network_id the network id where the device exists
   # @param [String] device_serial the meraki serial number of the device you want to get
