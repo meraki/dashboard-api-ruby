@@ -7,7 +7,7 @@ module SSIDs
   # @param [String] network_id network id where the SSIDs you exists are
   # @return [Array] an array of Hashes containing the SSID attributes
   def list_ssids_in_network(network_id)
-    make_api_call("/networks/#{network_id}/ssids", 'GET')
+    make_api_call("/networks/#{network_id}/ssids", :get)
   end
 
   # Get the attributes for a single SSID
@@ -17,7 +17,7 @@ module SSIDs
   def get_single_ssid(network_id, ssid_number)
     raise 'Please provide a valid SSID number' unless ssid_number.is_a?(Integer) && ssid_number <= 14
 
-    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'GET')
+    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", :get)
   end
 
   # Update the attributes for a single SSID
@@ -29,6 +29,6 @@ module SSIDs
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
     raise 'Please provide a valid SSID number' unless ssid_number.is_a?(Integer) && ssid_number <= 14
 
-    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'PUT', options)
+    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", :put, options)
   end
 end

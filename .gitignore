@@ -4,3 +4,4 @@ tools/
 _Yardoc
 .DS_Store
 .ruby-version
+.rufo

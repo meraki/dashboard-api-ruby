@@ -7,7 +7,7 @@ module Switchports
   # @param [String] device_serial meraki serial number of the switch
   # @return [Array] an array of Hashes, each containing the switchports attributes / configuration
   def get_switch_ports(device_serial)
-    make_api_call("/devices/#{device_serial}/switchPorts", 'GET')
+    make_api_call("/devices/#{device_serial}/switchPorts", :get)
   end
 
   # Get configuration for a single switch port
@@ -17,7 +17,7 @@ module Switchports
   def get_single_switch_port(device_serial, port_number)
     raise 'Invalid switchport provided' unless port_number.is_a?(Integer)
 
-    make_api_call("/devices/#{device_serial}/switchPorts/#{port_number}", 'GET')
+    make_api_call("/devices/#{device_serial}/switchPorts/#{port_number}", :get)
   end
 
   # Update the attributes for a given switchport
@@ -31,6 +31,6 @@ module Switchports
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
     raise 'Invalid switchport provided' unless port_number.is_a?(Integer)
 
-    make_api_call("/devices/#{device_serial}/switchPorts/#{port_number}", 'PUT', options)
+    make_api_call("/devices/#{device_serial}/switchPorts/#{port_number}", :put, options)
   end
 end

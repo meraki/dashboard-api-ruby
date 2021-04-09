@@ -10,6 +10,6 @@ module Clients
   def get_client_info_for_device(serial, timespan)
     raise 'Timespan can not be larger than 2592000 seconds' if timespan.to_i > 2_592_000
 
-    make_api_call("/devices/#{serial}/clients?timespan=#{timespan}", 'GET')
+    make_api_call("/devices/#{serial}/clients?timespan=#{timespan}", :get)
   end
 end

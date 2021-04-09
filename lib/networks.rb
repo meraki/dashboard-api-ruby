@@ -7,14 +7,14 @@ module Networks
   # @param [String] org_id dashboard organization ID
   # @return [Array] an array of hashes containing the network details
   def get_networks(org_id)
-    make_api_call("/organizations/#{org_id}/networks", 'GET')
+    make_api_call("/organizations/#{org_id}/networks", :get)
   end
 
   # Returns the network details for a single network
   # @param [String] network_id dashboard network ID
   # @return [Hash] a hash containing the network details of the specific network
   def get_single_network(network_id)
-    make_api_call("/networks/#{network_id}", 'GET')
+    make_api_call("/networks/#{network_id}", :get)
   end
 
   # Updates a network's details
@@ -26,7 +26,7 @@ module Networks
   def update_network(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}", 'PUT', options)
+    make_api_call("/networks/#{network_id}", :put, options)
   end
 
   # Create a new Dashboard network
@@ -39,14 +39,14 @@ module Networks
   def create_network(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/organizations/#{org_id}/networks", 'POST', options)
+    make_api_call("/organizations/#{org_id}/networks", :post, options)
   end
 
   # Delete an existing Dashboard network
   # @param [String] network_id dashboard netwok ID to delete
   # @return [Bool] status true if the network was deleted, false if not
   def delete_network(network_id)
-    res = make_api_call("/networks/#{network_id}", 'DELETE')
+    res = make_api_call("/networks/#{network_id}", :delete)
     res.code == 204
   end
 
@@ -54,7 +54,7 @@ module Networks
   # @param [String] network_id dashboard network ID to get AutoVPN settings for
   # @return [Hash] a hash containing the AutoVPN details for the network
   def get_auto_vpn_settings(network_id)
-    make_api_call("/networks/#{network_id}/siteToSiteVpn", 'GET')
+    make_api_call("/networks/#{network_id}/siteToSiteVpn", :get)
   end
 
   # Update AutoVPN for a specific network
@@ -67,14 +67,14 @@ module Networks
   def update_auto_vpn_settings(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/siteToSiteVpn", 'PUT', options)
+    make_api_call("/networks/#{network_id}/siteToSiteVpn", :put, options)
   end
 
   # Get all MS access policies configured for a specific Dashboard network
   # @param [String] network_id dashboard network ID to get MS policies for
   # @return [Array] an array of hashes for containing the policy information
   def get_ms_access_policies(network_id)
-    make_api_call("/networks/#{network_id}/accessPolicies", 'GET')
+    make_api_call("/networks/#{network_id}/accessPolicies", :get)
   end
 
   # Bind a single network to a configuration template
@@ -85,14 +85,14 @@ module Networks
   def bind_network_to_template(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/bind", 'POST', options)
+    make_api_call("/networks/#{network_id}/bind", :post, options)
   end
 
   # Unbind a single network from a configuration template
   # @param [String] network_id the network that you want to unbind from it's template
   # @return [Integer] HTTP Code
   def unbind_network_to_template(network_id)
-    make_api_call("/networks/#{network_id}/unbind", 'POST')
+    make_api_call("/networks/#{network_id}/unbind", :post)
   end
 
   # Return traffic analysis data for a network
@@ -102,6 +102,6 @@ module Networks
   def traffic_analysis(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/traffic", 'GET', options)
+    make_api_call("/networks/#{network_id}/traffic", :get, options)
   end
 end

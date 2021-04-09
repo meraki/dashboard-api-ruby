@@ -7,7 +7,7 @@ module SAML
   # @param [String] org_id organization ID you want the SAML roles from
   # @return [Array] an array of hashes containing each SAML role and it's attributes
   def list_saml_roles(org_id)
-    make_api_call("/organizations/#{org_id}/samlRoles", 'GET')
+    make_api_call("/organizations/#{org_id}/samlRoles", :get)
   end
 
   # Create a new SAML role on an organization
@@ -17,7 +17,7 @@ module SAML
   #   Refer to the Meraki Dashboard API for more information on these tags
   # @return [Hash] returns the newly created SAML role
   def create_saml_role(org_id, options)
-    make_api_call("/organizations/#{org_id}/samlRoles", 'POST', options)
+    make_api_call("/organizations/#{org_id}/samlRoles", :post, options)
   end
 
   # Update an existing SAML role on an organization
@@ -28,7 +28,7 @@ module SAML
   #   Refer to the Meraki Dashboard API for more information on these tags
   # @return [Hahs] returns the updated SAML role
   def update_saml_role(org_id, saml_id, options)
-    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", 'PUT', options)
+    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", :put, options)
   end
 
   # Return a single SAML role
@@ -36,7 +36,7 @@ module SAML
   # @param [String] saml_id the ID of the SAML role that you want to return
   # @return [Hash] returns the request SAML role
   def return_saml_role(org_id, saml_id)
-    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", 'GET')
+    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", :get)
   end
 
   # Remove a single SAML role
@@ -44,6 +44,6 @@ module SAML
   # @param [String] saml_id the ID of the SAML role that you want to remove
   # @return [Integer] HTTP Code
   def remove_saml_role(org_id, saml_id)
-    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", 'DELETE')
+    make_api_call("/organizations/#{org_id}/samlRoles/#{saml_id}", :delete)
   end
 end

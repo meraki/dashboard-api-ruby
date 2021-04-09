@@ -7,28 +7,28 @@ module Organizations
   # @param [String] org_id dashboard organization ID
   # @return [Hash] results contains the org  id and name of the given organization
   def get_organization(org_id)
-    make_api_call("/organizations/#{org_id}", 'GET')
+    make_api_call("/organizations/#{org_id}", :get)
   end
 
   # Returns the current license state for a given organization
   # @param [String] org_id dashboard organization ID
   # @return [Hash] results contains the current license state information
   def get_license_state(org_id)
-    make_api_call("/organizations/#{org_id}/licenseState", 'GET')
+    make_api_call("/organizations/#{org_id}/licenseState", :get)
   end
 
   # Returns the current inventory for an organization
   # @param [String] org_id dashboard organization ID
   # @return [Array] an array of hashes containg information on each individual device
   def get_inventory(org_id)
-    make_api_call("/organizations/#{org_id}/inventory", 'GET')
+    make_api_call("/organizations/#{org_id}/inventory", :get)
   end
 
   # Returns the current SNMP status for an organization
   # @param [String] org_id dashboard organization ID
   # @return [Hash] a hash containing all SNMP configuration information for an organization
   def get_snmp_settings(org_id)
-    make_api_call("/organizations/#{org_id}/snmp", 'GET')
+    make_api_call("/organizations/#{org_id}/snmp", :get)
   end
 
   # Updates the current SNMP status for an organization
@@ -40,7 +40,7 @@ module Organizations
   def update_snmp_settings(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/organizations/#{org_id}/snmp", 'PUT', options)
+    make_api_call("/organizations/#{org_id}/snmp", :put, options)
   end
 
   # Returns the configurations for an organizations 3rd party VPN peers
@@ -48,7 +48,7 @@ module Organizations
   # @return [Array] an arrry of hashes containing the configuration information
   #   for each 3rd party VPN peer
   def get_third_party_peers(org_id)
-    make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", 'GET')
+    make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", :get)
   end
 
   # Updates your third party peers
@@ -59,13 +59,13 @@ module Organizations
   def update_third_party_peers(org_id, options)
     raise 'Options were not passed as an Array' unless options.is_a?(Array)
 
-    make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", 'PUT', options)
+    make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", :put, options)
   end
 
   # Returns all organizations a user is an administrator on
   # @return [Array] an array of hashes containing the organizations and their attributes
   def list_all_organizations
-    make_api_call('/organizations', 'GET')
+    make_api_call('/organizations', :get)
   end
 
   # Update an organization
@@ -75,7 +75,7 @@ module Organizations
   def update_organization(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/organizations/#{org_id}", 'PUT', options)
+    make_api_call("/organizations/#{org_id}", :put, options)
   end
 
   # Create a new organization
@@ -84,7 +84,7 @@ module Organizations
   def create_organization(options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call('/organizations', 'POST', options)
+    make_api_call('/organizations', :post, options)
   end
 
   # Clone an organization
@@ -94,7 +94,7 @@ module Organizations
   def clone_organization(source_org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/organizations/#{source_org_id}/clone", 'POST', options)
+    make_api_call("/organizations/#{source_org_id}/clone", :post, options)
   end
 
   # Claim something
@@ -106,6 +106,6 @@ module Organizations
   def claim(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/organizations/#{org_id}/claim", 'POST', options)
+    make_api_call("/organizations/#{org_id}/claim", :post, options)
   end
 end

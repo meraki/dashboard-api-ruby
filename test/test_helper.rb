@@ -232,14 +232,14 @@ class AdminsTest < Minitest::Test
   def get_admin
     admins = @dapi.list_admins(@org_id)
     admins.each do |entry|
-      return entry if entry['email'].include?('delete')
+      return entry if entry['email'].include?(:delete)
     end
   end
 
   def delete_admin
     admins = @dapi.list_admins(@org_id)
     admins.each do |entry|
-      @dapi.revoke_admin(@org_id, get_admin['id']) if entry['email'].include?('delete')
+      @dapi.revoke_admin(@org_id, get_admin['id']) if entry['email'].include?(:delete)
     end
   rescue StandardError => e
     puts " #{name} couldn't delete admin due to #{e}"

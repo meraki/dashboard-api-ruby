@@ -34,7 +34,7 @@ class DashboardAPI
   include SAML
 
   base_uri 'https://dashboard.meraki.com/api/v0'
-  debug_output $stdout
+  # debug_output $stdout
 
   attr_reader :key
 
@@ -42,12 +42,14 @@ class DashboardAPI
     @key = key
   end
 
+  private
+
   def parse_response!(response_object)
     raise '404 returned. Are you sure you are using the proper IDs?' if response_object.code == 404
 
     begin
       response = JSON.parse(response_object.body)
-      raise "Bad Request due to the following error(s): #{response['errors']}" if response['errors']
+      raise "Bad Request due to the following error(s): #{response['errors']}" if response.is_a?(Hash) && response['errors']
 
       response
     rescue JSON::ParserError
@@ -69,36 +71,33 @@ class DashboardAPI
   # @todo Eventually this will need to support POST, PUT and DELETE. It also
   #   needs to be a bit more resillient, instead of relying on HTTParty for exception
   #   handling
-  def make_api_call(endpoint_url, http_method, options_hash = {}, base_uri_override = nil)
-    headers = { 'X-Cisco-Meraki-API-Key' => @key, 'Content-Type' => 'application/json' }
-
-    options = { headers: headers, body: options_hash.to_json }
+  def make_api_call(endpoint_url, http_method,
+                    options_hash = {}, base_uri_override = nil,
+                    pages = Float::INFINITY)
+    options = {
+      headers: { 'X-Cisco-Meraki-API-Key' => @key, 'Content-Type' => 'application/json' },
+      body: options_hash.to_json
+    }
     options[:base_uri] = base_uri_override unless base_uri_override.nil?
-    case http_method
-    when 'GET'
-      res = DashboardAPI.get(endpoint_url, options)
-      obj = parse_response!(res)
 
-      if obj.is_a? Array
+    case http_method
+    when :get
+      resource = DashboardAPI.send(http_method, endpoint_url, options)
+      object = parse_response!(resource)
+      if object.is_a? Array
+        page_count = 1
         response_object = []
-        response_object.concat(obj)
-        while (next_page = res.links&.by_rel('next')&.target)
-          res = DashboardAPI.get(next_page, options)
-          response_object.concat(parse_response!(res))
+        response_object.concat(object)
+        while (next_page = resource.links&.by_rel('next')&.target) && page_count <= pages
+          resource = DashboardAPI.send(http_method, next_page, options)
+          response_object.concat(parse_response!(resource))
         end
         response_object
       else
-        obj
+        object
       end
-
-    when 'POST'
-      res = DashboardAPI.post(endpoint_url, options)
-      parse_response!(res)
-    when 'PUT'
-      res = DashboardAPI.put(endpoint_url, options)
-      parse_response!(res)
-    when 'DELETE'
-      res = DashboardAPI.delete(endpoint_url, options)
+    when :post, :put, :delete
+      res = DashboardAPI.send(http_method, endpoint_url, options)
       parse_response!(res)
     else
       raise 'Invalid HTTP Method. Only GET, POST, PUT and DELETE are supported.'

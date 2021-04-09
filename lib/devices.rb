@@ -7,14 +7,14 @@ module Devices
   # @param [String] network_id network that you want to get devices for
   # @return [Array] array of hashes containing device information for all devices in the network
   def list_devices_in_network(network_id)
-    make_api_call("/networks/#{network_id}/devices", 'GET')
+    make_api_call("/networks/#{network_id}/devices", :get)
   end
 
   # List all devices in a given organization
   # @param [String] org_id the organization that has the devices claimed.
   # @return [Array] array of hashes containing device information for all devices in the org.
   def list_devices_for_organization(org_id)
-    make_v1_api_call("/organizations/#{org_id}/devices", 'GET')
+    make_v1_api_call("/organizations/#{org_id}/devices", :get)
   end
 
   # Device information for a specified device
@@ -23,11 +23,11 @@ module Devices
   #   information for
   # @return [Hash] a hash containing all of the devices attributes
   def get_single_device(network_id, device_serial)
-    make_api_call("/networks/#{network_id}/devices/#{device_serial}", 'GET')
+    make_api_call("/networks/#{network_id}/devices/#{device_serial}", :get)
   end
 
   def get_device(device_serial)
-    make_v1_api_call("/devices/#{device_serial}", 'GET')
+    make_v1_api_call("/devices/#{device_serial}", :get)
   end
 
   # Uplink information for a specified device
@@ -35,7 +35,7 @@ module Devices
   # @param [String] device_serial meraki serial number of the device you want to check
   # @return [Array] an array of hashes for each uplink and it's attributes
   def get_device_uplink_stats(network_id, device_serial)
-    make_api_call("/networks/#{network_id}/devices/#{device_serial}/uplink", 'GET')
+    make_api_call("/networks/#{network_id}/devices/#{device_serial}/uplink", :get)
   end
 
   # Update a single devices attributes
@@ -47,7 +47,7 @@ module Devices
   def update_device_attributes(network_id, device_serial, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/devices/#{device_serial}", 'PUT', options)
+    make_api_call("/networks/#{network_id}/devices/#{device_serial}", :put, options)
   end
 
   # Claim a single device into a network
@@ -57,7 +57,7 @@ module Devices
   def claim_device_into_network(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/devices/claim", 'POST', options)
+    make_api_call("/networks/#{network_id}/devices/claim", :post, options)
   end
 
   # Remove a single device from a network
@@ -65,6 +65,6 @@ module Devices
   # @param [String] device_serial meraki serial number for device to remove
   # @return [Integer] http_code HTTP code for API call
   def remove_device_from_network(network_id, device_serial)
-    make_api_call("/networks/#{network_id}/devices/#{device_serial}/remove", 'POST')
+    make_api_call("/networks/#{network_id}/devices/#{device_serial}/remove", :post)
   end
 end

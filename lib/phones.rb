@@ -7,7 +7,7 @@ module Phones
   # @param [String] network_id the network id you want to list contacts for
   # @return [Array] an array of hashes containing attribute information for each contact
   def list_phone_contacts(network_id)
-    make_api_call("/networks/#{network_id}/phoneContacts", 'GET')
+    make_api_call("/networks/#{network_id}/phoneContacts", :get)
   end
 
   # Add a single phone contact
@@ -18,7 +18,7 @@ module Phones
   def add_phone_contact(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/phoneContacts", 'POST', options)
+    make_api_call("/networks/#{network_id}/phoneContacts", :post, options)
   end
 
   # Update a single phone contact
@@ -30,7 +30,7 @@ module Phones
   def update_phone_contact(network_id, contact_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/phoneContacts/#{contact_id}", 'PUT', options)
+    make_api_call("/networks/#{network_id}/phoneContacts/#{contact_id}", :put, options)
   end
 
   # Delete a single phone contact
@@ -38,6 +38,6 @@ module Phones
   # @param [String] contact_id the ID of the contact you want to delete
   # @return [Integer] HTTP Code
   def delete_phone_contact(network_id, contact_id)
-    make_api_call("/networks/#{network_id}/phoneContacts/#{contact_id}", 'DELETE')
+    make_api_call("/networks/#{network_id}/phoneContacts/#{contact_id}", :delete)
   end
 end
