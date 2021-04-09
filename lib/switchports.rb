@@ -24,7 +24,8 @@ module Switchports
   # @param [String] device_serial meraki serial number of the switch
   # @param [Integer] port_number port number you want to modify
   # @param [Hash] options hash of attributes. Keys can include name, tags, enabled, type, vlan, voiceVlan
-  #   allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber. For values to these keys, please refer to the official Meraki Dashboard API documentation.
+  #   allowedVlans, poeEnabled, isolationEnabled, rstpEnabled, stpGuard, accessPolicyNumber.
+  # For values to these keys, please refer to the official Meraki Dashboard API documentation.
   # @return [Hash] hash of the update port attributes
   def update_switchport(device_serial, port_number, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)

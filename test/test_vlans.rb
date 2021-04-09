@@ -43,7 +43,7 @@ class VLANsTest < Minitest::Test
     assert_equal options[:name], res['name']
   end
 
-  def test_options_is_hash_add_vlan
+  def test_options_is_not_a_hash_add_vlan
     assert_raises 'Options were not passed as a hash' do
       @dapi.update_a_vlan(@combined_network, 10, 'abc')
     end

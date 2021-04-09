@@ -19,7 +19,7 @@ class SSIDsTest < Minitest::Test
 
   def test_it_requires_integer_for_single_ssid
     assert_raises 'Please provide a valid SSID number' do
-      res = @dapi.get_single_ssid(@combined_network, 'abc')
+      @dapi.get_single_ssid(@combined_network, 'abc')
     end
   end
 

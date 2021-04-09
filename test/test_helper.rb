@@ -16,7 +16,8 @@ VCR.configure do |config|
   config.hook_into :webmock # or :fakeweb
 
   unless ENV['without-secrets']
-    secrets = %w[secret_dashboard_api_key secret_dashboard_org_id secret_ms_serial secret_unclaimed_device secret_combined_network secret_first_name secret_last_name
+    secrets = %w[secret_dashboard_api_key secret_dashboard_org_id secret_ms_serial secret_unclaimed_device
+                 secret_combined_network secret_first_name secret_last_name
                  secret_email secret_admin_id secret_shard_id]
     secrets.each do |secret|
       config.filter_sensitive_data(secret) { ENV[secret] }
@@ -33,7 +34,7 @@ class DashAPITest < Minitest::Test
       # delete network so we can create it again
       begin
         delete_empty_test_network
-      rescue StandardError => e
+      rescue StandardError
       end
     when 'test_it_asserts_when_a_bad_post'
       # ensure the network exists
@@ -63,7 +64,7 @@ class SwitchportsTest < Minitest::Test
   def teardown
     # reset switchport back to non-updated name
     options = { name: 'Port 2', type: 'access', vlan: '101' }
-    res = @dapi.update_switchport(@ms_serial, 2, options) if name == 'test_it_updates_a_port'
+    @dapi.update_switchport(@ms_serial, 2, options) if name == 'test_it_updates_a_port'
     super
   end
 end
@@ -96,7 +97,7 @@ class VLANsTest < Minitest::Test
   def create_vlan
     options = { id: 10, name: 'API VLAN', subnet: '192.168.220.0/30',
                 applianceIp: '192.168.220.1' }
-    res = @dapi.add_vlan(@combined_network, options)
+    @dapi.add_vlan(@combined_network, options)
   rescue StandardError => e
     delete_vlan if e.message.include?(' Vlan has already been taken')
     retry
@@ -161,7 +162,7 @@ class DevicesTest < Minitest::Test
       options = { serial: @node_serial }
       begin
         @dapi.claim_device_into_network(@combined_network, options)
-      rescue StandardError => e
+      rescue StandardError
         # puts "#{name}: Failed due to #{e}. Are you sure there was a device to claim in the first place?"
       end
     when 'test_claim_device_into_network'
@@ -169,7 +170,7 @@ class DevicesTest < Minitest::Test
       @node_serial = @dapi.list_devices_in_network(@combined_network)[0]['serial']
       begin
         @dapi.remove_device_from_network(@combined_network, @node_serial)
-      rescue StandardError => e
+      rescue StandardError
         # puts "#{name}: Failed due to #{e}. Are you sure there was a device to unclaim in the first place?"
       end
     end
@@ -181,7 +182,7 @@ class DevicesTest < Minitest::Test
       options = { serial: @node_serial }
       begin
         @dapi.claim_device_into_network(@combined_network, options)
-      rescue StandardError => e
+      rescue StandardError
         # puts "#{name}: Failed due to #{e}. Are you sure there was a device to list in the first place?"
       end
 
@@ -254,15 +255,15 @@ class OrganizationsTest < Minitest::Test
       # always have a third party peer to test against
       options = [{ "name": 'API_PEER', "publicIp": '8.8.8.8', "privateSubnets": ['192.168.50.0/24'],
                    "secret": 'password12345' }]
-      res = @dapi.update_third_party_peers(@org_id, options)
+      @dapi.update_third_party_peers(@org_id, options)
     when 'test_it_can_update_an_org'
       # reset the name back to API every time this test is run.
       options = { id: @org_id, name: 'API' }
-      res = @dapi.update_organization(@org_id, options)
+      @dapi.update_organization(@org_id, options)
     when 'test_current_snmp_status'
       # reset SNMP to false
       options = { v2cEnabled: false }
-      res = @dapi.update_snmp_settings(@org_id, options)
+      @dapi.update_snmp_settings(@org_id, options)
     end
   end
 end
@@ -297,7 +298,7 @@ module Minitest
     def create_empty_test_network(type = 'appliance', name = 'DELETE ME')
       options = { name: name, type: type }
       @test_network_id = @dapi.create_network(@org_id, options)['id']
-    rescue StandardError => e
+    rescue StandardError
       # puts "Couldn't create network due to #{e}. Attempting to delete."
       delete_empty_test_network if e.message.include?('Name has already been taken')
       # puts "Network deleteing. Attempting to retry network creation"
@@ -307,7 +308,6 @@ module Minitest
     def delete_empty_test_network
       @test_network_id = get_empty_test_network['id']
       @dapi.delete_network(@test_network_id)
-    rescue StandardError => e
     end
 
     def get_empty_test_network
