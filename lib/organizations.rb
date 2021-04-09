@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Organization section of the Meraki Dashboard API
 # @author Joe Letizia
 module Organizations

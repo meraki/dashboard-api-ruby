@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Networks section of the Meraki Dashboard API
 # @author Joe Letizia
 module Networks
@@ -52,7 +54,7 @@ module Networks
   # @param [String] network_id dashboard network ID to get AutoVPN settings for
   # @return [Hash] a hash containing the AutoVPN details for the network
   def get_auto_vpn_settings(network_id)
-    res = make_api_call("/networks/#{network_id}/siteToSiteVpn", 'GET')
+    make_api_call("/networks/#{network_id}/siteToSiteVpn", 'GET')
   end
 
   # Update AutoVPN for a specific network
@@ -65,7 +67,7 @@ module Networks
   def update_auto_vpn_settings(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    res = make_api_call("/networks/#{network_id}/siteToSiteVpn", 'PUT', options)
+    make_api_call("/networks/#{network_id}/siteToSiteVpn", 'PUT', options)
   end
 
   # Get all MS access policies configured for a specific Dashboard network

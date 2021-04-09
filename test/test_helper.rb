@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'coveralls'
 Coveralls.wear!
 require 'minitest/autorun'
@@ -68,10 +70,6 @@ end
 
 #### SSID HELPERS ####
 class SSIDsTest < Minitest::Test
-  def setup
-    super
-  end
-
   def teardown
     case name
     when 'test_it_can_update_an_ssid'
@@ -278,44 +276,46 @@ def get_specific_template(name)
 end
 
 #### MINITEST OVERRIDES ####
-class Minitest::Test
-  def setup
-    VCR.insert_cassette name
-    @dashboard_api_key = ENV['dashboard_api_key']
-    @dapi = DashboardAPI.new(@dashboard_api_key)
+module Minitest
+  class Test
+    def setup
+      VCR.insert_cassette name
+      @dashboard_api_key = ENV['dashboard_api_key']
+      @dapi = DashboardAPI.new(@dashboard_api_key)
 
-    @org_id = ENV['org_id']
-    @combined_network = ENV['combined_network']
+      @org_id = ENV['org_id']
+      @combined_network = ENV['combined_network']
 
-    @ms_serial = ENV['ms_serial']
-    @unclaimed_device = ENV['unclaimed_device']
-  end
+      @ms_serial = ENV['ms_serial']
+      @unclaimed_device = ENV['unclaimed_device']
+    end
 
-  def teardown
-    VCR.eject_cassette name
-  end
+    def teardown
+      VCR.eject_cassette name
+    end
 
-  def create_empty_test_network(type = 'appliance', name = 'DELETE ME')
-    options = { name: name, type: type }
-    @test_network_id = @dapi.create_network(@org_id, options)['id']
-  rescue StandardError => e
-    # puts "Couldn't create network due to #{e}. Attempting to delete."
-    delete_empty_test_network if e.message.include?('Name has already been taken')
-    # puts "Network deleteing. Attempting to retry network creation"
-    retry
-  end
+    def create_empty_test_network(type = 'appliance', name = 'DELETE ME')
+      options = { name: name, type: type }
+      @test_network_id = @dapi.create_network(@org_id, options)['id']
+    rescue StandardError => e
+      # puts "Couldn't create network due to #{e}. Attempting to delete."
+      delete_empty_test_network if e.message.include?('Name has already been taken')
+      # puts "Network deleteing. Attempting to retry network creation"
+      retry
+    end
 
-  def delete_empty_test_network
-    @test_network_id = get_empty_test_network['id']
-    @dapi.delete_network(@test_network_id)
-  rescue StandardError => e
-  end
+    def delete_empty_test_network
+      @test_network_id = get_empty_test_network['id']
+      @dapi.delete_network(@test_network_id)
+    rescue StandardError => e
+    end
 
-  def get_empty_test_network
-    networks = @dapi.get_networks(@org_id)
+    def get_empty_test_network
+      networks = @dapi.get_networks(@org_id)
 
-    networks.each do |entry|
-      return entry if entry['name'] == 'DELETE ME'
+      networks.each do |entry|
+        return entry if entry['name'] == 'DELETE ME'
+      end
     end
   end
 end

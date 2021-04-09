@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Admins section of the Meraki Dashboard API
 # @author Joe Letizia
 module Admins
