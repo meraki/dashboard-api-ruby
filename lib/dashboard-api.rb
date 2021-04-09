@@ -1,6 +1,7 @@
 require 'httparty'
+require 'nitlink/response'
 require 'json'
-require_relative "dashboard-api/version"
+require_relative 'dashboard-api/version'
 require 'organizations'
 require 'networks'
 require 'admins'
@@ -29,6 +30,7 @@ class DashboardAPI
   include Phones
   include Templates
   include SAML
+
   base_uri 'https://dashboard.meraki.com/api/v0'
   debug_output $stdout
 
@@ -36,6 +38,21 @@ class DashboardAPI
 
   def initialize(key)
     @key = key
+  end
+
+  def parse_response!(response_object)
+    raise '404 returned. Are you sure you are using the proper IDs?' if response_object.code == 404
+
+    begin
+      response = JSON.parse(response_object.body)
+      raise "Bad Request due to the following error(s): #{response['errors']}" if response['errors']
+
+      response
+    rescue JSON::ParserError
+      response_object.code
+    rescue TypeError
+      response_object.code
+    end
   end
 
   # @private
@@ -58,42 +75,29 @@ class DashboardAPI
     case http_method
     when 'GET'
       res = DashboardAPI.get(endpoint_url, options)
+      obj = parse_response!(res)
 
-      raise '404 returned. Are you sure you are using the proper IDs?' if res.code == 404
+      if obj.is_a? Array
+        response_object = []
+        response_object.concat(obj)
+        while (next_page = res.links&.by_rel('next')&.target)
+          res = DashboardAPI.get(next_page, options)
+          response_object.concat(parse_response!(res))
+        end
+        response_object
+      else
+        obj
+      end
 
-      raise "Bad request due to the following error(s): #{JSON.parse(res.body)['errors']}" if res.body.include?('errors')
-
-      JSON.parse(res.body)
     when 'POST'
       res = DashboardAPI.post(endpoint_url, options)
-      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
-
-      raise '404 returned. Are you sure you are using the proper IDs?' if res.code == 404
-
-      begin
-        JSON.parse(res.body)
-      rescue JSON::ParserError
-        res.code
-      rescue TypeError
-        res.code
-      end
+      parse_response!(res)
     when 'PUT'
       res = DashboardAPI.put(endpoint_url, options)
-      # needs to check for is an array, because when you update a 3rd party VPN peer, it returns as an array
-      # if you screw something up, it returns as a Hash, and will hit the normal if res['errors']
-      (raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']) unless JSON.parse(res.body).is_a? Array
-
-      raise '404 returned. Are you sure you are using the proper IDs?' if res.code == 404
-
-      JSON.parse(res.body)
+      parse_response!(res)
     when 'DELETE'
       res = DashboardAPI.delete(endpoint_url, options)
-
-      raise "Bad Request due to the following error(s): #{res['errors']}" if res['errors']
-
-      raise '404 returned. Are you sure you are using the proper IDs?' if res.code == 404
-
-      res
+      parse_response!(res)
     else
       raise 'Invalid HTTP Method. Only GET, POST, PUT and DELETE are supported.'
     end
