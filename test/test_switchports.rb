@@ -1,7 +1,6 @@
 require './test/test_helper'
 
 class SwitchportsTest < Minitest::Test
-
   def test_list_switch_ports
     res = @dapi.get_switch_ports(@ms_serial)
 
@@ -23,12 +22,11 @@ class SwitchportsTest < Minitest::Test
   end
 
   def test_it_updates_a_port
-    options = {:name => 'API_PORT_UPDATED', :type => 'access', :vlan => '101'}
+    options = { name: 'API_PORT_UPDATED', type: 'access', vlan: '101' }
 
     res = @dapi.update_switchport(@ms_serial, 2, options)
 
     assert_kind_of Hash, res
     assert_equal options[:name], res['name']
   end
-
 end

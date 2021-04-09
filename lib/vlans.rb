@@ -5,15 +5,15 @@ module VLANs
   # @param [String] network_id the network ID you want the VLANs for
   # @return [Array] an array of hashes containing each VLAN and it's attributes
   def list_vlans(network_id)
-    self.make_api_call("/networks/#{network_id}/vlans", 'GET')
+    make_api_call("/networks/#{network_id}/vlans", 'GET')
   end
- 
+
   # Return a single configured VLAN for a network
   # @param [String] network_id the network ID the VLAN exists in
   # @param [Integer] vlan_id the VLAN ID you want the attributes for
-  # @return [Hash] a hash of the VLAN's attributes 
+  # @return [Hash] a hash of the VLAN's attributes
   def return_vlan(network_id, vlan_id)
-    self.make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'GET')
+    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'GET')
   end
 
   # Add a single VLAN to a network
@@ -22,9 +22,9 @@ module VLANs
   #   additional details on these can be found in the official Meraki API Documentation
   # @return [Hash] the attributes of the newly created vlan
   def add_vlan(network_id, options)
-    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    
-    self.make_api_call("/networks/#{network_id}/vlans", 'POST', options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_api_call("/networks/#{network_id}/vlans", 'POST', options)
   end
 
   # Update the attributes for a single VLAN
@@ -34,9 +34,9 @@ module VLANs
   #   additional details on these can be found in the official Meraki API Documentation
   # @return [Hash] the updated attributes for the VLAN
   def update_vlan(network_id, vlan_id, options)
-    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    
-    self.make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'PUT', options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'PUT', options)
   end
 
   # Delete a single vlan
@@ -44,6 +44,6 @@ module VLANs
   # @param [Integer] vlan_id the VLAN ID you want to delete
   # @return [Integer] code HTTP return code
   def delete_vlan(network_id, vlan_id)
-    self.make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'DELETE')
+    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", 'DELETE')
   end
 end

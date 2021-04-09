@@ -58,7 +58,7 @@ class DashboardAPI
   # @private
   # Inner function, not to be called directly
   # Utility wrapper to make calls to v1 api endpoints easier in the code
-  def make_v1_api_call(url, method, options={})
+  def make_v1_api_call(url, method, options = {})
     make_api_call(url, method, options, 'https://dashboard.meraki.com/api/v1')
   end
 
@@ -67,7 +67,7 @@ class DashboardAPI
   # @todo Eventually this will need to support POST, PUT and DELETE. It also
   #   needs to be a bit more resillient, instead of relying on HTTParty for exception
   #   handling
-  def make_api_call(endpoint_url, http_method, options_hash={}, base_uri_override=nil)
+  def make_api_call(endpoint_url, http_method, options_hash = {}, base_uri_override = nil)
     headers = { 'X-Cisco-Meraki-API-Key' => @key, 'Content-Type' => 'application/json' }
 
     options = { headers: headers, body: options_hash.to_json }

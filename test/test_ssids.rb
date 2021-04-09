@@ -9,10 +9,10 @@ class SSIDsTest < Minitest::Test
   end
 
   def test_it_returns_a_single_ssid
-      res = @dapi.get_single_ssid(@combined_network, 0)
+    res = @dapi.get_single_ssid(@combined_network, 0)
 
-      assert_kind_of Hash, res
-      assert_equal true, res.keys.include?('number')
+    assert_kind_of Hash, res
+    assert_equal true, res.keys.include?('number')
   end
 
   def test_it_requires_integer_for_single_ssid
@@ -22,7 +22,7 @@ class SSIDsTest < Minitest::Test
   end
 
   def test_it_can_update_an_ssid
-    options = {:name => 'API_SSID_UPDATED'}
+    options = { name: 'API_SSID_UPDATED' }
     res = @dapi.update_single_ssid(@combined_network, 0, options)
 
     assert_kind_of Hash, res

@@ -20,7 +20,7 @@ class DashAPITest < Minitest::Test
   def test_it_can_post
     endpoint_url = "/organizations/#{@org_id}/networks"
     http_method = 'POST'
-    options_hash = {:name => 'DELETE ME', :type => 'wireless'}
+    options_hash = { name: 'DELETE ME', type: 'wireless' }
 
     res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
@@ -31,7 +31,7 @@ class DashAPITest < Minitest::Test
     assert_raises 'RuntimeError: Bad Request due to the following error(s): ["Validation failed: Name has already been taken"]' do
       endpoint_url = "/organizations/#{@org_id}/networks"
       http_method = 'POST'
-      options_hash = {:name => 'DELETE ME', :type => 'appliance'}
+      options_hash = { name: 'DELETE ME', type: 'appliance' }
 
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
@@ -47,7 +47,7 @@ class DashAPITest < Minitest::Test
     endpoint_url = "/networks/#{@test_network_id}"
     http_method = 'PUT'
 
-    options_hash = {:id => "#{@test_network_id}", :name => 'DELETE ME'}
+    options_hash = { id: @test_network_id.to_s, name: 'DELETE ME' }
     res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
 
     assert_equal @org_id, res['organizationId']
@@ -55,10 +55,10 @@ class DashAPITest < Minitest::Test
 
   def test_it_asserts_when_bad_network_id_on_put
     assert_raises '404 returned. Are you sure you are using the proper IDs?' do
-      endpoint_url = "/networks/11111"
+      endpoint_url = '/networks/11111'
       http_method = 'PUT'
 
-      options_hash = {:name => 'test_network_renamed2'}
+      options_hash = { name: 'test_network_renamed2' }
       res = @dapi.make_api_call(endpoint_url, http_method, options_hash)
     end
   end
@@ -69,5 +69,4 @@ class DashAPITest < Minitest::Test
 
     res = @dapi.make_api_call(endpoint_url, http_method)
   end
-
 end

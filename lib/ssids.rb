@@ -5,7 +5,7 @@ module SSIDs
   # @param [String] network_id network id where the SSIDs you exists are
   # @return [Array] an array of Hashes containing the SSID attributes
   def list_ssids_in_network(network_id)
-    self.make_api_call("/networks/#{network_id}/ssids", 'GET')
+    make_api_call("/networks/#{network_id}/ssids", 'GET')
   end
 
   # Get the attributes for a single SSID
@@ -13,8 +13,9 @@ module SSIDs
   # @param [Integer] ssid_number the SSID number you want to change. Range is from 0-14
   # @return [Hash] the attributes for the requested SSID
   def get_single_ssid(network_id, ssid_number)
-    raise "Please provide a valid SSID number" unless (ssid_number.is_a?(Integer) && ssid_number <= 14)
-    self.make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'GET')
+    raise 'Please provide a valid SSID number' unless ssid_number.is_a?(Integer) && ssid_number <= 14
+
+    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'GET')
   end
 
   # Update the attributes for a single SSID
@@ -23,11 +24,9 @@ module SSIDs
   # @param [Hash] options hash containing the attributes to update. Can include name, enabled, authMode, encryptionMode and psk
   # @return [Hash] the updated attributes for the SSID
   def update_single_ssid(network_id, ssid_number, options)
-    raise 'Options were not passed as a Hash' if !options.is_a?(Hash)
-    raise "Please provide a valid SSID number" unless (ssid_number.is_a?(Integer) && ssid_number <= 14)
-    
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+    raise 'Please provide a valid SSID number' unless ssid_number.is_a?(Integer) && ssid_number <= 14
 
-    self.make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'PUT', options)
+    make_api_call("/networks/#{network_id}/ssids/#{ssid_number}", 'PUT', options)
   end
-
 end

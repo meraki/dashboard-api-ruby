@@ -38,7 +38,7 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_update_snmp_settings
-    options = {:v2cEnabled => true}
+    options = { v2cEnabled: true }
 
     res = @dapi.update_snmp_settings(@org_id, options)
     assert_equal true, res['v2cEnabled']
@@ -46,7 +46,7 @@ class OrganizationsTest < Minitest::Test
 
   def test_snmp_returns_as_hash
     res = @dapi.get_snmp_settings(@org_id)
-    assert_kind_of Hash,res
+    assert_kind_of Hash, res
   end
 
   def test_third_party_vpn_peers
@@ -60,7 +60,8 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_update_third_party_peers
-    options = [{"name":"API_PEER_UPDATED","publicIp":"8.8.8.8","privateSubnets":["192.168.50.0/24"],"secret":"password12345"}]
+    options = [{ "name": 'API_PEER_UPDATED', "publicIp": '8.8.8.8', "privateSubnets": ['192.168.50.0/24'],
+                 "secret": 'password12345' }]
     res = @dapi.update_third_party_peers(@org_id, options)
 
     assert_equal 'API_PEER_UPDATED', res[0]['name']
@@ -73,7 +74,7 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_it_can_update_an_org
-    options = {:id => @org_id, :name => 'API_UPDATED'}
+    options = { id: @org_id, name: 'API_UPDATED' }
     res = @dapi.update_organization(@org_id, options)
 
     assert_kind_of Hash, res
@@ -81,7 +82,7 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_it_can_create_an_org
-    options = {:name => 'DELETE ME ORG'}
+    options = { name: 'DELETE ME ORG' }
     res = @dapi.create_organization(options)
 
     assert_kind_of Hash, res
@@ -89,7 +90,7 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_it_can_clone_an_org
-    options = {:name => 'API CLONED ORG'}
+    options = { name: 'API CLONED ORG' }
     res = @dapi.clone_organization(@org_id, options)
 
     assert_kind_of Hash, res
@@ -97,10 +98,9 @@ class OrganizationsTest < Minitest::Test
   end
 
   def test_it_can_claim_a_thing
-    options = {:serial => @unclaimed_device}
+    options = { serial: @unclaimed_device }
     res = @dapi.claim(@org_id, options)
 
     assert_equal 200, res
   end
-
 end

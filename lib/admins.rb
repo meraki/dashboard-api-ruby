@@ -5,7 +5,7 @@ module Admins
   # @param [String] org_id organization ID you want the list of administrators for
   # @return [Array] an array of hashes containing each admin and their attributes
   def list_admins(org_id)
-    self.make_api_call("/organizations/#{org_id}/admins", 'GET')
+    make_api_call("/organizations/#{org_id}/admins", 'GET')
   end
 
   # Add an admin to a specific org
@@ -13,8 +13,7 @@ module Admins
   # @param [Hash] options option hash containing attributes for the new admin. Can contain:
   #   email, name, orgAccess, tags and networks. See the Meraki API Documentation for more details.
   def add_admin(org_id, options)
-  #  
-    self.make_api_call("/organizations/#{org_id}/admins", 'POST', options)
+    make_api_call("/organizations/#{org_id}/admins", 'POST', options)
   end
 
   # Update an administrator for a specific org
@@ -23,8 +22,7 @@ module Admins
   # @param [Hash] options hash containing the attributes and values you want to update. Can contain:
   #   email, name, orgAccess, tags and networks. See the Meraki API Documentation for more details.
   def update_admin(org_id, admin_id, options)
-#    
-    self.make_api_call("/organizations/#{org_id}/admins/#{admin_id}", 'PUT', options)
+    make_api_call("/organizations/#{org_id}/admins/#{admin_id}", 'PUT', options)
   end
 
   # Revoke an administrator for a specific org
@@ -32,6 +30,6 @@ module Admins
   # @param [String] admin_id ID of the administrator you want to revoke
   # @return [Integer] HTTP Code
   def revoke_admin(org_id, admin_id)
-    self.make_api_call("/organizations/#{org_id}/admins/#{admin_id}", 'DELETE')
+    make_api_call("/organizations/#{org_id}/admins/#{admin_id}", 'DELETE')
   end
 end

@@ -3,3 +3,4 @@ tools/
 .yardoc
 _Yardoc
 .DS_Store
+.ruby-version

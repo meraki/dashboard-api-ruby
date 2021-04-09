@@ -9,7 +9,7 @@ class TemplatesTest < Minitest::Test
   def test_it_can_remove_a_template
     begin
       @config_template_id = get_specific_template('Delete Me')['id']
-    rescue => e
+    rescue StandardError => e
       puts e
       skip "It doesn't look like you have a template to delete..."
     end

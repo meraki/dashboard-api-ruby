@@ -15,10 +15,10 @@ class VLANsTest < Minitest::Test
 
   def test_it_adds_a_vlan
     begin
-      options = {:id => 10, :name => 'API VLAN', :subnet => '192.168.220.0/30',
-                 :applianceIp => '192.168.220.1'}
+      options = { id: 10, name: 'API VLAN', subnet: '192.168.220.0/30',
+                  applianceIp: '192.168.220.1' }
       res = @dapi.add_vlan(@combined_network, options)
-    rescue => e
+    rescue StandardError => e
       delete_vlan if e.message.include?(' Vlan has already been taken')
       retry
     end
@@ -34,7 +34,7 @@ class VLANsTest < Minitest::Test
   end
 
   def test_it_updates_a_vlan
-    options = {:name => 'API VLAN UPDATED'}
+    options = { name: 'API VLAN UPDATED' }
     res = @dapi.update_vlan(@combined_network, 10, options)
 
     assert_kind_of Hash, res
@@ -48,7 +48,7 @@ class VLANsTest < Minitest::Test
   end
 
   def test_it_deletes_a_vlan
-      res = @dapi.delete_vlan(@combined_network, 10)
-      assert_equal 204, res.code
-    end
+    res = @dapi.delete_vlan(@combined_network, 10)
+    assert_equal 204, res.code
+  end
 end

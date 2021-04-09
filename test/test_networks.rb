@@ -15,7 +15,7 @@ class NetworksTest < Minitest::Test
   end
 
   def test_it_can_update_a_network
-    options = {:id => @test_network_id, :organizationId => @org_id, :tags => 'this_is_a_new_tag'}
+    options = { id: @test_network_id, organizationId: @org_id, tags: 'this_is_a_new_tag' }
 
     res = @dapi.update_network(@test_network_id, options)
 
@@ -25,16 +25,16 @@ class NetworksTest < Minitest::Test
   end
 
   def test_options_are_a_hash_update_network
-    assert_raises "Options were not passed as a Hash" do
+    assert_raises 'Options were not passed as a Hash' do
       @dapi.update_network('123456', 'option')
     end
   end
 
   def test_it_can_create_a_network
     begin
-      options = {:name => 'DELETE ME', :type => 'wireless'}
+      options = { name: 'DELETE ME', type: 'wireless' }
       res = @dapi.create_network(@org_id, options)
-    rescue => e
+    rescue StandardError => e
       delete_empty_test_network if e.message.include?('Name has already been taken')
       retry
     end
@@ -61,7 +61,7 @@ class NetworksTest < Minitest::Test
   end
 
   def test_update_s2s_vpn_settings
-    options = {:mode => 'none'}
+    options = { mode: 'none' }
 
     res = @dapi.update_auto_vpn_settings(@test_network_id, options)
 
@@ -74,14 +74,14 @@ class NetworksTest < Minitest::Test
     res = @dapi.get_ms_access_policies(@test_network_id)
 
     # this assumes there are no policies configured
-    assert_equal [] , res
+    assert_equal [], res
   end
 
   def test_it_can_bind_a_network_to_a_template
     create_empty_test_network('switch')
     template = get_specific_template('Permanent')
 
-    options = {:configTemplateId => template['id']}
+    options = { configTemplateId: template['id'] }
     res = @dapi.bind_network_to_template(@test_network_id, options)
 
     assert_equal 200, res
@@ -92,7 +92,7 @@ class NetworksTest < Minitest::Test
 
     template = get_specific_template('Permanent')
 
-    options = {:configTemplateId => template['id']}
+    options = { configTemplateId: template['id'] }
     @dapi.bind_network_to_template(@test_network_id, options)
 
     res = @dapi.unbind_network_to_template(@test_network_id)

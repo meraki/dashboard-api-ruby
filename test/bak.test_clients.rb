@@ -3,7 +3,7 @@ require './test/test_helper'
 class ClientsTest < Minitest::Test
   def test_get_client_info_for_device
     VCR.use_cassette('client_info_for_device') do
-      res = @dapi.get_client_info_for_device(@mx_serial, 86400)
+      res = @dapi.get_client_info_for_device(@mx_serial, 86_400)
 
       assert_kind_of Array, res
       assert_equal 'usage', res[0].keys.first
@@ -12,7 +12,7 @@ class ClientsTest < Minitest::Test
 
   def test_timespan_isnt_greater_than_2592000
     assert_raises 'Timespan can not be larger than 2592000 seconds' do
-      @dapi.get_client_info_for_device(@mx_serial, 2600000)
+      @dapi.get_client_info_for_device(@mx_serial, 2_600_000)
     end
   end
 end

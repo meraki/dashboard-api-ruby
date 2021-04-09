@@ -22,9 +22,8 @@ class DevicesTest < Minitest::Test
   #   assert_equal true, res[0].keys.include?('interface')
   # end
 
-
   def test_update_single_device_attributes
-    options = {:name => 'API_TEST_NAME'}
+    options = { name: 'API_TEST_NAME' }
     res = @dapi.update_device_attributes(@combined_network, @node_serial, options)
 
     assert_kind_of Hash, res
@@ -32,10 +31,10 @@ class DevicesTest < Minitest::Test
   end
 
   def test_claim_device_into_network
-      options = {:serial => @node_serial}
-      res = @dapi.claim_device_into_network(@combined_network, options)
+    options = { serial: @node_serial }
+    res = @dapi.claim_device_into_network(@combined_network, options)
 
-      assert_equal 200, res
+    assert_equal 200, res
   end
 
   def test_remove_device_from_network
@@ -43,5 +42,4 @@ class DevicesTest < Minitest::Test
 
     assert_equal 204, res
   end
-
 end
