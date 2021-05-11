@@ -30,6 +30,17 @@ module Devices
     make_v1_api_call("/devices/#{device_serial}", :get)
   end
 
+  # Update a specific device
+  # @param [String] the serial number of the device you wish to update
+  # @param [Hash] options a hash containing the attributes of the device
+  # additional details on accepted fields can be found in the official Meraki API Documentation (https://developer.cisco.com/meraki/api-v1/#!update-device)
+  # @return [Hash] A hash with the devices full attributes after the operation has completed
+  def update_device(serial, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_v1_api_call("/devices/#{serial}", :put, options)
+  end
+
   # Uplink information for a specified device
   # @param [String] network_id network id where the device exists
   # @param [String] device_serial meraki serial number of the device you want to check
