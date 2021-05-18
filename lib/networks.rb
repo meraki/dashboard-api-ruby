@@ -77,6 +77,24 @@ module Networks
     make_api_call("/networks/#{network_id}/accessPolicies", :get)
   end
 
+  # Get all group policies configured for a specific Dashboard network
+  # @param [String] network_id dashboard network ID to get group policies for
+  # @return [Array] an array of hashes for containing the policy information
+  def get_group_access_policies(network_id)
+    make_api_call("/networks/#{network_id}/groupPolicies", :get)
+  end
+
+  # Create a group access policy for a network
+  # @param [String] network_id the source network that you want to bind to a tempalte
+  # @param [Hash] options options hash that contains group policy values. Refer to the official
+  #   Meraki Dashboard API documentation for more information on these.
+  # @return [Integer] HTTP Code
+  def create_group_access_policy(network_id, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_api_call("/networks/#{network_id}/groupPolicies", :post, options)
+  end
+
   # Bind a single network to a configuration template
   # @param [String] network_id the source network that you want to bind to a tempalte
   # @param [Hash] options options hash that contains configTemplateId and autoBind values. Refer to the official
