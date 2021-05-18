@@ -35,10 +35,10 @@ module Devices
   # @param [Hash] options a hash containing the attributes of the device
   # additional details on accepted fields can be found in the official Meraki API Documentation (https://developer.cisco.com/meraki/api-v1/#!update-device)
   # @return [Hash] A hash with the devices full attributes after the operation has completed
-  def update_device(serial, options)
+  def update_device(device_serial, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_v1_api_call("/devices/#{serial}", :put, options)
+    make_v1_api_call("/devices/#{device_serial}", :put, options)
   end
 
   # Uplink information for a specified device
@@ -59,6 +59,24 @@ module Devices
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
     make_api_call("/networks/#{network_id}/devices/#{device_serial}", :put, options)
+  end
+
+  # Get a devices management interface information
+  # @param [String] device_serial meraki serial number of the device you want to check
+  # @return [Hash] a hash containing the management information for each wan port on the device
+  def get_device_management_interface(device_serial)
+    make_v1_api_call("/devices/#{device_serial}/managementInterface", :get)
+  end
+
+  # Set a devices management interface information
+  # @param [String] device_serial meraki serial number of the device you want to check
+  # @param [Hash] options hash containing the attributes you want to modify.
+  #   such as vlan, IP settings or dns. A full list is found on the official Meraki API Docs
+  # @return [Hash] a hash containing the management information for each wan port on the device
+  def update_device_management_interface(device_serial, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_v1_api_call("/devices/#{device_serial}/managementInterface", :put, options)
   end
 
   # Claim a single device into a network
