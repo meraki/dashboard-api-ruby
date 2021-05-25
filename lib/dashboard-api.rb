@@ -14,7 +14,7 @@ require 'phones'
 require 'ssids'
 require 'vlans'
 require 'switchports'
-require 'switchprofiles'
+require 'switch_profiles'
 require 'saml'
 
 # Ruby Implementation of the Meraki Dashboard api
