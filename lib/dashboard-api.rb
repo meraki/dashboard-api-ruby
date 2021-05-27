@@ -2,7 +2,6 @@
 
 require 'httparty'
 require 'nitlink/response'
-require 'logger'
 require 'json'
 require_relative 'dashboard-api/version'
 require 'organizations'
