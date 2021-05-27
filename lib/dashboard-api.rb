@@ -2,6 +2,7 @@
 
 require 'httparty'
 require 'nitlink/response'
+require 'logger'
 require 'json'
 require_relative 'dashboard-api/version'
 require 'organizations'
@@ -36,9 +37,9 @@ class DashboardAPI
   include SAML
 
   base_uri 'https://dashboard.meraki.com/api/v0'
-  # debug_output $stdout
 
   attr_reader :key
+  attr_accessor :debug_enabled
 
   def initialize(key)
     @key = key
@@ -81,6 +82,7 @@ class DashboardAPI
       body: options_hash.to_json
     }
     options[:base_uri] = base_uri_override unless base_uri_override.nil?
+    options[:debug_output] = $stdout if debug_enabled
 
     case http_method
     when :get
