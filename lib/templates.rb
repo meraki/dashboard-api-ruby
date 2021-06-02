@@ -10,6 +10,14 @@ module Templates
     make_api_call("/organizations/#{org_id}/configTemplates", :get)
   end
 
+  # Return a specific template for a specific organization
+  # @param [String] org_id organization ID that the template belongs to
+  # @param [String] template_id the ID of the template you wish to fetch
+  # @return [Hash] the template object in hash form
+  def get_organization_config_template(org_id, template_id)
+    make_v1_api_call("/organizations/#{org_id}/configTemplates/#{template_id}", :get)
+  end
+
   # Remove a single configuration template
   # @param [String] org_id organization ID where that we want to remove the templates from
   # @param [String] template_id the template ID we want to delete
