@@ -76,7 +76,7 @@ module Networks
   def combine_network(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_v1_api_call("organizations/#{org_id}/networks/combine", :post, options)
+    make_v1_api_call("/organizations/#{org_id}/networks/combine", :post, options)
   end
 
   # Get AutoVPN settings for a specific network
