@@ -42,12 +42,41 @@ module Networks
     make_api_call("/organizations/#{org_id}/networks", :post, options)
   end
 
+  # Create a new Dashboard network
+  # @param [String] org_id dashboard organization ID
+  # @param [Hash] options a hash containing the following options:
+  #   name: the network name (REQUIRED)
+  #   type: the type of network (wireless, switch, appliance, or phone) (REQUIRED)
+  #   tags: tags for the network (NOT REQUIRED)
+  # @return [Hash] a hash containing the new networks details
+  def create_v1_network(org_id, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_v1_api_call("/organizations/#{org_id}/networks", :post, options)
+  end
+
   # Delete an existing Dashboard network
   # @param [String] network_id dashboard netwok ID to delete
   # @return [Bool] status true if the network was deleted, false if not
   def delete_network(network_id)
     res = make_api_call("/networks/#{network_id}", :delete)
     res.code == 204
+  end
+
+  # Combine multiple networks into a singular network
+  # @param [Hash] options containing the following:
+  # name              [String]: The name of the combined network
+  # networkIds        [Array]: A list of the network IDs that will be combined. If an ID of a combined network is
+  #                   included in this list, the other networks in the list will be grouped into that network
+  # enrollmentString  [String] (optional): A unique identifier which can be used for device enrollment or easy access
+  #                   through the Meraki SM Registration page or the Self Service Portal.
+  #                   Please note that changing this field may cause existing bookmarks to break. All networks that are
+  #                   part of this combined network will have their enrollment string appended by '-network_type'.
+  #                   If left empty, all exisitng enrollment strings will be deleted.
+  def combine_network(org_id, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_v1_api_call("organizations/#{org_id}/networks/combine")
   end
 
   # Get AutoVPN settings for a specific network
