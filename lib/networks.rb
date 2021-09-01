@@ -60,7 +60,7 @@ module Networks
   # @return [Bool] status true if the network was deleted, false if not
   def delete_network(network_id)
     res = make_api_call("/networks/#{network_id}", :delete)
-    res.code == 204
+    res == 204
   end
 
   # Combine multiple networks into a singular network
