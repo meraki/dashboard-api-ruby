@@ -124,6 +124,17 @@ module Networks
     make_api_call("/networks/#{network_id}/groupPolicies", :post, options)
   end
 
+  # Update a group access policy for a network 
+  # @param [String] network_id the source network that you want to bind to a tempalte
+  # @param [Hash] options options hash that contains group policy values. Refer to the official
+  #   Meraki Dashboard API documentation for more information on these.
+  # @return [Integer] HTTP Code
+  def update_group_access_policy(network_id, group_policy_id, options)
+    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+
+    make_v1_api_call("/networks/#{network_id}/groupPolicies/#{group_policy_id}", :put, options)
+  end
+
   # Bind a single network to a configuration template
   # @param [String] network_id the source network that you want to bind to a tempalte
   # @param [Hash] options options hash that contains configTemplateId and autoBind values. Refer to the official
