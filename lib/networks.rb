@@ -162,4 +162,11 @@ module Networks
 
     make_api_call("/networks/#{network_id}/traffic", :get, options)
   end
+
+  # Return the traffic shaping settings for the network
+  # @param [String] network_id network that you want data for
+  # @return [Hash] the defined bandwith limits set per-uplink
+  def uplink_traffic_shaping(network_id)
+    make_v1_api_call("/networks/#{network_id}/appliance/trafficShaping/uplinkBandwidth", :get)
+  end
 end
