@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 # VLANs section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module VLANs
   # Returns a list of the configured VLANs in a Dashboard network
   # @param [String] network_id the network ID you want the VLANs for
   # @return [Array] an array of hashes containing each VLAN and it's attributes
   def list_vlans(network_id)
-    make_api_call("/networks/#{network_id}/vlans", :get)
+    make_api_call("/networks/#{network_id}/appliance/vlans", :get)
   end
 
   # Return a single configured VLAN for a network
@@ -15,7 +15,7 @@ module VLANs
   # @param [Integer] vlan_id the VLAN ID you want the attributes for
   # @return [Hash] a hash of the VLAN's attributes
   def return_vlan(network_id, vlan_id)
-    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", :get)
+    make_api_call("/networks/#{network_id}/appliance/vlans/#{vlan_id}", :get)
   end
 
   # Add a single VLAN to a network
@@ -26,7 +26,7 @@ module VLANs
   def add_vlan(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/vlans", :post, options)
+    make_api_call("/networks/#{network_id}/appliance/vlans", :post, options)
   end
 
   # Update the attributes for a single VLAN
@@ -38,7 +38,7 @@ module VLANs
   def update_vlan(network_id, vlan_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", :put, options)
+    make_api_call("/networks/#{network_id}/appliance/vlans/#{vlan_id}", :put, options)
   end
 
   # Delete a single vlan
@@ -46,6 +46,6 @@ module VLANs
   # @param [Integer] vlan_id the VLAN ID you want to delete
   # @return [Integer] code HTTP return code
   def delete_vlan(network_id, vlan_id)
-    make_api_call("/networks/#{network_id}/vlans/#{vlan_id}", :delete)
+    make_api_call("/networks/#{network_id}/appliance/vlans/#{vlan_id}", :delete)
   end
 end

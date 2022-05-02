@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Organization section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module Organizations
   # Returns information about an organization
   # @param [String] org_id dashboard organization ID
@@ -13,15 +13,31 @@ module Organizations
   # Returns the current license state for a given organization
   # @param [String] org_id dashboard organization ID
   # @return [Hash] results contains the current license state information
+  # @deprecated Use #get_license_overview instead
   def get_license_state(org_id)
-    make_api_call("/organizations/#{org_id}/licenseState", :get)
+    get_license_overview org_id
+  end
+
+  # Returns the current license state for a given organization
+  # @param [String] org_id dashboard organization ID
+  # @return [Hash] results contains the current license state information
+  def get_license_overview(org_id)
+    make_api_call("/organizations/#{org_id}/licenses/overview", :get)
   end
 
   # Returns the current inventory for an organization
   # @param [String] org_id dashboard organization ID
   # @return [Array] an array of hashes containg information on each individual device
+  # @deprecated use #get_inventory_devices instead
   def get_inventory(org_id)
-    make_api_call("/organizations/#{org_id}/inventory", :get)
+    get_inventory_devices org_id
+  end
+
+  # Returns the current inventory for an organization
+  # @param [String] org_id dashboard organization ID
+  # @return [Array] an array of hashes containg information on each individual device
+  def get_inventory_devices(org_id)
+    make_api_call("/organizations/#{org_id}/inventory/devices", :get)
   end
 
   # Returns the current SNMP status for an organization
@@ -47,19 +63,42 @@ module Organizations
   # @param [String] org_id dashboard organization ID
   # @return [Array] an arrry of hashes containing the configuration information
   #   for each 3rd party VPN peer
-  def get_third_party_peers(org_id)
+  def get_third_party_vpn_peers(org_id)
     make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", :get)
+  end
+
+  # Updates your third party VPN peers
+  # @param [String] org_id dashboard organization ID
+  # @param [Hash] options: a hash with a key of 'Peers' containing an array
+  #               of Hashes representing all configured third party peer.
+  #               Takes the keys of name, publicIp, privateSubnets and secret
+  # @return [Array] returns the array of hashes for all currently configured 3rd party peers
+  def update_third_party_vpn_peers(org_id, options)
+    raise 'Options were not passed as an Hash' unless options.is_a?(Hash)
+    raise "Key '[peers]' is missing from supplied options" unless options['peers']
+
+    make_api_call("/organizations/#{org_id}/appliance/vpn/thirdPartyVPNPeers", :put, options)
+  end
+
+  # Returns the configurations for an organizations 3rd party VPN peers
+  # @param [String] org_id dashboard organization ID
+  # @return [Array] an arrry of hashes containing the configuration information
+  #   for each 3rd party VPN peer
+  # @deprecated use #get_third_party_vpn_peers instead
+  def get_third_party_peers(org_id)
+    get_third_party_vpn_peers org_id
   end
 
   # Updates your third party peers
   # @param [String] org_id dashboard organization ID
-  # @params [Array] options An array of Hashes representing all configured third party peer. Takes the keys of name,
+  # @param [Array] options An array of Hashes representing all configured third party peer. Takes the keys of name,
   #   publicIp, privateSubnets and secret
   # @return [Array] returns the array of hashes for all currently configured 3rd party peers
+  # @deprecated use #update_third_party_vpn_peers instead
   def update_third_party_peers(org_id, options)
     raise 'Options were not passed as an Array' unless options.is_a?(Array)
 
-    make_api_call("/organizations/#{org_id}/thirdPartyVPNPeers", :put, options)
+    update_third_party_vpn_peers(org_id, { 'peers' => options })
   end
 
   # Returns all organizations a user is an administrator on

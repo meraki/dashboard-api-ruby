@@ -8,6 +8,6 @@ module SwitchProfiles
   # @param [String] template_id Configuration Template ID Containing the profiles
   # @return [Array] an array of Hashes, containing the switch profile IDs and the applicable model/name
   def get_organization_config_template_switch_profiles(org_id, template_id)
-    make_api_call("/organizations/#{org_id}/configTemplates/#{template_id}/switchProfiles", :get)
+    make_api_call("/organizations/#{org_id}/configTemplates/#{template_id}/switch/profiles", :get)
   end
 end

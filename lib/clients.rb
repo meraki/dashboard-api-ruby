@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Clients section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module Clients
   # Return client usage for a specific device
   # @param [String] serial meraki serial number of the device

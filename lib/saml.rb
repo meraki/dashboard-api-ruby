@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # SAML section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module SAML
   # List all SAML roles defined on an organization
   # @param [String] org_id organization ID you want the SAML roles from

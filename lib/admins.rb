@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Admins section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module Admins
   # List all of the administrators for a given org
   # @param [String] org_id organization ID you want the list of administrators for

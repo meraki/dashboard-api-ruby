@@ -17,7 +17,7 @@ require 'switch_profiles'
 require 'saml'
 
 # Ruby Implementation of the Meraki Dashboard api
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 class DashboardAPI
   include HTTParty
   include Organizations
@@ -33,7 +33,7 @@ class DashboardAPI
   include Templates
   include SAML
 
-  base_uri 'https://dashboard.meraki.com/api/v0'
+  base_uri 'https://api.meraki.com/api/v1'
 
   attr_reader :key
   attr_accessor :debug_enabled
@@ -43,7 +43,10 @@ class DashboardAPI
   end
 
   private
-
+  # @private
+  # @description Parse the response coming back from the API
+  # @param [String] response_object: The Raw JSON response from the API
+  # @return [Hash] The parsed JSON response
   def parse_response!(response_object)
     raise '404 returned. Are you sure you are using the proper IDs?' if response_object.code == 404
 
@@ -60,25 +63,21 @@ class DashboardAPI
   end
 
   # @private
-  # Inner function, not to be called directly
-  # Utility wrapper to make calls to v1 api endpoints easier in the code
-  def make_v1_api_call(url, method, options = {})
-    make_api_call(url, method, options, 'https://dashboard.meraki.com/api/v1')
-  end
-
-  # @private
-  # Inner function, not to be called directly
-  # @todo Eventually this will need to support POST, PUT and DELETE. It also
-  #   needs to be a bit more resillient, instead of relying on HTTParty for exception
-  #   handling
+  # Dispatch a HTTP request to the API.
+  # @param [String] endpoint_url: The API Endpoint
+  # @param [Symbol] http_method: The HTTP Method
+  # @param [Hash] options_hash: The options to be passed to the API
+  # @param [String] base_uri: The base uri to be used for the request
+  # @param [Integer] pages: The number of pages to be returned
+  # @return [Hash] a hash of the JSON response
   def make_api_call(endpoint_url, http_method,
-                    options_hash = {}, base_uri_override = nil,
+                    options_hash = {}, base_uri = nil,
                     pages = Float::INFINITY)
     options = {
       headers: { 'X-Cisco-Meraki-API-Key' => @key, 'Content-Type' => 'application/json' },
       body: options_hash.to_json
     }
-    options[:base_uri] = base_uri_override unless base_uri_override.nil?
+    options[:base_uri] = base_uri if base_uri
     options[:debug_output] = $stdout if debug_enabled
 
     case http_method

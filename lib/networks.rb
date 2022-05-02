@@ -1,19 +1,28 @@
 # frozen_string_literal: true
 
 # Networks section of the Meraki Dashboard API
-# @author Joe Letizia
+# @author Joe Letizia, Shane Short
 module Networks
   # Returns the list of networks for a given organization
-  # @param [String] org_id dashboard organization ID
+  # @param [String] org_id: dashboard organization ID
+  # @param [Hash] options: optional parameters
   # @return [Array] an array of hashes containing the network details
-  def get_networks(org_id)
-    make_api_call("/organizations/#{org_id}/networks", :get)
+  def get_networks(org_id, options = {})
+    make_api_call("/organizations/#{org_id}/networks", :get, options)
   end
 
   # Returns the network details for a single network
   # @param [String] network_id dashboard network ID
   # @return [Hash] a hash containing the network details of the specific network
+  # @deprecated Please use {#get_network} instead
   def get_single_network(network_id)
+    get_network(network_id)
+  end
+
+  # Returns the network details for a single network
+  # @param [String] network_id dashboard network ID
+  # @return [Hash] a hash containing the network details of the specific network
+  def get_network(network_id)
     make_api_call("/networks/#{network_id}", :get)
   end
 
@@ -42,6 +51,7 @@ module Networks
     make_api_call("/organizations/#{org_id}/networks", :post, options)
   end
 
+  # @deprecated Please use {#create_network} instead
   # Create a new Dashboard network
   # @param [String] org_id dashboard organization ID
   # @param [Hash] options a hash containing the following options:
@@ -50,9 +60,7 @@ module Networks
   #   tags: tags for the network (NOT REQUIRED)
   # @return [Hash] a hash containing the new networks details
   def create_v1_network(org_id, options)
-    raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
-
-    make_v1_api_call("/organizations/#{org_id}/networks", :post, options)
+    create_network(org_id, options)
   end
 
   # Delete an existing Dashboard network
@@ -76,14 +84,14 @@ module Networks
   def combine_network(org_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_v1_api_call("/organizations/#{org_id}/networks/combine", :post, options)
+    make_api_call("/organizations/#{org_id}/networks/combine", :post, options)
   end
 
   # Get AutoVPN settings for a specific network
   # @param [String] network_id dashboard network ID to get AutoVPN settings for
   # @return [Hash] a hash containing the AutoVPN details for the network
   def get_auto_vpn_settings(network_id)
-    make_api_call("/networks/#{network_id}/siteToSiteVpn", :get)
+    make_api_call("/networks/#{network_id}/appliance/vpn/siteToSiteVpn", :get)
   end
 
   # Update AutoVPN for a specific network
@@ -96,14 +104,14 @@ module Networks
   def update_auto_vpn_settings(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_api_call("/networks/#{network_id}/siteToSiteVpn", :put, options)
+    make_api_call("/networks/#{network_id}/appliance/vpn/siteToSiteVpn", :put, options)
   end
 
   # Get all MS access policies configured for a specific Dashboard network
   # @param [String] network_id dashboard network ID to get MS policies for
   # @return [Array] an array of hashes for containing the policy information
   def get_ms_access_policies(network_id)
-    make_api_call("/networks/#{network_id}/accessPolicies", :get)
+    make_api_call("/networks/#{network_id}/switch/accessPolicies", :get)
   end
 
   # Get all group policies configured for a specific Dashboard network
@@ -114,7 +122,7 @@ module Networks
   end
 
   # Create a group access policy for a network
-  # @param [String] network_id the source network that you want to bind to a tempalte
+  # @param [String] network_id the source network that you want to bind to a template
   # @param [Hash] options options hash that contains group policy values. Refer to the official
   #   Meraki Dashboard API documentation for more information on these.
   # @return [Integer] HTTP Code
@@ -132,7 +140,7 @@ module Networks
   def update_group_access_policy(network_id, group_policy_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
 
-    make_v1_api_call("/networks/#{network_id}/groupPolicies/#{group_policy_id}", :put, options)
+    make_api_call("/networks/#{network_id}/groupPolicies/#{group_policy_id}", :put, options)
   end
 
   # Bind a single network to a configuration template
@@ -149,8 +157,16 @@ module Networks
   # Unbind a single network from a configuration template
   # @param [String] network_id the network that you want to unbind from it's template
   # @return [Integer] HTTP Code
+  # @deprecated Use #split_from_template instead
   def unbind_network_to_template(network_id)
-    make_api_call("/networks/#{network_id}/unbind", :post)
+    split_network_from_template(network_id)
+  end
+
+  # Split a network from a configuration template
+  # @param [String] network_id the network that you want to unbind from it's template
+  # @return [Integer] HTTP Code
+  def split_network_from_template(network_id)
+    make_api_call("/networks/#{network_id}/split", :post)
   end
 
   # Return traffic analysis data for a network
@@ -159,6 +175,7 @@ module Networks
   #   Meraki Dashboard API documentation for more information on these.
   def traffic_analysis(network_id, options)
     raise 'Options were not passed as a Hash' unless options.is_a?(Hash)
+    raise 'Timespan can not be larger than 2592000 seconds' if options[:timespan] && options[:timespan].to_i > 2_592_000
 
     make_api_call("/networks/#{network_id}/traffic", :get, options)
   end
@@ -167,6 +184,6 @@ module Networks
   # @param [String] network_id network that you want data for
   # @return [Hash] the defined bandwith limits set per-uplink
   def uplink_traffic_shaping(network_id)
-    make_v1_api_call("/networks/#{network_id}/appliance/trafficShaping/uplinkBandwidth", :get)
+    make_api_call("/networks/#{network_id}/appliance/trafficShaping/uplinkBandwidth", :get)
   end
 end
