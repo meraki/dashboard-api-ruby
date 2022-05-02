@@ -30,7 +30,6 @@ class DashboardAPI
   include Switchports
   include SwitchProfiles
   include VLANs
-  include Phones
   include Templates
   include SAML
 
