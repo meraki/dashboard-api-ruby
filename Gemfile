@@ -2,7 +2,7 @@ source "https://rubygems.org"
 gem "httparty"
 gem 'vcr'
 gem 'webmock'
-gem 'yard', '~> 0.9.11'
+gem 'yard', '~> 0.9.42'
 gem 'rake'
 gem 'minitest'
 gem 'minitest-reporters'
