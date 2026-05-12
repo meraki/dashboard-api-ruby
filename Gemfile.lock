@@ -18,7 +18,7 @@ GEM
     csv (3.3.5)
     docile (1.4.1)
     hashdiff (1.2.1)
-    httparty (0.24.0)
+    httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
