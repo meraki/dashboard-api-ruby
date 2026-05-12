@@ -34,7 +34,7 @@ GEM
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
     public_suffix (7.0.5)
-    rake (12.3.3)
+    rake (13.4.2)
     readline (0.0.4)
       reline
     reline (0.6.3)

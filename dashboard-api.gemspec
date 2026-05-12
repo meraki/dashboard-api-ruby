@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   end
 
   s.require_paths = ['lib']
-  s.add_development_dependency "rake", "~> 12.3"
+  s.add_development_dependency "rake", "~> 13.4"
   s.add_development_dependency "minitest", "~> 5.0"
   s.add_development_dependency "yard", "~> 0.9.11"
   s.add_development_dependency "vcr", ">= 3.0.3"
