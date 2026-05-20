@@ -17,6 +17,7 @@ GEM
       rexml
     csv (3.3.5)
     docile (1.4.1)
+    drb (2.2.3)
     hashdiff (1.2.1)
     httparty (0.24.2)
       csv
@@ -25,7 +26,9 @@ GEM
     io-console (0.8.2)
     json (2.19.5)
     mini_mime (1.1.5)
-    minitest (5.9.1)
+    minitest (6.0.6)
+      drb (~> 2.0)
+      prism (~> 1.5)
     minitest-reporters (1.8.0)
       ansi
       builder
@@ -34,6 +37,7 @@ GEM
     mize (0.6.1)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
+    prism (1.9.0)
     public_suffix (7.0.5)
     rake (13.4.2)
     readline (0.0.4)
