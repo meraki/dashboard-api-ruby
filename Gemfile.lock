@@ -15,11 +15,11 @@ GEM
     crack (1.0.1)
       bigdecimal
       rexml
-    csv (3.3.6)
+    csv (3.3.7)
     docile (1.4.1)
     drb (2.2.3)
     hashdiff (1.2.1)
-    httparty (0.24.3)
+    httparty (0.25.0)
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
